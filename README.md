@@ -32,3 +32,24 @@ brew update && brew cask install react-native-debugger
 ```
 
 ## Development
+
+You basically use `yarn dev` in order to work with react-native-debugger.
+Note that live reloading works only for the code within render method.
+If your components are functional components, you may use live reloading instead.
+
+```
+// open your app in development mode
+
+yarn dev
+
+// open ios simulater
+i
+
+// on the running emmulater
+// To show the developmer menu
+// enable live reloading, or hot reloading 
+
+Command+D
+
+
+```
