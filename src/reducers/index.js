@@ -14,13 +14,13 @@ const reducer = (state = initialState, action) => {
     case SOME_ACTION_HERE: {
       return {
         ...state,
-        sampleData1: action.data,
+        sampleData3: action.data,
       };
     }
     case ANOTHER_ACTION: {
       return {
         ...state,
-        sampleData2: action.data,
+        sampleData4: action.data,
       };
     }
     default: {

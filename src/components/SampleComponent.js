@@ -18,8 +18,8 @@ export const SampleComponent = ({ tsuyoshi, hiro, nour, michael, changeNour, cha
     <Text>{hiro}</Text>
     <Text>{nour}</Text>
     <Text>{michael}</Text>
-    <Button onPress={changeNour}>change Nour</Button>
-    <Button onPress={changeMichael}>change michael</Button>
+    <Button onPress={changeNour} title="change Nour" />
+    <Button onPress={changeMichael} title="change Michael" />
   </View>
 );
 
