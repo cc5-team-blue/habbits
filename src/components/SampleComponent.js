@@ -18,6 +18,7 @@ export const SampleComponent = ({ tsuyoshi, hiro, nour, michael, changeNour, cha
     <Text>{hiro}</Text>
     <Text>{nour}</Text>
     <Text>{michael}</Text>
+    <Text>{process.env.REACT_NATIVE_SENDER_ID}</Text>
     <Button onPress={changeNour} title="change Nour" />
     <Button onPress={changeMichael} title="change Michael" />
   </View>
