@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './src/reducers';
 import SampleComponent from './src/components/SampleComponent';
+import SuccessRabbit from './src/components/SuccessRabbit';
 
 // It sets the store with thunk middleware
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -21,6 +22,7 @@ const App = () => (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <SampleComponent />
+      {/* <SuccessRabbit /> */}
     </View>
   </Provider>
 );
