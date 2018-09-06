@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './src/reducers';
-import SampleComponent from './src/components/SampleComponent';
-import SuccessRabbit from './src/components/SuccessRabbit';
+import Wrapper from './Wrapper';
 
 // It sets the store with thunk middleware
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -20,9 +19,7 @@ const styles = StyleSheet.create({
 const App = () => (
   <Provider store={store}>
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <SampleComponent />
-      {/* <SuccessRabbit /> */}
+      <Wrapper />
     </View>
   </Provider>
 );

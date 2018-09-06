@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { anotherAction } from '../actions';
+import { anotherAction, clickedRabbit } from '../actions';
 import happyRabbit from '../images/happyRabbit.png';
 
 const styles = StyleSheet.create({
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SampleComponent = ({ clickHabbit }) => (
+export const SampleComponent = ({ clickHabbit, clickYay }) => (
   <View style={styles.container}>
     <View style={styles.yayImgContainer}>
       <View style={styles.awesomeWrapper}>
@@ -82,7 +82,9 @@ export const SampleComponent = ({ clickHabbit }) => (
       <Text style={styles.pointsText}>You gained +300P</Text>
     </View>
     <View onTouchStart={clickHabbit} style={styles.yayButton}>
-      <Text style={styles.yayText}>Yay!</Text>
+      <Text style={styles.yayText} onTouchStart={clickYay}>
+        Yay!
+      </Text>
     </View>
   </View>
 );
@@ -98,8 +100,8 @@ const mapDispatchToProps = dispatch => ({
   changeMichael: () => {
     dispatch(anotherAction('Michael'));
   },
-  clickHabbit: () => {
-    console.log('Hello Michael');
+  clickYay: () => {
+    dispatch(clickedRabbit(false));
   },
 });
 

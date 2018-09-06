@@ -1,5 +1,5 @@
 // It gets action types
-import { SOME_ACTION_HERE, ANOTHER_ACTION } from '../actions';
+import { SOME_ACTION_HERE, ANOTHER_ACTION, CLICKED_RABBIT } from '../actions';
 
 // It sets initial state
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   sampleData2: 'hiro',
   sampleData3: 'ノエル',
   sampleData4: 'マイケル',
+  isClickedRabbit: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +22,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sampleData4: action.data,
+      };
+    }
+    case CLICKED_RABBIT: {
+      return {
+        ...state,
+        isClickedRabbit: action.isClicked,
       };
     }
     default: {
