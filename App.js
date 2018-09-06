@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './src/reducers';
 import SampleComponent from './src/components/SampleComponent';
-
+import AuthComponent from './src/components/AuthComponent';
 // It sets the store with thunk middleware
 const store = createStore(reducer, applyMiddleware(thunk));
 
@@ -21,6 +21,7 @@ const App = () => (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <SampleComponent />
+      <AuthComponent />
     </View>
   </Provider>
 );
