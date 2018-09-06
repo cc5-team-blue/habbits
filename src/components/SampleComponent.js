@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { someActionHere, anotherAction } from '../actions';
+import { anotherAction } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
+import analyticsImage from '../images/analyticsImage.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#576371',
   },
   sleepHabbitText: {
-    width: 172.5,
+    width: 325,
     height: 32.5,
     fontFamily: 'Futura',
     fontSize: 25,
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#dce0e6',
+    textAlign: 'center',
   },
   habbitImage: {
     position: 'absolute',
@@ -67,19 +69,43 @@ const styles = StyleSheet.create({
     width: 152,
     height: 104,
   },
+  analytics: {
+    width: 325,
+    height: 123.5,
+    opacity: 0.71,
+    borderRadius: 10,
+    backgroundColor: '#576371',
+    shadowColor: '#3B495B', // refactor
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    marginTop: 20,
+  },
+  analyticsImage: {
+    position: 'absolute',
+    marginTop: 0,
+    width: 325,
+    height: 123.5,
+  },
 });
 
 export const SampleComponent = ({ michael, changeMichael, clickHabbit }) => (
   <View style={styles.container}>
-    <Text style={styles.headline}>Good Evening {michael}</Text>
+    <Text style={styles.headline}> Good Evening {michael} </Text>{' '}
     <View onTouchStart={clickHabbit} style={styles.wrapper}>
       <View style={styles.sleepHabbit}>
-        <Image style={styles.habbitImage} source={sleepHabbitImg} />
-      </View>
+        <Image style={styles.habbitImage} source={sleepHabbitImg} />{' '}
+      </View>{' '}
       <View style={styles.sleepHabbitTextBar}>
-        <Text style={styles.sleepHabbitText}>Sleep Habbit</Text>
-      </View>
-    </View>
+        <Text style={styles.sleepHabbitText}> Sleep Habbit </Text>{' '}
+      </View>{' '}
+      <View style={styles.analytics}>
+        <Image style={styles.analyticsImage} source={analyticsImage} />{' '}
+      </View>{' '}
+    </View>{' '}
     <Button onPress={changeMichael} title="change Michael" />
   </View>
 );
