@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   wrapper: {
-    flex: 3,
+    flex: 4,
     alignItems: 'center',
   },
   sleepHabbit: {
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
   analytics: {
     width: 325,
     height: 123.5,
-    opacity: 0.71,
     borderRadius: 10,
     backgroundColor: '#576371',
     shadowColor: '#3B495B', // refactor
@@ -89,24 +88,98 @@ const styles = StyleSheet.create({
     marginTop: 0,
     width: 325,
     height: 123.5,
+    borderRadius: 10,
+  },
+  analyticsText: {
+    width: 325,
+    height: 30,
+    fontFamily: 'Futura',
+    fontSize: 25,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#dce0e6',
+    textAlign: 'center',
+  },
+  textBox: {
+    height: 41,
+    alignItems: 'flex-end',
+    position: 'absolute',
+    bottom: 0,
+  },
+  achievements: {
+    paddingTop: '4%',
+    width: '87%',
+  },
+  achievementsText: {
+    textAlign: 'left',
+    width: 225,
+    height: 26,
+    fontFamily: 'Futura',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#ffffff',
+  },
+  achievementsIconContainer: {
+    paddingTop: 10,
+    flex: 1,
+    flexDirection: 'row',
+  },
+  achievementsIconLeft: {
+    marginRight: '3%',
+    width: 66,
+    height: 66,
+    opacity: 0.71,
+    borderRadius: 10,
+    backgroundColor: '#626d7b',
+  },
+  achievementsIconMiddle: {
+    marginLeft: '3.5%',
+    marginRight: '3%',
+    width: 66,
+    height: 66,
+    opacity: 0.71,
+    borderRadius: 10,
+    backgroundColor: '#626d7b',
+  },
+  achievementsIconRight: {
+    marginLeft: '3%',
+    width: 66,
+    height: 66,
+    opacity: 0.71,
+    borderRadius: 10,
+    backgroundColor: '#626d7b',
   },
 });
 
 export const SampleComponent = ({ michael, changeMichael, clickHabbit }) => (
   <View style={styles.container}>
-    <Text style={styles.headline}> Good Evening {michael} </Text>{' '}
+    <Text style={styles.headline}>Good Evening {michael}</Text>{' '}
     <View onTouchStart={clickHabbit} style={styles.wrapper}>
       <View style={styles.sleepHabbit}>
         <Image style={styles.habbitImage} source={sleepHabbitImg} />{' '}
       </View>{' '}
       <View style={styles.sleepHabbitTextBar}>
-        <Text style={styles.sleepHabbitText}> Sleep Habbit </Text>{' '}
+        <Text style={styles.sleepHabbitText}>Sleep Habbit</Text>{' '}
       </View>{' '}
       <View style={styles.analytics}>
         <Image style={styles.analyticsImage} source={analyticsImage} />{' '}
+        <View flex bottom style={styles.textBox}>
+          <Text style={styles.analyticsText}>Analytics</Text>{' '}
+        </View>
       </View>{' '}
+      <View style={styles.achievements}>
+        <Text style={styles.achievementsText}>Recent Achievements</Text>
+        <View style={styles.achievementsIconContainer}>
+          <View style={styles.achievementsIconLeft}>1</View>
+          <View style={styles.achievementsIconMiddle}>2</View>
+          <View style={styles.achievementsIconMiddle}>3</View>
+          <View style={styles.achievementsIconRight}>4</View>
+        </View>
+      </View>
     </View>{' '}
-    <Button onPress={changeMichael} title="change Michael" />
   </View>
 );
 
