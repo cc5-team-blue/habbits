@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { anotherAction } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
@@ -154,9 +154,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SampleComponent = ({ michael, changeMichael, clickHabbit }) => (
+export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.container}>
-    <Text style={styles.headline}>Good Evening {michael}</Text>{' '}
+    <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
     <View onTouchStart={clickHabbit} style={styles.wrapper}>
       <View style={styles.sleepHabbit}>
         <Image style={styles.habbitImage} source={sleepHabbitImg} />{' '}
