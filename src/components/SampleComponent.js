@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { someActionHere, anotherAction } from '../actions';
+import sleepHabbitImg from '../images/rabbitSmall.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,22 +69,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SampleComponent = ({ tsuyoshi, hiro, nour, michael, changeNour, changeMichael }) => (
+export const SampleComponent = ({ michael, changeMichael, clickHabbit }) => (
   <View style={styles.container}>
     <Text style={styles.headline}>Good Evening {michael}</Text>
-    <View style={styles.wrapper}>
+    <View onTouchStart={clickHabbit} style={styles.wrapper}>
       <View style={styles.sleepHabbit}>
-        <Image style={styles.habbitImage} source={require('../images/rabbitSmall.png')}></Image>
+        <Image style={styles.habbitImage} source={sleepHabbitImg} />
       </View>
       <View style={styles.sleepHabbitTextBar}>
         <Text style={styles.sleepHabbitText}>Sleep Habbit</Text>
       </View>
     </View>
-    <Text>{tsuyoshi}</Text>
-    <Text>{hiro}</Text>
-    <Text>{nour}</Text>
-    <Text>{michael}</Text>
-    <Button onPress={changeNour} title="change Nour" />
     <Button onPress={changeMichael} title="change Michael" />
   </View>
 );
@@ -96,11 +92,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeNour: () => {
-    dispatch(someActionHere('Nour'));
-  },
   changeMichael: () => {
     dispatch(anotherAction('Michael'));
+  },
+  clickHabbit: () => {
+    console.log('clicked');
   },
 });
 
