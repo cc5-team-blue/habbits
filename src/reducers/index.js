@@ -1,5 +1,5 @@
 // It gets action types
-import { SOME_ACTION_HERE, ANOTHER_ACTION } from '../actions';
+import { SOME_ACTION_HERE, ANOTHER_ACTION, SET_USER } from '../actions';
 
 // It sets initial state
 const initialState = {
@@ -7,6 +7,8 @@ const initialState = {
   sampleData2: 'hiro',
   sampleData3: 'ノエル',
   sampleData4: 'マイケル',
+  user: null,
+  loading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +23,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sampleData4: action.data,
+      };
+    }
+    case SET_USER: {
+      return {
+        ...state,
+        user: action.user,
+        loading: action.loading,
       };
     }
     default: {
