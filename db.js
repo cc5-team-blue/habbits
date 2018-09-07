@@ -38,12 +38,24 @@ export const update = (ref,data)=>{
 firebase
   .database()
   .ref(ref)
-  .update(data);
+  .update(data)
+  .then(() => {
+    console.log('Updated');
+  })
+  .catch(error => {
+    console.log(error);
+  });
 }
 // delete
 export const remove = (ref)=>{
 firebase
   .database()
   .ref(ref)
-  .remove();
+  .remove()
+  .then(() => {
+    console.log('Deleted');
+  })
+  .catch(error => {
+    console.log(error);
+  });
 }
