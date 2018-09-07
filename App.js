@@ -11,7 +11,7 @@ import { insert, select, update, remove } from './db';
 
 insert("users/006",{name:"alian"});
 select("users");
-update("users/005",{name:"Mayoom"});
+update("users/005",{name:"Nour"});
 remove("users/006");
 
 // It sets the store with thunk middleware
