@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { app, insert, push, select, update, remove } from '../../db';
+import achievementImg from '../images/achievement.png';
+import arrowUpImg from '../images/arrow-up-circle.png';
+import arrowDownImg from '../images/arrow-down-circle.png';
+import starImg from '../images/star-circle.png';
+import analyticsImg from '../images/analyticsImage.png';
 
 const moment = require('moment');
 
@@ -12,11 +17,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Futura',
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     fontStyle: 'normal',
     letterSpacing: 0,
-    color: '#ffffff',
+    color: '#DCE0E6',
   },
   unlocked: {
     fontFamily: 'Futura',
@@ -25,24 +30,28 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#FFEDA3',
-    textAlign: "center"
   },
   achievement: {
     fontFamily: 'Futura',
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#FFFFFF',
-    backgroundColor:'#FC405B',
+  },
+  achievementWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 15,
-    marginLeft: 20,
     marginRight: 20,
-    textAlign: "center"
+    marginLeft: 120,
+    backgroundColor: '#FC405B',
+    borderRadius: 5,
   },
   plus: {
     fontFamily: 'Futura',
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     fontStyle: 'normal',
     letterSpacing: 0,
@@ -50,7 +59,7 @@ const styles = StyleSheet.create({
   },
   minus: {
     fontFamily: 'Futura',
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     fontStyle: 'normal',
     letterSpacing: 0,
@@ -70,11 +79,15 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 3,
   },
-  row:{
-    flexDirection:"row",
+  row: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
-  }
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
+  },
 });
 
 class Analytics extends Component {
@@ -104,11 +117,13 @@ class Analytics extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.headline}>Analytics</Text>
+          <Image source={analyticsImg} style={{height: 90}}/>
         <ScrollView>
           {this.state.achievements.map(item => {
             if (item.val.type === 'plus') {
               return (
                 <View key={item.key} style={styles.row}>
+                  <Image source={arrowUpImg} />
                   <Text style={styles.text}>{moment(item.val.date).format('MM/DD')} </Text>
                   <Text style={styles.plus}>+{item.val.points} Points</Text>
                 </View>
@@ -117,6 +132,7 @@ class Analytics extends Component {
             if (item.val.type === 'minus') {
               return (
                 <View key={item.key} style={styles.row}>
+                  <Image source={arrowDownImg} />
                   <Text style={styles.text}>{moment(item.val.date).format('MM/DD')} </Text>
                   <Text style={styles.minus}>-{item.val.points} Points</Text>
                 </View>
@@ -125,14 +141,20 @@ class Analytics extends Component {
             if (item.val.type === 'achievement') {
               return (
                 <View key={item.key}>
-                  <Text style={styles.unlocked}>{"Achievement Unlocked!\n"}</Text>
-                  <Text style={styles.achievement}>{item.val.title}</Text>
+                  <View style={styles.row}>
+                    <Image source={starImg} />
+                    <Text style={styles.unlocked}>{'Achievement Unlocked!'}</Text>
+                  </View>
+                  <View style={styles.achievementWrapper}>
+                    <Image source={achievementImg} style={{width: 50, height: 50}} />
+                    <Text style={styles.achievement}>{item.val.title}</Text>
+                  </View>
                 </View>
               );
             }
           })}
-      </ScrollView>
-        </View>
+        </ScrollView>
+      </View>
     );
   }
 }
