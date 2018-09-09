@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+import navReducer from './navReducer';
 // It gets action types
 import { SOME_ACTION_HERE, ANOTHER_ACTION } from '../actions';
 
@@ -29,4 +31,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default combineReducers({
+  nav: navReducer,
+  red: reducer,
+});
