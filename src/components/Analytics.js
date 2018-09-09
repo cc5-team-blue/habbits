@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    backgroundColor: '#3B495B',
   },
   text: {
     fontFamily: 'Futura',
@@ -95,6 +96,7 @@ class Analytics extends Component {
     super();
     this.state = {
       achievements: [],
+      count:0,
     };
   }
 
@@ -108,7 +110,7 @@ class Analytics extends Component {
         obj.key = child.key;
         obj.val = child.val();
         achievements.push(obj);
-        this.setState({ achievements });
+        this.setState({ achievements,count:this.state.achievements.count });
       });
     });
   }

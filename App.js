@@ -1,6 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './src/reducers';
@@ -12,25 +10,17 @@ import { insert, push, select, update, remove } from './db';
 import { migrate } from './migrate';
 
 // migrate()
+import { createStore, applyMiddleware } from 'redux';
 
-// It sets the store with thunk middleware
-const store = createStore(reducer, applyMiddleware(thunk));
+import AppReducer from './src/reducers';
+import { AppNavigator, middleware } from './src/navigators/AppNavigator';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3B495B',
-  },
-});
+const store = createStore(AppReducer, applyMiddleware(middleware));
 
 const App = () => (
   <Provider store={store}>
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      {/* <SampleComponent /> */}
-      {/* <SuccessRabbit /> */}
-      <Analytics />
-    </View>
+    <Analytics />
+    {/* <AppNavigator /> */}
   </Provider>
 );
 
