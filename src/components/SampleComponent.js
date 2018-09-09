@@ -11,8 +11,13 @@ import Drawer from './Drawer';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.container}>
+<<<<<<< HEAD
     <StatusBar barStyle="light-content" />
     <Drawer />
+||||||| merged common ancestors
+=======
+    <StatusBar barStyle="light-content" />
+>>>>>>> master
     <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
     <View style={styles.wrapper}>
       <View onTouchStart={clickHabbit} style={styles.sleepHabbit}>
