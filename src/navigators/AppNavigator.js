@@ -1,20 +1,27 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { createDrawerNavigator } from 'react-navigation';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 
-import SampleComponent from '../components/SampleComponent';
-import SuccessRabbit from '../components/SuccessRabbit';
+import stackNav from './StackNavigator';
 
 const middleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 
 // Here is the place we set app's pages with name
 // For example, Main page have reference to SampleComponent.
 const RootNavigator = createDrawerNavigator({
-  Main: { screen: SampleComponent },
-  Success: { screen: SuccessRabbit },
+  Main: {
+    screen: stackNav,
+    navigationOptions: {
+      drawerLabel: 'Home',
+      drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+    },
+  },
 });
 
 // AppWithNavigationState and mapStateToProps is like middleware for connecting component to navigation
@@ -25,7 +32,10 @@ const mapStateToProps = state => ({
   state: state.nav,
 });
 
-const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
+const AppNavigator = connect(
+  mapStateToProps,
+  null
+)(AppWithNavigationState);
 
 // RootNavigator: It describes the all pages in app
 // AppNavigator: It shows the root component with all state.
