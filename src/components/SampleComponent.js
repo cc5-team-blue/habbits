@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, Image, StatusBar } from 'react-native';
+import { Text, View, Image, StatusBar, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import IOSIcon from 'react-native-vector-icons/Ionicons';
 import { anotherAction } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import analyticsImage from '../images/analyticsImage.png';
@@ -9,6 +10,7 @@ import styles from '../css/styleForSampleComponent';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.container}>
+    <StatusBar barStyle="light-content" />
     <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
     <View style={styles.wrapper}>
       <View onTouchStart={clickHabbit} style={styles.sleepHabbit}>
@@ -36,11 +38,21 @@ export const SampleComponent = ({ clickHabbit }) => (
   </View>
 );
 
+// SampleComponent.navigationOptions = {
+//   title: 'as',
+//   headerRight: (
+//     <TouchableOpacity onPress={NavigationActions.openDrawer}>
+//       <IOSIcon name="ios-menu" size={50} />
+//     </TouchableOpacity>
+//   ),
+// };
+
 const mapStateToProps = state => ({
   tsuyoshi: state.sampleData1,
   hiro: state.sampleData2,
   nour: state.sampleData3,
   michael: state.sampleData4,
+  props: state.nav,
 });
 
 const mapDispatchToProps = dispatch => ({
