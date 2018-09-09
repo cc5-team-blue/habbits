@@ -24,6 +24,19 @@ export const insert = (ref,data)=>{
         console.log(error);
       });
 }
+// Push
+export const push = (ref,data)=>{
+    firebase
+      .database()
+      .ref(ref)
+      .push(data)
+      .then(() => {
+        console.log('Pushed');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+}
 // select
 export const select = (ref)=>{
 firebase

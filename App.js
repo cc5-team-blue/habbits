@@ -7,12 +7,10 @@ import reducer from './src/reducers';
 import SampleComponent from './src/components/SampleComponent';
 import SuccessRabbit from './src/components/SuccessRabbit';
 
-import { insert, select, update, remove } from './db';
+import { insert, push, select, update, remove } from './db';
+import { migrate } from './migrate';
 
-insert("users/006",{name:"alian"});
-select("users");
-update("users/005",{name:"Nour"});
-remove("users/006");
+migrate()
 
 // It sets the store with thunk middleware
 const store = createStore(reducer, applyMiddleware(thunk));
