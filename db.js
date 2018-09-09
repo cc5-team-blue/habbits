@@ -9,7 +9,7 @@ const config = {
   messagingSenderId: '856945851988',
 };
 // initialinzing
-firebase.initializeApp(config);
+export const app = firebase.initializeApp(config);
 
 // insert
 export const insert = (ref,data)=>{
@@ -43,7 +43,9 @@ firebase
   .database()
   .ref(ref)
   .on('value', data => {
-    console.log(data.toJSON());
+    return data.toJSON();
+  }).then((data)=>{
+    console.log(data);
   });
 }
 // update

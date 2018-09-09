@@ -6,11 +6,12 @@ import thunk from 'redux-thunk';
 import reducer from './src/reducers';
 import SampleComponent from './src/components/SampleComponent';
 import SuccessRabbit from './src/components/SuccessRabbit';
+import Analytics from './src/components/Analytics';
 
 import { insert, push, select, update, remove } from './db';
 import { migrate } from './migrate';
 
-migrate()
+// migrate()
 
 // It sets the store with thunk middleware
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -26,8 +27,9 @@ const App = () => (
   <Provider store={store}>
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <SampleComponent />
+      {/* <SampleComponent /> */}
       {/* <SuccessRabbit /> */}
+      <Analytics />
     </View>
   </Provider>
 );
