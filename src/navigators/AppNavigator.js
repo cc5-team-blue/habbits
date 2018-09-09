@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -9,20 +10,35 @@ import {
 } from 'react-navigation-redux-helpers';
 
 import stackNav from './StackNavigator';
+import UserInfo from '../components/UserInfo';
 
 const middleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 
-// Here is the place we set app's pages with name
-// For example, Main page have reference to SampleComponent.
-const RootNavigator = createDrawerNavigator({
-  Main: {
-    screen: stackNav,
-    navigationOptions: {
-      drawerLabel: 'Home',
-      drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+const { width, height } = Dimensions.get('window');
+
+const RootNavigator = createDrawerNavigator(
+  {
+    Home: {
+      screen: stackNav,
+      navigationOptions: {
+        drawerLabel: 'home page',
+        drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+      },
+    },
+    UserInfo: {
+      screen: UserInfo,
+      navigationOptions: {
+        drawerLabel: 'user info page',
+        drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+      },
     },
   },
-});
+  {
+    drawerPosition: 'right',
+    drawerWidth: Math.min(height, width) * 0.46,
+    drawerBackgroundColor: '#e3e1ed',
+  }
+);
 
 // AppWithNavigationState and mapStateToProps is like middleware for connecting component to navigation
 // So please do not modify these two.
