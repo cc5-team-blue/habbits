@@ -4,7 +4,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './src/reducers';
-import SampleComponent from './src/components/SampleComponent';
+// import SampleComponent from './src/components/SampleComponent';
+import { SleepTimer } from './src/components/SleepTimer';
+import { SampleComponent } from './src/components/SampleComponent';
 
 // It sets the store with thunk middleware
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -20,7 +22,8 @@ const App = () => (
   <Provider store={store}>
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <SampleComponent />
+      <SleepTimer />
+      {/* <SampleComponent /> */}
     </View>
   </Provider>
 );
