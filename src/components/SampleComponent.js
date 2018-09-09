@@ -9,6 +9,7 @@ import styles from '../css/styleForSampleComponent';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.container}>
+    <StatusBar barStyle="light-content" />
     <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
     <View style={styles.wrapper}>
       <View onTouchStart={clickHabbit} style={styles.sleepHabbit}>

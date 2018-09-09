@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
@@ -9,6 +9,7 @@ import styles from '../css/styleForSuccess';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.realContainer}>
+    <StatusBar barStyle="light-content" />
     <View style={styles.container}>
       <View style={styles.yayImgContainer}>
         <View style={styles.awesomeWrapper}>
