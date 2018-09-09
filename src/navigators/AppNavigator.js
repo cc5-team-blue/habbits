@@ -28,7 +28,7 @@ const RootNavigator = createDrawerNavigator(
     UserInfo: {
       screen: UserInfo,
       navigationOptions: {
-        drawerLabel: 'user info page',
+        drawerLabel: 'user page',
         drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
       },
     },
