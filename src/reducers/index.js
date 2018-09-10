@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         counter: state.counter.subtract(1, 'seconds'),
         timerDuration: state.timerDuration + 1,
-        // isWorking: true,
+        isWorking: true,
       };
     }
     case CHANGE_INTERVAL: {
