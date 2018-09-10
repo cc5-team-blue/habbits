@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-vector-icons/Ionicons';
-import { startTimer, getTime, setOfflineCountdown } from '../actions';
+import { setOfflineCountdown } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
