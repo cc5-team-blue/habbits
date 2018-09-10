@@ -37,7 +37,7 @@ const RootNavigator = createDrawerNavigator(
       screen: AppStateExample,
       navigationOptions: {
         drawerLabel: 'track example',
-        drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+        drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
   },

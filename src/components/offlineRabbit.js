@@ -4,24 +4,21 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import { anotherAction } from '../actions';
-import happyRabbit from '../images/happyRabbit.png';
-import styles from '../css/styleForSuccess';
+import sadRabbit from '../images/sadRabbit.png';
+import styles from '../css/styleForSadness';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.realContainer}>
     <StatusBar barStyle="light-content" />
-    <View style={styles.container}>
-      <View style={styles.yayImgContainer}>
-        <View style={styles.awesomeWrapper}>
-          <Text style={styles.youAreText}>You are</Text>
-          <Text style={styles.awesomeText}>AWESOME!</Text>
-        </View>
-        <Image style={styles.happyRabbitImage} source={happyRabbit} />
-        <Text style={styles.pointsText}>You gained +300P</Text>
-      </View>
-      <View onTouchStart={clickHabbit} style={styles.yayButton}>
-        <Text style={styles.yayText}>Yay!</Text>
-      </View>
+    <Text style={styles.headline}>Aww Snap!</Text>
+    <View style={styles.rectangleContainer}>
+      <Image style={styles.sadRabbitImage} source={sadRabbit} />
+      <Text style={styles.warningText}>
+        Please turn off your internet before the timer runs out.
+      </Text>
+    </View>
+    <View onTouchStart={clickHabbit} style={styles.retryButton}>
+      <Text style={styles.retryText}>Try Again</Text>
     </View>
   </View>
 );
