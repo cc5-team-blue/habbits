@@ -21,6 +21,12 @@ const navReducer = (state = initialState, action) => {
         state
       );
       break;
+    case 'TrackPage':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'TrackPage' }),
+        state
+      );
+      break;
     case 'Main':
       nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Main' }),

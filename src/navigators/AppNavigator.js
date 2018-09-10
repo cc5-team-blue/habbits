@@ -11,6 +11,7 @@ import {
 
 import stackNav from './StackNavigator';
 import UserInfo from '../components/UserInfo';
+import AppStateExample from '../components/trackComponent';
 
 const middleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 
@@ -32,10 +33,17 @@ const RootNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
       },
     },
+    TrackPage: {
+      screen: AppStateExample,
+      navigationOptions: {
+        drawerLabel: 'track example',
+        drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+      },
+    },
   },
   {
-    drawerPosition: 'right',
-    drawerWidth: Math.min(height, width) * 0.46,
+    drawerPosition: 'left',
+    drawerWidth: Math.min(height, width) * 0.8,
     drawerBackgroundColor: '#e3e1ed',
   }
 );
