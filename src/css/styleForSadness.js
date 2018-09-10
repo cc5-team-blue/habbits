@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   rectangleContainer: {
-    flex: 8,
+    flex: 7,
     width: 325,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,

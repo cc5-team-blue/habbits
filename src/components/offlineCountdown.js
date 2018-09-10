@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { Text, View, Alert, AppState, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { setOfflineCountdown, appStateChange, updateConnectivity } from '../actions';
+import {
+  setOfflineCountdown,
+  appStateChange,
+  updateConnectivity,
+  resetOfflineCountdown,
+} from '../actions';
 import styles from '../css/styleForOfflineCountdonw';
 
 class OfflineCountdown extends Component {
@@ -25,7 +30,9 @@ class OfflineCountdown extends Component {
   }
 
   componentWillUnmount() {
+    const { resetInterval } = this.props;
     clearInterval(this.timerID);
+    resetInterval();
     AppState.removeEventListener('change', this.handleAppStateChange);
     NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
@@ -87,6 +94,9 @@ const mapDispatchToProps = dispatch => ({
   },
   goToSleepTimer: () => {
     dispatch(NavigationActions.navigate({ routeName: 'SleepTimer' }));
+  },
+  resetInterval: () => {
+    dispatch(resetOfflineCountdown());
   },
   clickHabbit: () => {
     Alert.alert(

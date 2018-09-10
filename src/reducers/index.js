@@ -12,6 +12,7 @@ import {
   OFFLINECOUNTDOWN,
   APP_STATE_CHAGE,
   IS_CONNECTED_CHANGE,
+  RESETOFFLINECOUNTDOWN,
 } from '../actions';
 
 // It sets initial state
@@ -62,6 +63,12 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
+      };
+    }
+    case RESETOFFLINECOUNTDOWN: {
+      return {
+        ...state,
+        offlineSeconds: 10,
       };
     }
     case APP_STATE_CHAGE: {
