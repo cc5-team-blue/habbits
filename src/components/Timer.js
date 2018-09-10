@@ -32,6 +32,7 @@ export class Timer extends Component {
 
   componentDidMount() {
     const intervalID = setInterval(this.timerStart, 1000);
+    console.log(this.counter);
   }
 
   // countdown = () => {
@@ -47,6 +48,7 @@ export class Timer extends Component {
   // };
 
   render() {
+    console.debug(typeof this.counter);
     const percentage = (this.counter * 100) / this.full;
     const time = this.counter.format('h:mm');
     return (
