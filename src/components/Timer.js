@@ -56,7 +56,7 @@ export class Timer extends Component {
   // };
 
   render() {
-    const percentage = (this.counter * 100) / this.full;
+    const percentage = `${String(Math.floor((this.counter * 100) / this.full))}%`;
     const time = this.counter.format('h:mm');
     return (
       <View style={styles.container}>

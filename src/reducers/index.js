@@ -17,7 +17,7 @@ const initialState = {
   sampleData2: 'hiro',
   sampleData3: 'ノエル',
   sampleData4: 'マイケル',
-  full: moment.duration({ seconds: 15, minutes: 0, hours: 0 }),
+  full: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
   counter: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
   isWorking: false,
   interval: undefined,
