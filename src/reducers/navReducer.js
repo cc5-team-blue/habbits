@@ -39,6 +39,24 @@ const navReducer = (state = initialState, action) => {
         state
       );
       break;
+    case 'OffLine':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'OffLine' }),
+        state
+      );
+      break;
+    case 'OffLineRabbit':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'OffLineRabbit' }),
+        state
+      );
+      break;
+    case 'SleepTimer':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'SleepTimer' }),
+        state
+      );
+      break;
     default:
       nextState = router.getStateForAction(action, state);
       break;

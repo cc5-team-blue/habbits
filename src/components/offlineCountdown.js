@@ -8,9 +8,8 @@ import styles from '../css/styleForOfflineCountdonw';
 class OfflineCountdown extends Component {
   componentDidMount() {
     const { startCountdownTimer, offlineSeconds, goToOfflineRabbit } = this.props;
-    if (offlineSeconds === 1) {
-      console.log(offlineSeconds);
-      goToOfflineRabbit();
+    if (offlineSeconds === 0) {
+      // goToOfflineRabbit();
     }
     this.timerID = setInterval(startCountdownTimer, 1000);
     AppState.addEventListener('change', this.handleAppStateChange);
@@ -49,10 +48,9 @@ class OfflineCountdown extends Component {
   };
 
   render() {
-    const { offlineSeconds, appState } = this.props;
-    if (appState === 'background') {
-      console.log(appState);
-      return <Text style={{ marginTop: 60 }}>Good Bye bro</Text>;
+    const { offlineSeconds, isConnected, clickHabbit, goToSleepTimer } = this.props;
+    if (isConnected === false) {
+      goToSleepTimer();
     }
     return (
       <View style={styles.container}>
@@ -85,8 +83,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToOfflineRabbit: () => {
-    console.log('clicked');
     dispatch(NavigationActions.navigate({ routeName: 'OffLineRabbit' }));
+  },
+  goToSleepTimer: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'SleepTimer' }));
   },
   clickHabbit: () => {
     Alert.alert(

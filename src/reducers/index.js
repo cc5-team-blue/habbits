@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { AppState } from 'react-native';
 // It gets action types
 import moment from 'moment';
+import momentDurationFormatSetup from 'moment-duration-format';
 import navReducer from './navReducer';
 import {
   SOME_ACTION_HERE,
@@ -15,10 +16,6 @@ import {
 
 // It sets initial state
 const initialState = {
-  sampleData1: 'tsuyoshi',
-  sampleData2: 'hiro',
-  sampleData3: 'ノエル',
-  sampleData4: 'マイケル',
   full: moment.duration({ seconds: 15, minutes: 50, hours: 0 }),
   counter: moment.duration({ seconds: 15, minutes: 50, hours: 2 }),
   isWorking: false,

@@ -89,9 +89,9 @@ class AppStateExample extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  tsuyoshi: state.sampleData1,
-});
+// const mapStateToProps = state => ({
+//   tsuyoshi: state.redsampleData1,
+// });
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
@@ -115,6 +115,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(AppStateExample);
