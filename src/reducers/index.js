@@ -17,10 +17,11 @@ const initialState = {
   sampleData2: 'hiro',
   sampleData3: 'ノエル',
   sampleData4: 'マイケル',
-  full: moment.duration({ seconds: 15, minutes: 0, hours: 0 }),
-  counter: moment.duration({ seconds: 15, minutes: 0, hours: 0 }),
+  full: moment.duration({ seconds: 15, minutes: 50, hours: 0 }),
+  counter: moment.duration({ seconds: 15, minutes: 50, hours: 2 }),
   isWorking: false,
   interval: undefined,
+  timerDuration: 0,
   offlineSeconds: 15,
 };
 
@@ -39,10 +40,10 @@ const reducer = (state = initialState, action) => {
       };
     }
     case COUNTDOWN: {
-      console.log(state.counter);
       return {
         ...state,
-        counter: action.data,
+        counter: state.counter.subtract(1, 'seconds'),
+        timerDuration: state.timerDuration + 1,
         isWorking: true,
       };
     }
