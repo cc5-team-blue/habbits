@@ -49,7 +49,7 @@ class OfflineCountdown extends Component {
   };
 
   render() {
-    const { offlineSeconds, appState, isConnected } = this.props;
+    const { offlineSeconds, appState } = this.props;
     if (appState === 'background') {
       console.log(appState);
       return <Text style={{ marginTop: 60 }}>Good Bye bro</Text>;

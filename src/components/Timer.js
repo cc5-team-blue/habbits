@@ -31,22 +31,20 @@ export class Timer extends Component {
   }
 
   componentDidMount() {
-    this.countdown();
+    const intervalID = setInterval(this.timerStart, 1000);
   }
 
-  countdown = () => {
-    const interval = setInterval(() => {
-      if (this.counter > 0) {
-        const newCount = this.counter.subtract(1, 'seconds');
-        this.timerStart(newCount);
-      } else {
-        const resetInterval = clearInterval(interval);
-        this.changeInterval(resetInterval);
-      }
-    }, 1000);
-    console.log(1);
-    this.changeInterval(interval);
-  };
+  // countdown = () => {
+  //   const interval = setInterval(() => {
+  //     if (this.counter > 0) {
+  //       this.timerStart();
+  //     } else {
+  //       const resetInterval = clearInterval(interval);
+  //       this.changeInterval(resetInterval);
+  //     }
+  //   }, 1000);
+  //   this.changeInterval(interval);
+  // };
 
   render() {
     const percentage = (this.counter * 100) / this.full;
@@ -69,15 +67,16 @@ export class Timer extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentCounter: state.counter,
-  full: state.full,
-  isWoking: state.isWoking,
-  interval: state.interval,
+  currentCounter: state.red.counter,
+  full: state.red.full,
+  isWorking: state.red.isWorking,
+  interval: state.red.interval,
+  timerDuration: state.red.timerDuration,
 });
 
 const mapDispatchToProps = dispatch => ({
-  timerStart: newCount => {
-    dispatch(countdown(newCount));
+  timerStart: () => {
+    dispatch(countdown());
   },
   changeInterval: value => {
     dispatch(changeInterval(value));

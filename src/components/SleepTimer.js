@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: '#3B495B',
   },
   headline: {
     paddingTop: 60,
