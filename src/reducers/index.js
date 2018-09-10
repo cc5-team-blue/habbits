@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { AppState } from 'react-native';
 // It gets action types
 import moment from 'moment';
+import momentDurationFormatSetup from 'moment-duration-format';
 import navReducer from './navReducer';
 import {
   SOME_ACTION_HERE,
