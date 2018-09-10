@@ -40,10 +40,6 @@ export const SampleComponent = ({ clickHabbit }) => (
 );
 
 const mapStateToProps = state => ({
-  tsuyoshi: state.sampleData1,
-  hiro: state.sampleData2,
-  nour: state.sampleData3,
-  michael: state.sampleData4,
   props: state.nav,
 });
 
@@ -53,7 +49,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clickHabbit: () => {
     console.log('clicked');
-    dispatch(NavigationActions.navigate({ routeName: 'Success' }));
+    dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
   },
 });
 

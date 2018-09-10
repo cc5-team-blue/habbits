@@ -21,6 +21,12 @@ const navReducer = (state = initialState, action) => {
         state
       );
       break;
+    case 'TrackPage':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'TrackPage' }),
+        state
+      );
+      break;
     case 'Main':
       nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Main' }),
@@ -30,6 +36,24 @@ const navReducer = (state = initialState, action) => {
     case 'Success':
       nextState = router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Success' }),
+        state
+      );
+      break;
+    case 'OffLine':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'OffLine' }),
+        state
+      );
+      break;
+    case 'OffLineRabbit':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'OffLineRabbit' }),
+        state
+      );
+      break;
+    case 'SleepTimer':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'SleepTimer' }),
         state
       );
       break;

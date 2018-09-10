@@ -41,7 +41,7 @@ export class Timer extends Component {
     console.log('Hi!');
     const currentTime = moment();
     console.log(currentTime);
-    console.log((currentTime.subtract(3, 'hours')).format('h:mm'));
+    console.log(currentTime.subtract(3, 'hours').format('h:mm'));
   };
 
   render() {

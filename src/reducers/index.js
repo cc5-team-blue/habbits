@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { AppState } from 'react-native';
 // It gets action types
 import moment from 'moment';
 import momentDurationFormatSetup from 'moment-duration-format';
@@ -9,20 +10,20 @@ import {
   COUNTDOWN,
   CHANGE_INTERVAL,
   OFFLINECOUNTDOWN,
+  APP_STATE_CHAGE,
+  IS_CONNECTED_CHANGE,
+  RESETOFFLINECOUNTDOWN,
 } from '../actions';
 
 // It sets initial state
 const initialState = {
-  sampleData1: 'tsuyoshi',
-  sampleData2: 'hiro',
-  sampleData3: 'ノエル',
-  sampleData4: 'マイケル',
   full: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
   counter: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
   isWorking: false,
   interval: undefined,
-  timerDuration: 0,
-  offlineSeconds: 15,
+  offlineSeconds: 3,
+  appState: AppState.currentState,
+  isConnected: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -68,6 +69,24 @@ const reducer = (state = initialState, action) => {
       }
       return {
         ...state,
+      };
+    }
+    case RESETOFFLINECOUNTDOWN: {
+      return {
+        ...state,
+        offlineSeconds: 10,
+      };
+    }
+    case APP_STATE_CHAGE: {
+      return {
+        ...state,
+        appState: action.nextAppState,
+      };
+    }
+    case IS_CONNECTED_CHANGE: {
+      return {
+        ...state,
+        isConnected: action.isConnected,
       };
     }
     default: {
