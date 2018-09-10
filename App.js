@@ -11,11 +11,9 @@ import { migrate } from './migrate';
 
 // migrate()
 import { createStore, applyMiddleware } from 'redux';
-
-import AppReducer from './src/reducers';
 import { AppNavigator, middleware } from './src/navigators/AppNavigator';
 
-const store = createStore(AppReducer, applyMiddleware(middleware));
+const store = createStore(reducer, applyMiddleware(middleware, thunk));
 
 const App = () => (
   <Provider store={store}>

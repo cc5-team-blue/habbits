@@ -6,10 +6,12 @@ import { anotherAction } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import analyticsImage from '../images/analyticsImage.png';
 import styles from '../css/styleForSampleComponent';
+import Drawer from './Drawer';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
+    <Drawer />
     <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
     <View style={styles.wrapper}>
       <View onTouchStart={clickHabbit} style={styles.sleepHabbit}>
@@ -38,10 +40,7 @@ export const SampleComponent = ({ clickHabbit }) => (
 );
 
 const mapStateToProps = state => ({
-  tsuyoshi: state.sampleData1,
-  hiro: state.sampleData2,
-  nour: state.sampleData3,
-  michael: state.sampleData4,
+  props: state.nav,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -50,7 +49,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clickHabbit: () => {
     console.log('clicked');
-    dispatch(NavigationActions.navigate({ routeName: 'Success' }));
+    dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
   },
 });
 

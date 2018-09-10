@@ -41,6 +41,8 @@
     "react": "16.3.1",
     "react-native": "~0.55.4",
     "react-native-chart-kit": "^1.1.6",
+    "moment-duration-format": "^2.2.2",
+    "react-native-percentage-circle": "^1.0.7",
     "react-navigation": "^2.13.0",
     "react-navigation-redux-helpers": "^2.0.5",
     "redux": "^4.0.0",
