@@ -1,11 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducer from './src/reducers';
 import { AppNavigator, middleware } from './src/navigators/AppNavigator';
-// import SampleComponent from './src/components/SampleComponent';
 
 const store = createStore(reducer, applyMiddleware(middleware, thunk));
 

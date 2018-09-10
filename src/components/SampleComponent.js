@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clickHabbit: () => {
     console.log('clicked');
-    dispatch(NavigationActions.navigate({ routeName: 'Success' }));
+    dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
   },
 });
 

@@ -1,83 +1,59 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, Alert, AppState, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { setOfflineCountdown } from '../actions';
+import { NavigationActions } from 'react-navigation';
+import { setOfflineCountdown, appStateChange, updateConnectivity } from '../actions';
+import styles from '../css/styleForOfflineCountdonw';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#3B495B',
-  },
-  headline: {
-    paddingTop: 60,
-    paddingLeft: 30,
-    flex: 1,
-    width: 325,
-    height: 45.5,
-    fontFamily: 'Futura',
-    fontSize: 35,
-    fontWeight: 'bold',
-    fontStyle: 'normal',
-    color: '#ffffff',
-    alignSelf: 'flex-start',
-    bottom: 0,
-  },
-  rectangleContainer: {
-    flex: 8,
-    width: 325,
-    borderRadius: 10,
-    backgroundColor: '#eb5e65',
-    marginBottom: '4%',
-  },
-  seconds: {
-    marginTop: 171,
-    width: 325,
-    height: 78,
-    fontFamily: 'Futura',
-    fontSize: 60,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#ffffff',
-  },
-  toGoOffline: {
-    marginTop: 6,
-    width: 325,
-    height: 32.5,
-    fontFamily: 'Futura',
-    fontSize: 25,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 0.68)',
-  },
-  enterFlightMode: {
-    marginTop: 155,
-    paddingLeft: 40,
-    paddingRight: 40,
-    width: 325,
-    height: 100,
-    fontFamily: 'Futura',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'rgba(255, 255, 255, 0.68)',
-  },
-});
-
-class OfflineCountdown extends React.Component {
+class OfflineCountdown extends Component {
   componentDidMount() {
-    const { startCountdownTimer } = this.props;
+    const { startCountdownTimer, offlineSeconds, goToOfflineRabbit } = this.props;
+    if (offlineSeconds === 1) {
+      console.log(offlineSeconds);
+      goToOfflineRabbit();
+    }
     this.timerID = setInterval(startCountdownTimer, 1000);
+    AppState.addEventListener('change', this.handleAppStateChange);
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { goToOfflineRabbit } = this.props;
+    if (nextProps.offlineSeconds === 0) {
+      goToOfflineRabbit();
+    }
+    return true;
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
+    AppState.removeEventListener('change', this.handleAppStateChange);
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
+  handleAppStateChange = nextAppState => {
+    const { appState, updateAppState } = this.props;
+    if (appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('App has come to the foreground!');
+    }
+    updateAppState(nextAppState);
+  };
+
+  handleConnectivityChange = isConnected => {
+    const { updateConnect } = this.props;
+    if (isConnected) {
+      updateConnect(isConnected);
+    } else {
+      updateConnect(isConnected);
+    }
+  };
+
   render() {
-    const { offlineSeconds } = this.props;
+    const { offlineSeconds, appState } = this.props;
+    if (appState === 'background') {
+      console.log(appState);
+      return <Text style={{ marginTop: 60 }}>Good Bye bro</Text>;
+    }
     return (
       <View style={styles.container}>
         <Text style={styles.headline}>Sleep Timer</Text>
@@ -94,11 +70,41 @@ class OfflineCountdown extends React.Component {
 
 const mapStateToProps = state => ({
   offlineSeconds: state.red.offlineSeconds,
+  appState: state.red.appState,
+  isConnected: state.red.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({
   startCountdownTimer: () => {
     dispatch(setOfflineCountdown());
+  },
+  updateAppState: nextAppState => {
+    dispatch(appStateChange(nextAppState));
+  },
+  updateConnect: newConnectionState => {
+    dispatch(updateConnectivity(newConnectionState));
+  },
+  goToOfflineRabbit: () => {
+    console.log('clicked');
+    dispatch(NavigationActions.navigate({ routeName: 'OffLineRabbit' }));
+  },
+  clickHabbit: () => {
+    Alert.alert(
+      'Are you OK to give up?',
+      'No points, No life',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => dispatch(NavigationActions.navigate({ routeName: 'Home' })),
+        },
+      ],
+      { cancelable: true }
+    );
   },
 });
 
