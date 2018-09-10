@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
+import moment from 'moment';
 import { changeInterval, countdown } from '../actions';
 
 const styles = StyleSheet.create({
@@ -31,9 +32,17 @@ export class Timer extends Component {
   }
 
   componentDidMount() {
+    // comment out for implement AsyncStorage
     const intervalID = setInterval(this.timerStart, 1000);
+    this.changeInterval(intervalID);
   }
 
+  sayHi = () => {
+    console.log('Hi!');
+    const currentTime = moment();
+    console.log(currentTime);
+    console.log((currentTime.subtract(3, 'hours')).format('h:mm'));
+  };
   // countdown = () => {
   //   const interval = setInterval(() => {
   //     if (this.counter > 0) {
@@ -51,7 +60,13 @@ export class Timer extends Component {
     const time = this.counter.format('h:mm');
     return (
       <View style={styles.container}>
-        <Text>{percentage}</Text>
+        <Button
+          onPress={this.sayHi}
+          title="Don't push me"
+          color="#fff"
+          accessibilityLabel="Don't do that"
+        />
+        <Text> {percentage} </Text>{' '}
         <PercentageCircle
           borderWidth={14}
           radius={100}
@@ -59,8 +74,8 @@ export class Timer extends Component {
           color="#fff"
           innerColor="#eb5e65"
         >
-          <Text style={styles.timer}>{time}</Text>
-        </PercentageCircle>
+          <Text style={styles.timer}> {time} </Text>{' '}
+        </PercentageCircle>{' '}
       </View>
     );
   }
