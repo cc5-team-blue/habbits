@@ -2,14 +2,15 @@ import { createStackNavigator } from 'react-navigation';
 import { Easing, Animated } from 'react-native';
 import IOSIcon from 'react-native-vector-icons/Ionicons';
 import SampleComponent from '../components/SampleComponent';
-import SuccessRabbit from '../components/SuccessRabbit';
+// import SuccessRabbit from '../components/SuccessRabbit';
+import OfflineCountdown from '../components/offlineCountdown';
 
 // Here is the place we define app's pages with name
 // For example, Main page have reference to SampleComponent.
 const stackNav = createStackNavigator(
   {
     Main: { screen: SampleComponent },
-    Success: { screen: SuccessRabbit },
+    Success: { screen: OfflineCountdown },
   },
   {
     headerMode: 'none',

@@ -22,14 +22,14 @@ const RootNavigator = createDrawerNavigator(
       screen: stackNav,
       navigationOptions: {
         drawerLabel: 'home page',
-        drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+        drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
     UserInfo: {
       screen: UserInfo,
       navigationOptions: {
         drawerLabel: 'user page',
-        drawerIcon: ({ tintColor }) => <Icon name="rocket" size={24} style={tintColor} />,
+        drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
   },

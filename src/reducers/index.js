@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
-import navReducer from './navReducer';
 // It gets action types
 import moment from 'moment';
 import momentDurationFormatSetup from 'moment-duration-format';
-import { SOME_ACTION_HERE, ANOTHER_ACTION, COUNTDOWN, CHANGE_INTERVAL } from '../actions';
+import navReducer from './navReducer';
+import {
+  SOME_ACTION_HERE,
+  ANOTHER_ACTION,
+  COUNTDOWN,
+  CHANGE_INTERVAL,
+  OFFLINECOUNTDOWN,
+} from '../actions';
 
 // It sets initial state
 const initialState = {
@@ -15,6 +21,7 @@ const initialState = {
   counter: moment.duration({ seconds: 15, minutes: 0, hours: 0 }),
   isWorking: false,
   interval: undefined,
+  offlineSeconds: 15,
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +50,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         interval: action.data,
+      };
+    }
+    case OFFLINECOUNTDOWN: {
+      if (state.offlineSeconds > 0) {
+        return {
+          ...state,
+          offlineSeconds: state.offlineSeconds - 1,
+        };
+      }
+      return {
+        ...state,
       };
     }
     default: {
