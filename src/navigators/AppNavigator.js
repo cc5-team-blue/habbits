@@ -34,8 +34,8 @@ const RootNavigator = createDrawerNavigator(
     },
   },
   {
-    drawerPosition: 'right',
-    drawerWidth: Math.min(height, width) * 0.46,
+    drawerPosition: 'left',
+    drawerWidth: Math.min(height, width) * 0.8,
     drawerBackgroundColor: '#e3e1ed',
   }
 );

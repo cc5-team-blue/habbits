@@ -2,12 +2,12 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { DrawerActions } from 'react-navigation';
-import IOSIcon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const Drawer = ({ clickHabbit }) => (
   <View>
     <TouchableOpacity style={{ position: 'absolute', left: '88%', top: 52 }} onPress={clickHabbit}>
-      <IOSIcon color="white" name="ios-menu" size={41} />
+      <Icon color="white" name="cog" size={20} />
     </TouchableOpacity>
   </View>
 );
