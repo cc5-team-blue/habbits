@@ -3,29 +3,20 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducer from './src/reducers';
+import AppReducer from './src/reducers';
+import { AppNavigator, middleware } from './src/navigators/AppNavigator';
 // import SampleComponent from './src/components/SampleComponent';
-import { SleepTimer } from './src/components/SleepTimer';
-import { SampleComponent } from './src/components/SampleComponent';
 
-// It sets the store with thunk middleware
-const store = createStore(reducer, applyMiddleware(thunk));
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3B495B',
-  },
-});
+const store = createStore(AppReducer, applyMiddleware(middleware));
 
 const App = () => (
   <Provider store={store}>
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <SleepTimer />
-      {/* <SampleComponent /> */}
-    </View>
+    <AppNavigator />
   </Provider>
 );
+// Note: I'm(Tsuyoshi) not sure if this line is needed or not later.
+// So hold it on please, for just in case.
+// AppRegistry.registerComponent('App', () => App);
 
 export default App;

@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+import navReducer from './navReducer';
 // It gets action types
 import moment from 'moment';
 import momentDurationFormatSetup from 'moment-duration-format';
@@ -49,4 +51,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default combineReducers({
+  nav: navReducer,
+  red: reducer,
+});
