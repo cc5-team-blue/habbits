@@ -43,17 +43,6 @@ export class Timer extends Component {
     console.log(currentTime);
     console.log((currentTime.subtract(3, 'hours')).format('h:mm'));
   };
-  // countdown = () => {
-  //   const interval = setInterval(() => {
-  //     if (this.counter > 0) {
-  //       this.timerStart();
-  //     } else {
-  //       const resetInterval = clearInterval(interval);
-  //       this.changeInterval(resetInterval);
-  //     }
-  //   }, 1000);
-  //   this.changeInterval(interval);
-  // };
 
   render() {
     const percentage = `${String(Math.floor((this.counter * 100) / this.full))}%`;
