@@ -17,8 +17,8 @@ import {
 
 // It sets initial state
 const initialState = {
-  full: moment.duration({ seconds: 15, minutes: 50, hours: 0 }),
-  counter: moment.duration({ seconds: 15, minutes: 50, hours: 2 }),
+  full: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
+  counter: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
   isWorking: false,
   interval: undefined,
   offlineSeconds: 3,
@@ -41,11 +41,17 @@ const reducer = (state = initialState, action) => {
       };
     }
     case COUNTDOWN: {
+      if (state.counter > 0) {
+        return {
+          ...state,
+          counter: state.counter.subtract(1, 'minutes'),
+          timerDuration: state.timerDuration + 1,
+          isWorking: true,
+        };
+      }
       return {
         ...state,
-        counter: state.counter.subtract(1, 'seconds'),
-        timerDuration: state.timerDuration + 1,
-        isWorking: true,
+        interval: clearInterval(state.interval),
       };
     }
     case CHANGE_INTERVAL: {
