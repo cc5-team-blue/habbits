@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
+import { LineChart } from 'react-native-chart-kit';
 import { app, insert, push, select, update, remove } from '../../db';
 import achievementImg from '../images/achievement.png';
 import arrowUpImg from '../images/arrow-up-circle.png';
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#DCE0E6',
+    marginLeft: 10,
   },
   unlocked: {
     fontFamily: 'Futura',
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#FFEDA3',
+    marginLeft: 10,
   },
   achievement: {
     fontFamily: 'Futura',
@@ -45,8 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
-    marginRight: 20,
-    marginLeft: 120,
+    marginRight: 30,
+    marginLeft: 10,
     backgroundColor: '#FC405B',
     borderRadius: 5,
   },
@@ -96,7 +99,9 @@ class Analytics extends Component {
     super();
     this.state = {
       achievements: [],
-      count:0,
+      chart: [],
+      points: 0,
+      count: 0,
     };
   }
 
@@ -104,39 +109,78 @@ class Analytics extends Component {
     const db = app.database();
     const ref = db.ref('users/0/achievements');
     const achievements = [];
+    const chart = [];
+    let points = 0;
     ref.on('value', data => {
       data.forEach(child => {
         const obj = {};
         obj.key = child.key;
         obj.val = child.val();
         achievements.push(obj);
-        this.setState({ achievements,count:this.state.achievements.count });
+
+        if (child.val().type === 'plus') {
+          points += child.val().points;
+          chart.push(Number(points));
+        }
+
+        if (child.val().type === 'minus') {
+          points -= child.val().points;
+          chart.push(Number(points));
+        }
+
+        this.setState({ achievements, chart, points });
       });
     });
   }
 
   render() {
+    const chartConfig = {
+      backgroundGradientFrom: '#39485C',
+      backgroundGradientTo: '#39485C',
+      color: (opacity = 1) => `rgba(144,169,204	, ${opacity})`,
+    };
+    const data = {
+      datasets: [
+        {
+          data: this.state.chart,
+        },
+      ],
+    };
     return (
       <View style={styles.container}>
         <Text style={styles.headline}>Analytics</Text>
-          <Image source={analyticsImg} style={{height: 90}}/>
+        <LineChart
+          data={data}
+          width={Dimensions.get('window').width}
+          height={220}
+          chartConfig={chartConfig}
+          bezier
+        />
         <ScrollView>
           {this.state.achievements.map(item => {
             if (item.val.type === 'plus') {
               return (
                 <View key={item.key} style={styles.row}>
-                  <Image source={arrowUpImg} />
-                  <Text style={styles.text}>{moment(item.val.date).format('MM/DD')} </Text>
-                  <Text style={styles.plus}>+{item.val.points} Points</Text>
+                  <View style={{ flex: 1 }}>
+                    <Image source={arrowUpImg} />
+                  </View>
+                  <Text style={[styles.text, { flex: 5 }]}>
+                    {moment(item.val.date).format('MM/DD')}{' '}
+                  </Text>
+                  <Text style={[styles.plus, { flex: 5 }]}>+{item.val.points} Points</Text>
                 </View>
               );
             }
             if (item.val.type === 'minus') {
               return (
                 <View key={item.key} style={styles.row}>
-                  <Image source={arrowDownImg} />
-                  <Text style={styles.text}>{moment(item.val.date).format('MM/DD')} </Text>
-                  <Text style={styles.minus}>-{item.val.points} Points</Text>
+                  <View style={{ flex: 1 }}>
+                    <Image source={arrowDownImg} />
+                  </View>
+                  <Text style={[styles.text, { flex: 5 }]}>
+                    {moment(item.val.date).format('MM/DD')}{' '}
+                  </Text>
+                  <Text style={[styles.minus, { flex: 5 }]}>-{item.val.points} Points</Text>
                 </View>
               );
             }
@@ -144,12 +188,17 @@ class Analytics extends Component {
               return (
                 <View key={item.key}>
                   <View style={styles.row}>
-                    <Image source={starImg} />
-                    <Text style={styles.unlocked}>{'Achievement Unlocked!'}</Text>
+                    <View style={{ flex: 1 }}>
+                      <Image source={starImg} />
+                    </View>
+                    <Text style={[styles.unlocked, { flex: 10 }]}>Achievement Unlocked!</Text>
                   </View>
-                  <View style={styles.achievementWrapper}>
-                    <Image source={achievementImg} style={{width: 50, height: 50}} />
-                    <Text style={styles.achievement}>{item.val.title}</Text>
+                  <View style={styles.row}>
+                    <View style={{ flex: 1 }} />
+                    <View style={[styles.achievementWrapper, { flex: 10 }]}>
+                      <Image source={achievementImg} style={{ width: 50, height: 50 }} />
+                      <Text style={styles.achievement}>{item.val.title}</Text>
+                    </View>
                   </View>
                 </View>
               );

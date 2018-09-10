@@ -13,7 +13,7 @@ export const migrate=()=>{
 // push("users/0/achievements",{type:"minus",date:Date.now(),points:150});
 // push("users/0/achievements",{type:"plus",date:Date.now(),points:100});
 // push("users/0/achievements",{type:"minus",date:Date.now(),points:50});
-select("users");
+// select("users");
 // update("users/006",{name:"Nour"});
 // remove("users/006");
 }
