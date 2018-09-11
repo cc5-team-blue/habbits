@@ -18,6 +18,7 @@ const stackNav = createStackNavigator(
   },
   {
     headerMode: 'none',
+    initialRouteName: 'Main',
     mode: 'modal',
     navigationOptions: {
       gesturesEnabled: false,
