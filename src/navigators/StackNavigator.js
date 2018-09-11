@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 import { Easing, Animated } from 'react-native';
 import SampleComponent from '../components/SampleComponent';
+import Analytics from '../components/Analytics';
 import SuccessRabbit from '../components/SuccessRabbit';
 import OfflineCountdown from '../components/offlineCountdown';
 import OfflineRabbit from '../components/offlineRabbit';
@@ -16,6 +17,7 @@ const stackNav = createStackNavigator(
     OffLine: { screen: OfflineCountdown },
     OffLineRabbit: { screen: OfflineRabbit },
     SleepTimer: { screen: SleepTimer },
+    Analytics: { screen: Analytics },
   },
   {
     headerMode: 'none',
