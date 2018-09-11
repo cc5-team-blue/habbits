@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
 import { changeInterval, countdown } from '../actions';
 
-// If you want to check access to Local Storage, uncomment below line and add Button component import from react-native.
-// import { sayHi, setEndTimer, retrieveEndTime, removeEndTime } from '../helper';
+// If you want to check access to Local Storage, add function from helper and add Button component import from react-native.
+// import { retrieveEndTime } from '../helper';
 
 const styles = StyleSheet.create({
   container: {
