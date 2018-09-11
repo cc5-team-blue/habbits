@@ -5,12 +5,13 @@ import SuccessRabbit from '../components/SuccessRabbit';
 import OfflineCountdown from '../components/offlineCountdown';
 import OfflineRabbit from '../components/offlineRabbit';
 import SleepTimer from '../components/SleepTimer';
+import Analytics from '../components/Analytics';
 
 // Here is the place we define app's pages with name
 // For example, Main page have reference to SampleComponent.
 const stackNav = createStackNavigator(
   {
-    Main: { screen: SampleComponent },
+    Main: { screen: Analytics },
     Success: { screen: SuccessRabbit },
     OffLine: { screen: OfflineCountdown },
     OffLineRabbit: { screen: OfflineRabbit },

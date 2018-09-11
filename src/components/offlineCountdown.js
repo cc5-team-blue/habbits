@@ -8,7 +8,7 @@ import {
   updateConnectivity,
   resetOfflineCountdown,
 } from '../actions';
-import styles from '../css/styleForOfflineCountdonw';
+import styles from '../css/styleForAnalytics';
 
 class OfflineCountdown extends Component {
   componentDidMount() {
