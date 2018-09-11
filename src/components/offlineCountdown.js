@@ -2,26 +2,35 @@ import React, { Component } from 'react';
 import { Text, View, Alert, AppState, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import moment from 'moment';
 import {
   setOfflineCountdown,
   appStateChange,
   updateConnectivity,
   resetOfflineCountdown,
+  setEndTime,
 } from '../actions';
 import styles from '../css/styleForOfflineCountdonw';
 import { setEndTimer } from '../helper';
 
 class OfflineCountdown extends Component {
   componentDidMount() {
-    const { startCountdownTimer, offlineSeconds, goToOfflineRabbit } = this.props;
+    const { startCountdownTimer, offlineSeconds, goToOfflineRabbit, setTimerEnd } = this.props;
     if (offlineSeconds === 0) {
       // goToOfflineRabbit();
     }
     this.timerID = setInterval(startCountdownTimer, 1000);
     AppState.addEventListener('change', this.handleAppStateChange);
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-    // setEndTimer();
-    // console.log('Set timer.');
+
+    // Set Timer end time to current time + 30sec for MVP.
+    const endTime = moment().add(30, 'seconds');
+
+    // Set Timer end time to state.endTime and set initial duration to state.full.
+    setEndTimer(endTime);
+
+    // Set Timer end time to Local Storage.
+    setTimerEnd(endTime);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -100,6 +109,9 @@ const mapDispatchToProps = dispatch => ({
   },
   resetInterval: () => {
     dispatch(resetOfflineCountdown());
+  },
+  setTimerEnd: time => {
+    dispatch(setEndTime(time));
   },
   clickHabbit: () => {
     Alert.alert(
