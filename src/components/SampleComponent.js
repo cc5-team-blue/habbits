@@ -8,7 +8,7 @@ import analyticsImage from '../images/analyticsImage.png';
 import styles from '../css/styleForSampleComponent';
 import Drawer from './Drawer';
 
-export const SampleComponent = ({ clickHabbit }) => (
+export const SampleComponent = ({ clickHabbit, goToAnalytics }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
     <Drawer />
@@ -20,7 +20,7 @@ export const SampleComponent = ({ clickHabbit }) => (
       <View onTouchStart={clickHabbit} style={styles.sleepHabbitTextBar}>
         <Text style={styles.sleepHabbitText}>Sleep Habbit</Text>{' '}
       </View>{' '}
-      <View style={styles.analytics}>
+      <View onTouchStart={goToAnalytics} style={styles.analytics}>
         <Image style={styles.analyticsImage} source={analyticsImage} />{' '}
         <View flex bottom style={styles.textBox}>
           <Text style={styles.analyticsText}>Analytics</Text>{' '}
@@ -50,6 +50,9 @@ const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
     console.log('clicked');
     dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
+  },
+  goToAnalytics: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
   },
 });
 
