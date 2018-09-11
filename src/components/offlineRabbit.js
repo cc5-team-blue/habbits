@@ -29,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
   },
   clickHabbit: () => {
     console.log('Hello Michael');
-    dispatch(NavigationActions.navigate({ routeName: 'Main' }));
+    dispatch(NavigationActions.navigate({ routeName: 'SleepTimer' }));
   },
 });
 
