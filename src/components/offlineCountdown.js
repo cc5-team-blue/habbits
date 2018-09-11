@@ -3,6 +3,7 @@ import { Text, View, Alert, AppState, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
+
 import {
   setOfflineCountdown,
   appStateChange,
@@ -12,6 +13,7 @@ import {
 } from '../actions';
 import styles from '../css/styleForOfflineCountdonw';
 import { setEndTimer } from '../helper';
+
 
 class OfflineCountdown extends Component {
   componentDidMount() {

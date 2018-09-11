@@ -57,6 +57,12 @@ const navReducer = (state = initialState, action) => {
         state
       );
       break;
+    case 'Analytics':
+      nextState = router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Analytics' }),
+        state
+      );
+      break;
     default:
       nextState = router.getStateForAction(action, state);
       break;
