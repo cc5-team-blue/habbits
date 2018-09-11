@@ -2,8 +2,6 @@ import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-
-import { anotherAction } from '../actions';
 import happyRabbit from '../images/happyRabbit.png';
 import styles from '../css/styleForSuccess';
 
@@ -27,9 +25,6 @@ export const SampleComponent = ({ clickHabbit }) => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  changeMichael: () => {
-    dispatch(anotherAction('Michael'));
-  },
   clickHabbit: () => {
     console.log('Hello Michael');
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));

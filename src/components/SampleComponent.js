@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { anotherAction } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import analyticsImage from '../images/analyticsImage.png';
 import styles from '../css/styleForSampleComponent';
@@ -11,7 +10,7 @@ import Drawer from './Drawer';
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
-    <Drawer />
+    {/* <Drawer /> */}
     <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
     <View style={styles.wrapper}>
       <View onTouchStart={clickHabbit} style={styles.sleepHabbit}>
@@ -44,11 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeMichael: () => {
-    dispatch(anotherAction('Michael'));
-  },
   clickHabbit: () => {
-    console.log('clicked');
     dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
   },
 });

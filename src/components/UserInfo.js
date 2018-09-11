@@ -3,7 +3,6 @@ import { Text, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-import { anotherAction } from '../actions';
 import styles from '../css/styleForSuccess';
 
 export const SampleComponent = ({ clickHabbit }) => (
@@ -18,9 +17,6 @@ export const SampleComponent = ({ clickHabbit }) => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  changeMichael: () => {
-    dispatch(anotherAction('Michael'));
-  },
   clickHabbit: () => {
     console.log('Hello Michael');
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
