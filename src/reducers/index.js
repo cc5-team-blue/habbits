@@ -17,13 +17,14 @@ import {
 
 // It sets initial state
 const initialState = {
-  full: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
-  counter: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
+  full: moment.duration({ seconds: 10, minutes: 0, hours: 0 }),
+  counter: moment.duration({ seconds: 10, minutes: 0, hours: 0 }),
   isWorking: false,
   interval: undefined,
   offlineSeconds: 3,
   appState: AppState.currentState,
   isConnected: true,
+  timerDuration: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,7 +45,7 @@ const reducer = (state = initialState, action) => {
       if (state.counter > 0) {
         return {
           ...state,
-          counter: state.counter.subtract(1, 'minutes'),
+          counter: state.counter.subtract(1, 'seconds'),
           timerDuration: state.timerDuration + 1,
           isWorking: true,
         };

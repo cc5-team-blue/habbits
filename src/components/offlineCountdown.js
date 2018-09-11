@@ -9,6 +9,7 @@ import {
   resetOfflineCountdown,
 } from '../actions';
 import styles from '../css/styleForOfflineCountdonw';
+import { setEndTimer } from '../helper';
 
 class OfflineCountdown extends Component {
   componentDidMount() {
@@ -19,6 +20,8 @@ class OfflineCountdown extends Component {
     this.timerID = setInterval(startCountdownTimer, 1000);
     AppState.addEventListener('change', this.handleAppStateChange);
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+    // setEndTimer();
+    // console.log('Set timer.');
   }
 
   shouldComponentUpdate(nextProps) {
