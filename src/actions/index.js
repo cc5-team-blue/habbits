@@ -7,6 +7,8 @@ export const OFFLINECOUNTDOWN = 'set offline countdown';
 export const APP_STATE_CHAGE = 'app state change';
 export const IS_CONNECTED_CHANGE = 'is connected change';
 export const RESETOFFLINECOUNTDOWN = 'reset offline countdown';
+export const SET_END_TIME = 'set end time';
+
 // Action creater
 export const someActionHere = data => ({
   type: SOME_ACTION_HERE,
@@ -45,4 +47,9 @@ export const updateConnectivity = isConnected => ({
 
 export const resetOfflineCountdown = () => ({
   type: RESETOFFLINECOUNTDOWN,
+});
+
+export const setEndTime = endTime => ({
+  type: SET_END_TIME,
+  endTime,
 });
