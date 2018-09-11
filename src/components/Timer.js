@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
 import { changeInterval, countdown } from '../actions';
-import { sayHi, setEndTimer, retrieveEndTime, removeEndTime } from '../helper';
+
+// If you want to check access to Local Storage, uncomment below line and add Button component import from react-native.
+// import { sayHi, setEndTimer, retrieveEndTime, removeEndTime } from '../helper';
 
 const styles = StyleSheet.create({
   container: {
-    // marginTop: '30%',
+    marginTop: '30%',
     backgroundColor: '#eb5e65',
     alignItems: 'center',
     alignSelf: 'center',
@@ -23,35 +25,22 @@ const styles = StyleSheet.create({
 });
 
 export class Timer extends Component {
-  constructor(props) {
-    super(props);
-    this.timerStart = props.timerStart;
-    this.changeInterval = props.changeInterval;
-  }
-
   componentDidMount() {
-    const intervalID = setInterval(this.timerStart, 1000);
-    this.changeInterval(intervalID);
-  }
+    const { timerStart, changeIntervalCall } = this.props;
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("Hi Tsuyoshi")
-  //   if (this.counter !== nextProps.currentCounter) {
-  //     return false;
-  //   }
-  //   // if (this.counter !== nextState.counter) {
-  //   //   return true;
-  //   // }
-  //   return false;
-  // }
+    // Start Countdown and set intervalID to state.inverval
+    const intervalID = setInterval(timerStart, 1000);
+    changeIntervalCall(intervalID);
+  }
 
   render() {
-    const {currentCounter, full} = this.props;
+    const { currentCounter, full } = this.props;
     const percentage = `${String(Math.floor((currentCounter * 100) / full))}%`;
     const time = currentCounter.format('h:mm:ss');
     return (
       <View style={styles.container}>
-        <Button
+        {/* If you want to check access to LocalStorage Uncomment Button component */}
+        {/* <Button
           onPress={sayHi}
           title="Don't push me"
           color="#fff"
@@ -75,7 +64,7 @@ export class Timer extends Component {
           color="#f6eaea"
           accessibilityLabel="Don't do that"
         />
-        <Text> {percentage} </Text>{' '}
+        <Text> {percentage} </Text>{' '} */}
         <PercentageCircle
           borderWidth={14}
           radius={100}
@@ -102,7 +91,7 @@ const mapDispatchToProps = dispatch => ({
   timerStart: () => {
     dispatch(countdown());
   },
-  changeInterval: value => {
+  changeIntervalCall: value => {
     dispatch(changeInterval(value));
   },
 });
