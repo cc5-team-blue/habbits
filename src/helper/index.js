@@ -1,19 +1,16 @@
 // This is a helper function file
 import { AsyncStorage } from 'react-native';
 import moment from 'moment';
+import momentDurationFormatSetup from 'moment-duration-format';
 
 export const sayHi = () => {
   console.log("Don't do that");
-  const currentTime = moment();
-  console.log(currentTime);
-  console.log(currentTime.subtract(3, 'hours').format('h:mm'));
 };
 
 // Using in Timer.js
-export const setEndTimer = async () => {
+export const setEndTimer = async time => {
   try {
-    const endTime = moment().add(7, 'hours');
-    await AsyncStorage.setItem('endTime', endTime);
+    await AsyncStorage.setItem('endTime', time);
   } catch (err) {
     console.log(err);
   }
@@ -22,14 +19,13 @@ export const setEndTimer = async () => {
 // Using in Timer.js
 export const retrieveEndTime = async () => {
   try {
-    const someKey = await AsyncStorage.getItem('someKey');
     const endTime = await AsyncStorage.getItem('endTime');
-    const dataset = [someKey, endTime];
-
-    for (let i = 0; i < dataset.length; i++) {
-      if (dataset[i] !== null) {
-        console.log(dataset[i]);
-      }
+    if (endTime !== null) {
+      const end = moment(endTime);
+      const currentTime = moment();
+      const remainingTime = end.diff(currentTime, 'seconds');
+      const count = moment.duration({ seconds: remainingTime });
+      console.log(count);
     }
   } catch (err) {
     console.log(err);
