@@ -1,4 +1,4 @@
-# habbits
+# Habbits
 Build Habbits Today.
 
 ![Habbits](./src/images/readme/readme.png)
@@ -52,3 +52,9 @@ If your components are functional components, you may use live reloading instead
     // enable live reloading, or hot reloading
 
     Command+D
+
+## Created By:
+* Tsuyoshi [GitHub]()
+* Michael [GitHub]()
+* Hiro [GitHub]()
+* Nour [GitHub]()
