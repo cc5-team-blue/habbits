@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import { AppState } from 'react-native';
-// It gets action types
 import moment from 'moment';
 import momentDurationFormatSetup from 'moment-duration-format';
+
 import navReducer from './navReducer';
+// It gets action types
 import {
   SOME_ACTION_HERE,
   ANOTHER_ACTION,
@@ -13,17 +14,20 @@ import {
   APP_STATE_CHAGE,
   IS_CONNECTED_CHANGE,
   RESETOFFLINECOUNTDOWN,
+  SET_END_TIME,
 } from '../actions';
 
 // It sets initial state
 const initialState = {
-  full: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
-  counter: moment.duration({ seconds: 0, minutes: 15, hours: 0 }),
+  endTime: undefined,
+  full: undefined,
+  counter: undefined,
   isWorking: false,
   interval: undefined,
   offlineSeconds: 3,
   appState: AppState.currentState,
   isConnected: true,
+  timerDuration: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,7 +48,7 @@ const reducer = (state = initialState, action) => {
       if (state.counter > 0) {
         return {
           ...state,
-          counter: state.counter.subtract(1, 'minutes'),
+          counter: state.counter.subtract(1, 'seconds'),
           timerDuration: state.timerDuration + 1,
           isWorking: true,
         };
@@ -87,6 +91,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isConnected: action.isConnected,
+      };
+    }
+    case SET_END_TIME: {
+      const end = moment(action.endTime);
+      const currentTime = moment();
+      const remainingTime = end.diff(currentTime, 'seconds');
+      const count = moment.duration({ seconds: remainingTime });
+      return {
+        ...state,
+        endTime: action.endTime,
+        full: count,
+        counter: count,
       };
     }
     default: {
