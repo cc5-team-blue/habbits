@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
+import { NavigationActions } from 'react-navigation';
 import { changeInterval, countdown } from '../actions';
 
 // If you want to check access to Local Storage, add function from helper and add Button component import from react-native.
@@ -31,6 +32,14 @@ export class Timer extends Component {
     // Start Countdown and set intervalID to state.inverval
     const intervalID = setInterval(timerStart, 1000);
     changeIntervalCall(intervalID);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { goToYay } = this.props;
+    if (nextProps.currentCounter._milliseconds === 0) {
+      goToYay();
+    }
+    return true;
   }
 
   render() {
@@ -93,6 +102,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeIntervalCall: value => {
     dispatch(changeInterval(value));
+  },
+  goToYay: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'Success' }));
   },
 });
 

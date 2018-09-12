@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 import { anotherAction } from '../actions';
 import sadRabbit from '../images/sadRabbit.png';
