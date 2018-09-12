@@ -30,8 +30,8 @@ export class Timer extends Component {
     const { timerStart, changeIntervalCall } = this.props;
 
     // Start Countdown and set intervalID to state.inverval
-    const intervalID = setInterval(timerStart, 1000);
-    changeIntervalCall(intervalID);
+    this.intervalID = setInterval(timerStart, 1000);
+    changeIntervalCall(this.intervalID);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -40,6 +40,10 @@ export class Timer extends Component {
       goToYay();
     }
     return true;
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
   }
 
   render() {
