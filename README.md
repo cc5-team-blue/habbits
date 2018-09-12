@@ -54,7 +54,7 @@ If your components are functional components, you may use live reloading instead
     Command+D
 
 ## Created By:
-* Tsuyoshi [GitHub]()
-* Michael [GitHub]()
-* Hiro [GitHub]()
-* Nour [GitHub]()
+* Tsuyoshi [GitHub](https://github.com/Akitsuyoshi)
+* Michael [GitHub](https://github.com/MAkzent)
+* Hiro [GitHub](https://github.com/m0m0i)
+* Nour [GitHub](https://github.com/nourbalaha)
