@@ -43,6 +43,7 @@
     "react-native": "~0.55.4",
     "react-native-chart-kit": "^1.1.6",
     "react-native-percentage-circle": "^1.0.7",
+    "react-native-system-setting": "^1.5.3",
     "react-navigation": "^2.13.0",
     "react-navigation-redux-helpers": "^2.0.5",
     "redux": "^4.0.0",
