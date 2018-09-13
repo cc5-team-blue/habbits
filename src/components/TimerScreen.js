@@ -6,7 +6,7 @@ import Timer from './Timer';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import styles from '../css/styleForSleepTimer';
 
-export const SleepTimer = () => (
+export const TimerScreen = () => (
   <View style={styles.container}>
     <Text style={styles.headline}>Sleep Timer</Text>
     <View style={styles.rectangle3}>
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(SleepTimer);
+)(TimerScreen);

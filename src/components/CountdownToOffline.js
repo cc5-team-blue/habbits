@@ -119,7 +119,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(StackActions.push({ routeName: 'OffLineRabbit' }));
   },
   goToSleepTimer: () => {
-    dispatch(StackActions.replace({ routeName: 'SleepTimer' }));
+    dispatch(StackActions.replace({ routeName: 'TimerScreen' }));
   },
   resetInterval: () => {
     dispatch(resetOfflineCountdown());

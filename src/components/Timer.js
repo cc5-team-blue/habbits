@@ -36,7 +36,7 @@ export class Timer extends Component {
 
   shouldComponentUpdate(nextProps) {
     const { goToYay } = this.props;
-    if (nextProps.currentCounter === 0) {
+    if (nextProps.currentCounter._milliseconds === 0) {
       goToYay();
     }
     return true;

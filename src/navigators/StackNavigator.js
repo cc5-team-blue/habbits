@@ -5,7 +5,7 @@ import Analytics from '../components/Analytics';
 import SuccessRabbit from '../components/SuccessRabbit';
 import CountdownToOffline from '../components/CountdownToOffline';
 import Failure from '../components/Failure';
-import SleepTimer from '../components/SleepTimer';
+import TimerScreen from '../components/TimerScreen';
 
 // Here is the place we define app's pages with name
 // For example, Main page have reference to SampleComponent.
@@ -15,7 +15,7 @@ const stackNav = createStackNavigator(
     Success: { screen: SuccessRabbit },
     OffLine: { screen: CountdownToOffline },
     OffLineRabbit: { screen: Failure },
-    SleepTimer: { screen: SleepTimer },
+    TimerScreen: { screen: TimerScreen },
     Analytics: { screen: Analytics },
   },
   {
