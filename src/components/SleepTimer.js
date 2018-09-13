@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { StackActions } from 'react-navigation';
 import Timer from './Timer';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import styles from '../css/styleForSleepTimer';
@@ -15,9 +16,13 @@ export const SleepTimer = () => (
   </View>
 );
 
-// export default SleepTimer;
+const mapDispatchToProps = dispatch => ({
+  goToFailRabbit: () => {
+    dispatch(StackActions.replace({ routeName: 'OffLineRabbit' }));
+  },
+});
 
 export default connect(
   null,
-  null
+  mapDispatchToProps
 )(SleepTimer);

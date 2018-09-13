@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, AppState, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions, StackActions } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 import moment from 'moment';
 
 import {
@@ -116,11 +116,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToOfflineRabbit: () => {
-    // dispatch(NavigationActions.navigate({ routeName: 'OffLineRabbit' }));
     dispatch(StackActions.push({ routeName: 'OffLineRabbit' }));
   },
   goToSleepTimer: () => {
-    // dispatch(NavigationActions.navigate({ routeName: 'SleepTimer' }));
     dispatch(StackActions.replace({ routeName: 'SleepTimer' }));
   },
   resetInterval: () => {

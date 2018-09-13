@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions, StackActions } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 
 import sadRabbit from '../images/sadRabbit.png';
 import styles from '../css/styleForSadness';
@@ -28,8 +28,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   goToHome: () => {
-    // dispatch(NavigationActions.navigate({ routeName: 'SleepTimer' }));
-    dispatch(StackActions.pop({ n: 2 }));
+    dispatch(StackActions.popToTop());
   },
 });
 

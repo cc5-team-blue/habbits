@@ -18,7 +18,6 @@ export const UserInfo = ({ clickHabbit }) => (
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
-    console.log('Hello Michael');
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });

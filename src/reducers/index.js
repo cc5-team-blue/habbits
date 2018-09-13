@@ -1,8 +1,9 @@
+/* eslint no-unused-vars: "error" */
 import { combineReducers } from 'redux';
 import { AppState } from 'react-native';
 import moment from 'moment';
 // Do not remove this library.
-import momentDurationFormatSetup from 'moment-duration-format';
+import 'moment-duration-format';
 
 import navReducer from './navReducer';
 // It gets action types

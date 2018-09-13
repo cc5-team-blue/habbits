@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions, StackActions } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import analyticsImage from '../images/analyticsImage.png';
 import styles from '../css/styleForSampleComponent';
@@ -44,11 +44,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
-    // dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
     dispatch(StackActions.push({ routeName: 'OffLine' }));
   },
   goToAnalytics: () => {
-    // dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
     dispatch(StackActions.push({ routeName: 'Analytics' }));
   },
 });
