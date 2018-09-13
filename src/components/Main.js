@@ -1,14 +1,13 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { anotherAction } from '../actions';
+import { StackActions } from 'react-navigation';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import analyticsImage from '../images/analyticsImage.png';
 import styles from '../css/styleForSampleComponent';
 import Drawer from './Drawer';
 
-export const SampleComponent = ({ clickHabbit, goToAnalytics }) => (
+export const Main = ({ clickHabbit, goToAnalytics }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
     <Drawer />
@@ -40,23 +39,19 @@ export const SampleComponent = ({ clickHabbit, goToAnalytics }) => (
 );
 
 const mapStateToProps = state => ({
-  props: state.nav,
+  state: state.nav,
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeMichael: () => {
-    dispatch(anotherAction('Michael'));
-  },
   clickHabbit: () => {
-    console.log('clicked');
-    dispatch(NavigationActions.navigate({ routeName: 'OffLine' }));
+    dispatch(StackActions.push({ routeName: 'OffLine' }));
   },
   goToAnalytics: () => {
-    dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
+    dispatch(StackActions.push({ routeName: 'Analytics' }));
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SampleComponent);
+)(Main);
