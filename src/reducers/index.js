@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
 import { AppState } from 'react-native';
 import moment from 'moment';
+// Do not remove this library.
 import momentDurationFormatSetup from 'moment-duration-format';
 
 import navReducer from './navReducer';
 // It gets action types
 import {
-  SOME_ACTION_HERE,
-  ANOTHER_ACTION,
   COUNTDOWN,
   CHANGE_INTERVAL,
   OFFLINECOUNTDOWN,
@@ -32,18 +31,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SOME_ACTION_HERE: {
-      return {
-        ...state,
-        sampleData3: action.data,
-      };
-    }
-    case ANOTHER_ACTION: {
-      return {
-        ...state,
-        sampleData4: action.data,
-      };
-    }
     case COUNTDOWN: {
       if (state.counter > 0) {
         return {

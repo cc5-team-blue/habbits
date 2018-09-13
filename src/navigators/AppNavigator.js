@@ -42,6 +42,7 @@ const RootNavigator = createDrawerNavigator(
     },
   },
   {
+    initialRouteName: 'Home',
     drawerPosition: 'left',
     drawerWidth: Math.min(height, width) * 0.8,
     drawerBackgroundColor: '#e3e1ed',

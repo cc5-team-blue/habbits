@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
+import { connect } from 'react-redux';
 import Timer from './Timer';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import styles from '../css/styleForSleepTimer';
@@ -14,4 +15,9 @@ export const SleepTimer = () => (
   </View>
 );
 
-export default SleepTimer;
+// export default SleepTimer;
+
+export default connect(
+  null,
+  null
+)(SleepTimer);

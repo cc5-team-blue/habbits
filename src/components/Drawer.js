@@ -14,7 +14,6 @@ export const Drawer = ({ clickHabbit }) => (
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
-    console.log('Hello Michael');
     dispatch(DrawerActions.openDrawer());
   },
 });
