@@ -21,21 +21,6 @@ export default class SignUp extends React.Component {
       .catch(error => this.setState({ errorMessage: error.message }));
   };
 
-  // export default class SignUp extends React.Component {
-  //   constructor() {
-  //     super();
-  //     this.state = {
-  //       email: '',
-  //       password: '',
-  //       errorMessage: null,
-  //     };
-  //   }
-
-  //   handleSignUp = () => {
-  //     // TODO: Firebase stuff...
-  //     console.log('handleSignUp');
-  //   };
-
   render() {
     return (
       <View style={styles.container}>

@@ -5,6 +5,7 @@ import Success from './Success';
 import BigSuccess from './BigSuccess';
 import Fail from './Fail';
 import Main from './Main';
+import Loading from './Loading';
 
 const EarlyMorningNavigator = createSwitchNavigator(
   {
@@ -13,9 +14,10 @@ const EarlyMorningNavigator = createSwitchNavigator(
     BigSuccess,
     Fail,
     Main,
+    Loading,
   },
   {
-    initialRouteName: 'Start',
+    initialRouteName: 'Loading',
   }
 );
 
