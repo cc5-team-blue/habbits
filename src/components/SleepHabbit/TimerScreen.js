@@ -3,8 +3,8 @@ import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { StackActions } from 'react-navigation';
 import Timer from './Timer';
-import sleepHabbitImg from '../images/rabbitSmall.png';
-import styles from '../css/styleForSleepTimer';
+import sleepHabbitImg from '../../images/rabbitSmall.png';
+import styles from '../../css/styleForSleepTimer';
 
 export const TimerScreen = () => (
   <View style={styles.container}>

@@ -3,8 +3,8 @@ import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { StackActions } from 'react-navigation';
 
-import sadRabbit from '../images/sadRabbit.png';
-import styles from '../css/styleForSadness';
+import sadRabbit from '../../images/sadRabbit.png';
+import styles from '../../css/styleForSadness';
 
 export const Failure = ({ goToHome }) => (
   <View style={styles.realContainer}>
@@ -22,10 +22,6 @@ export const Failure = ({ goToHome }) => (
   </View>
 );
 
-const mapStateToProps = state => ({
-  // state: state.nav,
-});
-
 const mapDispatchToProps = dispatch => ({
   goToHome: () => {
     dispatch(StackActions.popToTop());
@@ -33,6 +29,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Failure);
