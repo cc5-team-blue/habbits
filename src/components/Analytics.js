@@ -66,7 +66,7 @@ class Analytics extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Text style={styles.headline}>Analytics</Text>
-        <ScrollView showsVerticalScrollIndicator="false">
+        <ScrollView showsVerticalScrollIndicator={false}>
           <LineChart
             data={data}
             style={styles.lineChart}
