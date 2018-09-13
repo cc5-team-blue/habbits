@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, Image, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { app } from '../../db';
 
