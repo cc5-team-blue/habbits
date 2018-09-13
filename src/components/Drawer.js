@@ -3,12 +3,12 @@ import { View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { DrawerActions } from 'react-navigation';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const Drawer = ({ clickHabbit }) => (
   <View>
     <TouchableOpacity style={{ position: 'absolute', left: '88%', top: 52 }} onPress={clickHabbit}>
-      <Icon color="white" name="cog" size={20} />
+      {/* <Icon color="white" name="cog" size={20} /> */}
     </TouchableOpacity>
   </View>
 );
