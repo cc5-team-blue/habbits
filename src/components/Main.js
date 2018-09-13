@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text, View, Image, StatusBar } from 'react-native';
+import { Text, View, Image, StatusBar, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { StackActions } from 'react-navigation';
-import { ScrollView } from 'react-native-gesture-handler';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
 import analyticsImage from '../images/analyticsImage.png';
