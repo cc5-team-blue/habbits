@@ -5,7 +5,7 @@ import Login from '../auth/Login';
 import Main from '../auth/Main';
 import SignUp from '../auth/SignUp';
 
-const MainNavigator = createSwitchNavigator(
+const AuthNavigator = createSwitchNavigator(
   {
     Loading,
     SignUp,
@@ -17,4 +17,4 @@ const MainNavigator = createSwitchNavigator(
   }
 );
 
-export default MainNavigator;
+export default AuthNavigator;
