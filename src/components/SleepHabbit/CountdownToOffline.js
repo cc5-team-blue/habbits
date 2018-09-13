@@ -10,9 +10,9 @@ import {
   updateConnectivity,
   resetOfflineCountdown,
   setEndTime,
-} from '../actions';
-import styles from '../css/styleForOfflineCountdonw';
-import { setEndTimer } from '../helper';
+} from '../../actions';
+import styles from '../../css/styleForOfflineCountdonw';
+import { setEndTimer } from '../../helper';
 
 class CountdownToOffline extends Component {
   componentDidMount() {
