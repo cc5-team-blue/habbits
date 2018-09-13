@@ -14,7 +14,7 @@ import {
 import styles from '../css/styleForOfflineCountdonw';
 import { setEndTimer } from '../helper';
 
-class OfflineCountdown extends Component {
+class CountdownToOffline extends Component {
   componentDidMount() {
     const {
       startCountdownTimer,
@@ -132,4 +132,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OfflineCountdown);
+)(CountdownToOffline);

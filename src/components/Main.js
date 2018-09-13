@@ -7,7 +7,7 @@ import analyticsImage from '../images/analyticsImage.png';
 import styles from '../css/styleForSampleComponent';
 import Drawer from './Drawer';
 
-export const SampleComponent = ({ clickHabbit, goToAnalytics }) => (
+export const Main = ({ clickHabbit, goToAnalytics }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
     <Drawer />
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SampleComponent);
+)(Main);

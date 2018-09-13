@@ -6,7 +6,7 @@ import { StackActions } from 'react-navigation';
 import sadRabbit from '../images/sadRabbit.png';
 import styles from '../css/styleForSadness';
 
-export const SampleComponent = ({ goToHome }) => (
+export const Failure = ({ goToHome }) => (
   <View style={styles.realContainer}>
     <StatusBar barStyle="light-content" />
     <Text style={styles.headline}>Aww Snap!</Text>
@@ -35,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SampleComponent);
+)(Failure);
