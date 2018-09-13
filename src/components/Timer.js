@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
-import { NavigationActions } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 import { changeInterval, countdown } from '../actions';
 
 // If you want to check access to Local Storage, add function from helper and add Button component import from react-native.
@@ -108,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeInterval(value));
   },
   goToYay: () => {
-    dispatch(NavigationActions.navigate({ routeName: 'Success' }));
+    dispatch(StackActions.push({ routeName: 'Success' }));
   },
 });
 

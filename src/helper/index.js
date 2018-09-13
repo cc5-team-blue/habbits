@@ -1,7 +1,7 @@
 // This is a helper function file
 import { AsyncStorage } from 'react-native';
 import moment from 'moment';
-import momentDurationFormatSetup from 'moment-duration-format';
+import 'moment-duration-format';
 
 export const sayHi = () => {
   console.log("Don't do that");

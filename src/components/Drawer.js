@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { DrawerActions } from 'react-navigation';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const Drawer = ({ clickHabbit }) => (
@@ -14,7 +15,6 @@ export const Drawer = ({ clickHabbit }) => (
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
-    console.log('Hello Michael');
     dispatch(DrawerActions.openDrawer());
   },
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { createDrawerNavigator } from 'react-navigation';
@@ -42,6 +43,7 @@ const RootNavigator = createDrawerNavigator(
     },
   },
   {
+    initialRouteName: 'Home',
     drawerPosition: 'left',
     drawerWidth: Math.min(height, width) * 0.8,
     drawerBackgroundColor: '#e3e1ed',

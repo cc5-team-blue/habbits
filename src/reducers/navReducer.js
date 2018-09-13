@@ -15,54 +15,6 @@ const navReducer = (state = initialState, action) => {
         state
       );
       break;
-    case 'UserInfo':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'UserInfo' }),
-        state
-      );
-      break;
-    case 'TrackPage':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'TrackPage' }),
-        state
-      );
-      break;
-    case 'Main':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Main' }),
-        state
-      );
-      break;
-    case 'Success':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Success' }),
-        state
-      );
-      break;
-    case 'OffLine':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'OffLine' }),
-        state
-      );
-      break;
-    case 'OffLineRabbit':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'OffLineRabbit' }),
-        state
-      );
-      break;
-    case 'SleepTimer':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'SleepTimer' }),
-        state
-      );
-      break;
-    case 'Analytics':
-      nextState = router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Analytics' }),
-        state
-      );
-      break;
     default:
       nextState = router.getStateForAction(action, state);
       break;

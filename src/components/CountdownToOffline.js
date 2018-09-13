@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Alert, AppState, NetInfo } from 'react-native';
+import { Text, View, AppState, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions, StackActions } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 import moment from 'moment';
 
 import {
@@ -14,11 +14,21 @@ import {
 import styles from '../css/styleForOfflineCountdonw';
 import { setEndTimer } from '../helper';
 
-class OfflineCountdown extends Component {
+class CountdownToOffline extends Component {
   componentDidMount() {
-    const { startCountdownTimer, offlineSeconds, goToOfflineRabbit, setTimerEnd } = this.props;
+    const {
+      startCountdownTimer,
+      offlineSeconds,
+      goToOfflineRabbit,
+      setTimerEnd,
+      goToSleepTimer,
+      isConnected,
+    } = this.props;
     if (offlineSeconds === 0) {
-      // goToOfflineRabbit();
+      goToOfflineRabbit();
+    }
+    if (isConnected === false) {
+      goToSleepTimer();
     }
     this.timerID = setInterval(startCountdownTimer, 1000);
     AppState.addEventListener('change', this.handleAppStateChange);
@@ -35,9 +45,14 @@ class OfflineCountdown extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { goToOfflineRabbit } = this.props;
+    const { goToOfflineRabbit, isConnected, goToSleepTimer } = this.props;
     if (nextProps.offlineSeconds === 0) {
       goToOfflineRabbit();
+      return false;
+    }
+    if (isConnected === false) {
+      goToSleepTimer();
+      return false;
     }
     return true;
   }
@@ -68,10 +83,7 @@ class OfflineCountdown extends Component {
   };
 
   render() {
-    const { offlineSeconds, isConnected, clickHabbit, goToSleepTimer } = this.props;
-    if (isConnected === false) {
-      goToSleepTimer();
-    }
+    const { offlineSeconds } = this.props;
     return (
       <View style={styles.container}>
         <Text style={styles.headline}>Sleep Timer</Text>
@@ -90,6 +102,7 @@ const mapStateToProps = state => ({
   offlineSeconds: state.red.offlineSeconds,
   appState: state.red.appState,
   isConnected: state.red.isConnected,
+  // state: state.nav,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -103,11 +116,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToOfflineRabbit: () => {
-    dispatch(NavigationActions.navigate({ routeName: 'OffLineRabbit' }));
+    dispatch(StackActions.push({ routeName: 'OffLineRabbit' }));
   },
   goToSleepTimer: () => {
-    dispatch(NavigationActions.navigate({ routeName: 'SleepTimer' }));
-    // dispatch(StackActions.push({ routeName: 'SleepTimer' }));
+    dispatch(StackActions.replace({ routeName: 'TimerScreen' }));
   },
   resetInterval: () => {
     dispatch(resetOfflineCountdown());
@@ -115,27 +127,9 @@ const mapDispatchToProps = dispatch => ({
   setTimerEnd: time => {
     dispatch(setEndTime(time));
   },
-  clickHabbit: () => {
-    Alert.alert(
-      'Are you OK to give up?',
-      'No points, No life',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => dispatch(NavigationActions.navigate({ routeName: 'Home' })),
-        },
-      ],
-      { cancelable: true }
-    );
-  },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OfflineCountdown);
+)(CountdownToOffline);
