@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { createDrawerNavigator } from 'react-navigation';
 import {
@@ -24,21 +24,21 @@ const RootNavigator = createDrawerNavigator(
       screen: stackNav,
       navigationOptions: {
         drawerLabel: 'home page',
-        drawerIcon: () => <Icon name="rocket" size={24} />,
+        // drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
     UserInfo: {
       screen: UserInfo,
       navigationOptions: {
         drawerLabel: 'user page',
-        drawerIcon: () => <Icon name="rocket" size={24} />,
+        // drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
     TrackPage: {
       screen: AppStateExample,
       navigationOptions: {
         drawerLabel: 'track example',
-        drawerIcon: () => <Icon name="rocket" size={24} />,
+        // drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
   },
