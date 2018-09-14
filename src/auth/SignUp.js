@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Futura',
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#3b495b',
+    color: '#242733',
   },
   errorWrapper: {
     height: 15,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   signupText: {
     width: 186.9,
-    height: 26,
+    height: 22,
     fontFamily: 'Futura',
     fontSize: 16,
     fontWeight: 'bold',
@@ -153,7 +153,7 @@ export default class SignUp extends React.Component {
             />
             <View style={styles.signupButton} onTouchStart={this.handleSignUp}>
               {' '}
-              <Text style={styles.signupText}>Sign Up</Text>
+              <Text style={styles.signupText}>SIGN UP</Text>
             </View>
             <View
               style={styles.switchSignIn}
@@ -161,7 +161,7 @@ export default class SignUp extends React.Component {
             >
               {' '}
               <Text style={styles.switchSignInText}>
-                Already a user? <Text style={styles.bold}>Sign in</Text>
+                Already a user? <Text style={styles.bold}>Sign in!</Text>
               </Text>
             </View>
           </View>
