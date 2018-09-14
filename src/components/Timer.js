@@ -40,6 +40,10 @@ export class Timer extends Component {
     if (nextProps.currentCounter._milliseconds === 0) {
       goToYay();
     }
+    if (isConnected === true) {
+      goToOfflineRabbit();
+      return false;
+    }
     if (nextProps.isConnected === true) {
       goToOfflineRabbit();
     }
