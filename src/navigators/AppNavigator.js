@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-// import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { createDrawerNavigator } from 'react-navigation';
 import {
@@ -10,7 +10,7 @@ import {
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 
-import stackNav from './StackNavigator';
+import swichNav from './SwitchNavigator';
 import UserInfo from '../components/UserInfo';
 import AppStateExample from '../components/trackComponent';
 
@@ -21,24 +21,24 @@ const { width, height } = Dimensions.get('window');
 const RootNavigator = createDrawerNavigator(
   {
     Home: {
-      screen: stackNav,
+      screen: swichNav,
       navigationOptions: {
         drawerLabel: 'home page',
-        // drawerIcon: () => <Icon name="rocket" size={24} />,
+        drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
     UserInfo: {
       screen: UserInfo,
       navigationOptions: {
         drawerLabel: 'user page',
-        // drawerIcon: () => <Icon name="rocket" size={24} />,
+        drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
     TrackPage: {
       screen: AppStateExample,
       navigationOptions: {
         drawerLabel: 'track example',
-        // drawerIcon: () => <Icon name="rocket" size={24} />,
+        drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
   },
