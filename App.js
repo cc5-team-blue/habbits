@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 // import { migrate } from './migrate';
 // import { AppNavigator } from './src/navigators/AppNavigator';
-// import AuthNavigator from './src/navigators/AuthNavigator';
+import AuthNavigator from './src/navigators/AuthNavigator';
 import EarlyMorningNavigator from './src/components/EarlyMorning/Navigator';
 
 import store from './src/store';
@@ -13,8 +13,8 @@ import store from './src/store';
 const App = () => (
   <Provider store={store}>
     {/* <AppNavigator /> */}
-    <EarlyMorningNavigator />
-    {/* <AuthNavigator /> */}
+    {/* <EarlyMorningNavigator /> */}
+    <AuthNavigator />
   </Provider>
 );
 

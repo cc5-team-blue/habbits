@@ -33,6 +33,7 @@ export default class Loading extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#39485C',
     justifyContent: 'center',
     alignItems: 'center',
   },
