@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import Timer from './Timer';
-import sleepHabbitImg from '../images/rabbitSmall.png';
-import styles from '../css/styleForSleepTimer';
+import sleepHabbitImg from '../../images/rabbitSmall.png';
+import styles from '../../css/styleForSleepTimer';
 
 const TimerScreen = () => (
   <View style={styles.container}>
