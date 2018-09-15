@@ -50,6 +50,7 @@ class Analytics extends Component {
   }
 
   render() {
+    const { chart, achievements } = this.state;
     const chartConfig = {
       backgroundGradientFrom: '#3B495B',
       backgroundGradientTo: '#3B495B',
@@ -58,7 +59,7 @@ class Analytics extends Component {
     const data = {
       datasets: [
         {
-          data: this.state.chart,
+          data: chart,
         },
       ],
     };
@@ -66,7 +67,7 @@ class Analytics extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Text style={styles.headline}>Analytics</Text>
-        <ScrollView showsVerticalScrollIndicator="false">
+        <ScrollView showsVerticalScrollIndicator={false}>
           <LineChart
             data={data}
             style={styles.lineChart}
@@ -77,7 +78,7 @@ class Analytics extends Component {
           />
           <View style={styles.verticalArrowLine} />
           <View style={styles.valuesWrapper}>
-            {this.state.achievements.map(item => {
+            {achievements.map(item => {
               if (item.val.type === 'plus') {
                 return (
                   <View key={item.key} style={styles.row}>

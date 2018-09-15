@@ -3,8 +3,8 @@ import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-import happyRabbit from '../images/happyRabbit.png';
-import styles from '../css/styleForSuccess';
+import happyRabbit from '../../images/happyRabbit.png';
+import styles from '../../css/styleForSuccess';
 
 export const SampleComponent = ({ clickHabbit }) => (
   <View style={styles.realContainer}>

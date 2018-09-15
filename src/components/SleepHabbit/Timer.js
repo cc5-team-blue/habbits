@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
 import { NavigationActions } from 'react-navigation';
-import { changeInterval, countdown, updateConnectivity } from '../actions';
+import { changeInterval, countdown, updateConnectivity } from '../../actions';
 
 // If you want to check access to Local Storage, add function from helper and add Button component import from react-native.
 // import { retrieveEndTime } from '../helper';
@@ -37,6 +37,7 @@ export class Timer extends Component {
 
   shouldComponentUpdate(nextProps) {
     const { goToYay, goToOfflineRabbit, isConnected } = this.props;
+    // eslint-disable-next-line
     if (nextProps.currentCounter._milliseconds === 0) {
       goToYay();
     }
@@ -66,32 +67,6 @@ export class Timer extends Component {
     const time = currentCounter.format('h:mm:ss');
     return (
       <View style={styles.container}>
-        {/* If you want to check access to LocalStorage Uncomment Button component */}
-        {/* <Button
-          onPress={sayHi}
-          title="Don't push me"
-          color="#fff"
-          accessibilityLabel="Don't do that"
-        />
-        <Button
-          onPress={setEndTimer}
-          title="Save data to LS"
-          color="#f6eaea"
-          accessibilityLabel="Don't do that"
-        />
-        <Button
-          onPress={retrieveEndTime}
-          title="Retrieve data from LS"
-          color="#f6eaea"
-          accessibilityLabel="Don't do that"
-        />
-        <Button
-          onPress={removeEndTime}
-          title="Bomberman"
-          color="#f6eaea"
-          accessibilityLabel="Don't do that"
-        />
-        <Text> {percentage} </Text>{' '} */}
         <PercentageCircle
           borderWidth={14}
           radius={100}
