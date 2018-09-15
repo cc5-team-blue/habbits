@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Image, View, StatusBar, TouchableOpacity } from 'react-native';
 import { app } from '../../../db';
-import RabbitImg from '../../images/EarlyMorning/rabbit.png';
+import RabbitImg from './images/rabbit.png';
 
 const styles = StyleSheet.create({
   container: {
