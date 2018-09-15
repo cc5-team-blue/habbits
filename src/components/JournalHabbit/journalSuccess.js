@@ -12,7 +12,7 @@ export const journalSuccess = ({ clickHabbit }) => (
           <Text>Success!</Text>
           <Text>You are so thoughtful!</Text>
         </View>
-        <Image/>
+        <Image />
         <View>
           <Text>Challenge Progress:</Text>
           {/* <Text>{}/{}</Text> */}

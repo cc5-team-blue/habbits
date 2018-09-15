@@ -44,3 +44,20 @@ habbits.xcodeproj/xcuserdata/
 xcuserdata
 habbits.xcworkspace/
 Pods/ 
+
+# Gradle
+/build/
+/RNTester/android/app/build/
+/RNTester/android/app/gradle/
+/RNTester/android/app/gradlew
+/RNTester/android/app/gradlew.bat
+/ReactAndroid/build/
+
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+
+# Root dir shouldn't have Xcode project
+/*.xcodeproj
