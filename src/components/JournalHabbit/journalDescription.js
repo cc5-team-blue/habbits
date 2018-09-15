@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
-export const journalDescription = ({ clickHabbit }) => (
+export const journalDescription = ({ goToJournalMain }) => (
   <View>
     <StatusBar barStyle="light-content" />
     <Text>Daily Journal</Text>
@@ -20,15 +20,15 @@ export const journalDescription = ({ clickHabbit }) => (
         <Text>- Don&#039;t miss a single day</Text>
       </View>
     </View>
-    <View onTouchStart={clickHabbit}>
+    <View onTouchStart={goToJournalMain}>
       <Text>Bring it on!</Text>
     </View>
   </View>
 );
 
 const mapDispatchToProps = dispatch => ({
-  clickHabbit: () => {
-    dispatch(StackActions.push());
+  goToJournalMain: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
   },
 });
 

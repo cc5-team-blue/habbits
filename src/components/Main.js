@@ -9,7 +9,7 @@ import journalImage from '../images/journalImage.png';
 import styles from '../css/styleForMain';
 import Drawer from './Drawer';
 
-export const Main = ({ clickHabbit, goToAnalytics, achievements }) => (
+export const Main = ({ clickHabbit, goToAnalytics, achievements, goToJournal }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
     <Drawer />
@@ -40,12 +40,12 @@ export const Main = ({ clickHabbit, goToAnalytics, achievements }) => (
         <View style={[styles.row, { paddingTop: 15 }]}>
           <View style={styles.item}>
             <View
-              onTouchStart={clickHabbit}
+              onTouchStart={goToJournal}
               style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}
             >
               <Image style={styles.journalHabbitImage} source={journalImage} />{' '}
             </View>{' '}
-            <View onTouchStart={clickHabbit} style={[styles.habbitTextBar, styles.left]}>
+            <View onTouchStart={goToJournal} style={[styles.habbitTextBar, styles.left]}>
               <Text style={styles.habbitText}>Daily Journal</Text>{' '}
             </View>{' '}
           </View>
@@ -88,6 +88,9 @@ const mapDispatchToProps = dispatch => ({
   },
   goToAnalytics: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
+  },
+  goToJournal: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
   },
 });
 

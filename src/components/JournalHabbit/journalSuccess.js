@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
-export const journalSuccess = ({ clickHabbit }) => (
+export const journalSuccess = ({ goToMain }) => (
   <View>
     <StatusBar barStyle="light-content" />
     <View>
@@ -18,7 +18,7 @@ export const journalSuccess = ({ clickHabbit }) => (
           {/* <Text>{}/{}</Text> */}
         </View>
       </View>
-      <View onTouchStart={clickHabbit}>
+      <View onTouchStart={goToMain}>
         <Text>Yay!</Text>
       </View>
     </View>
@@ -26,8 +26,8 @@ export const journalSuccess = ({ clickHabbit }) => (
 );
 
 const mapDispatchToProps = dispatch => ({
-  clickHabbit: () => {
-    dispatch(StackActions.popToTop());
+  goToMain: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
 
