@@ -25,7 +25,7 @@ class CountdownToOffline extends Component {
     this.timerID = setInterval(startCountdownTimer, 1000);
 
     // Set Timer end time to current time + 30sec for MVP.
-    const endTime = moment().add(30, 'seconds');
+    const endTime = moment().add(8, 'seconds');
 
     // Set Timer end time to state.endTime and set initial duration to state.full.
     setEndTimer(endTime);
@@ -34,19 +34,14 @@ class CountdownToOffline extends Component {
     setTimerEnd(endTime);
   }
 
-  shouldComponentUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { goToOfflineRabbit, isConnected, goToSleepTimer } = this.props;
     if (nextProps.offlineSeconds === 0) {
       goToOfflineRabbit();
-      return false;
     }
     if (isConnected === false) {
+      console.log('connection state in countdown', isConnected);
       goToSleepTimer();
-      return false;
-    }
-    if (nextProps.isConnected !== isConnected && isConnected === false) {
-      goToSleepTimer();
-      return false;
     }
     return true;
   }
