@@ -42,8 +42,3 @@ export const setEndTime = endTime => ({
   type: SET_END_TIME,
   endTime,
 });
-
-export const getJournalData = journalData => ({
-  type: GET_JOURNAL_DATA,
-  journalData,
-});

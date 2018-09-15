@@ -53,6 +53,11 @@ export const setStartAndEndDate = () => {
 
 // Using in JournalMainScreen.js
 export const firebaseInsert = ({ greatful, til }) => {
-  const date = new Date();
+  const date = moment().format();
   update(`users/1/habits/JournalHabbit/journals/${date}`, { date, greatful, til });
+};
+
+// Using in JournalSuccess.js
+export const finishJournal = () => {
+  update('users/1/habits/JournalHabbit', { isActive: false });
 };

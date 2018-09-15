@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { finishJournal } from '../../helper';
 
 export const journalSuccess = ({ goToMain }) => (
   <View>
@@ -27,6 +28,7 @@ export const journalSuccess = ({ goToMain }) => (
 
 const mapDispatchToProps = dispatch => ({
   goToMain: () => {
+    finishJournal();
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
