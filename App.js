@@ -13,8 +13,8 @@ import store from './src/store';
 const App = () => (
   <Provider store={store}>
     {/* <AppNavigator /> */}
-    {/* <EarlyMorningNavigator /> */}
-    <AuthNavigator />
+    <EarlyMorningNavigator />
+    {/* <AuthNavigator /> */}
   </Provider>
 );
 
