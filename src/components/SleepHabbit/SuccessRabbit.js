@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
 import happyRabbit from '../../images/happyRabbit.png';
 import styles from '../../css/styleForSuccess';
@@ -27,7 +27,7 @@ export const SampleComponent = ({ clickHabbit }) => (
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
-    dispatch(StackActions.popToTop());
+    dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
 

@@ -24,7 +24,7 @@ const initialState = {
   counter: undefined,
   isWorking: false,
   interval: undefined,
-  offlineSeconds: 2,
+  offlineSeconds: 10,
   appState: AppState.currentState,
   isConnected: true,
   timerDuration: 0,

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
-import { StackActions } from 'react-navigation';
-import { changeInterval, countdown } from '../../actions';
+import { NavigationActions } from 'react-navigation';
+import { changeInterval, countdown, updateConnectivity } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 export class Timer extends Component {
   componentDidMount() {
     const { timerStart, changeIntervalCall } = this.props;
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
 
     // Start Countdown and set intervalID to state.inverval
     this.intervalID = setInterval(timerStart, 1000);
@@ -32,17 +33,34 @@ export class Timer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
+<<<<<<< HEAD:src/components/SleepHabbit/Timer.js
     const { goToYay } = this.props;
     // eslint-disable-next-line
+=======
+    const { goToYay, goToOfflineRabbit, isConnected } = this.props;
+>>>>>>> master:src/components/Timer.js
     if (nextProps.currentCounter._milliseconds === 0) {
       goToYay();
+    }
+    if (isConnected === true) {
+      goToOfflineRabbit();
+      return false;
+    }
+    if (nextProps.isConnected === true) {
+      goToOfflineRabbit();
     }
     return true;
   }
 
   componentWillUnmount() {
     clearInterval(this.intervalID);
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
+
+  handleConnectivityChange = isConnected => {
+    const { updateConnect } = this.props;
+    updateConnect(isConnected);
+  };
 
   render() {
     const { currentCounter, full } = this.props;
@@ -70,6 +88,7 @@ const mapStateToProps = state => ({
   isWorking: state.red.isWorking,
   interval: state.red.interval,
   timerDuration: state.red.timerDuration,
+  isConnected: state.red.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -80,7 +99,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeInterval(value));
   },
   goToYay: () => {
-    dispatch(StackActions.push({ routeName: 'Success' }));
+    dispatch(NavigationActions.navigate({ routeName: 'Success' }));
+  },
+  goToOfflineRabbit: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'OffLineRabbit' }));
+  },
+  updateConnect: newConnectionState => {
+    dispatch(updateConnectivity(newConnectionState));
   },
 });
 
