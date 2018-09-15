@@ -74,8 +74,8 @@ export class Timer extends Component {
           color="#fff"
           innerColor="#eb5e65"
         >
-          <Text style={styles.timer}> {time} </Text>{' '}
-        </PercentageCircle>{' '}
+          <Text style={styles.timer}> {time} </Text>
+        </PercentageCircle>
       </View>
     );
   }
