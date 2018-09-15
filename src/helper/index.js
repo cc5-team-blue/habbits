@@ -4,11 +4,7 @@ import moment from 'moment';
 import 'moment-duration-format';
 
 // import firebaseSDK from db
-import { insert, push } from '../../db';
-
-export const sayHi = () => {
-  console.log("Don't do that");
-};
+import { update, select } from '../../db';
 
 // Using in Timer.js
 export const setEndTimer = async time => {
@@ -44,8 +40,19 @@ export const removeEndTime = async () => {
   }
 };
 
+// Using in Main.js
+export const isJournalActive = () => console.log(select('users/1/habits/JournalHabbit/isActive'));
+
+// Using in JounalDescription
+export const setStartAndEndDate = () => {
+  const startDate = moment().format();
+  const setDate = moment().add(30, 'd');
+  const endDate = setDate.format();
+  update('users/1/habits/JournalHabbit/', { isActive: true, startDate, endDate });
+};
+
 // Using in JournalMainScreen.js
 export const firebaseInsert = ({ greatful, til }) => {
   const date = new Date();
-  insert(`users/1/habits/JournalHabbit/${date}`, { date, greatful, til });
+  update(`users/1/habits/JournalHabbit/journals/${date}`, { date, greatful, til });
 };
