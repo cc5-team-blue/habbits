@@ -3,6 +3,9 @@ import { AsyncStorage } from 'react-native';
 import moment from 'moment';
 import 'moment-duration-format';
 
+// import firebaseSDK from db
+import { insert, push } from '../../db';
+
 export const sayHi = () => {
   console.log("Don't do that");
 };
@@ -39,4 +42,10 @@ export const removeEndTime = async () => {
   } catch (err) {
     console.log(err);
   }
+};
+
+// Using in JournalMainScreen.js
+export const firebaseInsert = ({ greatful, til }) => {
+  const date = new Date();
+  insert(`users/1/habits/JournalHabbit/${date}`, { date, greatful, til });
 };

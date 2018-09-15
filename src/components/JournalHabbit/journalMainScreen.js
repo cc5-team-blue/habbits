@@ -3,6 +3,7 @@ import { Text, View, StatusBar, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import styles from '../../css/styleForJournal';
+import { firebaseInsert } from '../../helper';
 
 export class journalDescription extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ export class journalDescription extends Component {
             />
           </View>
         </View>
-        <View onTouchStart={goToJournalSuccess}>
+        <View onTouchStart={() => goToJournalSuccess(this.state)}>
           <Text>Submit!</Text>
         </View>
       </View>
@@ -59,7 +60,8 @@ export class journalDescription extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  goToJournalSuccess: () => {
+  goToJournalSuccess: state => {
+    firebaseInsert(state);
     dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
   },
 });
