@@ -26,7 +26,9 @@ class Main extends Component {
   handleConnectivityChange = isConnected => {
     const { updateConnect } = this.props;
     console.log('change happened', isConnected);
-    updateConnect(isConnected);
+    if (isConnected) {
+      updateConnect(isConnected);
+    }
   };
 
   render() {
