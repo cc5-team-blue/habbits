@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, StatusBar, View, Button, Image } from 'react-native';
 import { app } from '../../../db';
-import coffeeImg from '../../images/EarlyMorning/coffee.png';
+import coffeeImg from './images/coffee.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   title: {
     width: 235.5,
-    height: 53,
+    // height: 53,
     fontFamily: 'Futura',
     fontSize: 30,
     fontWeight: 'bold',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   text: {
     width: 235.5,
-    height: 44,
+    // height: 44,
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: '900',
@@ -81,6 +81,16 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     textAlign: 'center',
     color: '#fff7dd',
+  },
+  btnWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 325,
+    height: 67.5,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: '#555291',
+    flex: 1,
   },
 });
 
@@ -114,22 +124,14 @@ export default class Start extends Component {
           </View>
           <View style={[{ flex: 2 }, styles.center]}>
             <Text style={styles.title}>Challenge:</Text>
-            <Text style={styles.text}>- 5-day challenge</Text>
-            <Text style={styles.text}>- Wake up before 6am</Text>
-            <Text style={styles.text}>- Don’t miss a single morning</Text>
-            <View
-              style={[
-                {
-                  width: 325,
-                  height: 67.5,
-                  borderRadius: 10,
-                  backgroundColor: '#555291',
-                  flex: 2,
-                },
-                styles.center,
-              ]}
-            >
-              {/* <Button onPress={this.handleClick} title="Bring it on" style={styles.btn} /> */}
+            <Text style={styles.text}>
+              - 5-day challenge
+              {'\n'}- Wake up before 6am
+              {'\n'}- Don’t miss a single morning
+              {'\n'}
+              {'\n'}
+            </Text>
+            <View style={styles.btnWrapper}>
               <Text onPress={this.handleClick} style={styles.btn}>
                 Bring it on
               </Text>
