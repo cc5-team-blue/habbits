@@ -14,6 +14,7 @@ export class journalDescription extends Component {
     this.state = {
       greatful: '',
       til: '',
+      starRate: '',
     };
   }
 
@@ -31,7 +32,7 @@ export class journalDescription extends Component {
           <View>
             <Text>Rate your day:</Text>
             <Rating
-              onChange={rating => console.log(rating)}
+              onChange={rating => this.setState({ starRate: rating })}
               selectedStar={fullStar}
               unselectedStar={emptyStar}
               config={{
