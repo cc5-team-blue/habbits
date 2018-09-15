@@ -16,15 +16,19 @@ const styles = StyleSheet.create({
     paddingRight: 30,
   },
   text: {
-    fontFamily: 'Futura',
-    fontSize: 20,
+    fontFamily: 'Avenir',
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#DCE0E6',
     textAlign: 'left',
   },
+  habbitDescription: {
+    color: '#6F829D',
+    paddingLeft: 30,
+  },
   unlocked: {
-    fontFamily: 'Futura',
-    fontSize: 15,
+    fontFamily: 'Avenir',
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#ffeaa7',
     marginLeft: 10,
@@ -32,9 +36,9 @@ const styles = StyleSheet.create({
   achievement: {
     marginTop: 4,
     width: 71,
-    height: 58,
+    height: 48,
     fontFamily: 'Futura',
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'right',
     color: '#ffffff',
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
   },
   achievementWrapper: {
     width: 258.5,
-    height: 71,
+    height: 58,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -52,36 +56,28 @@ const styles = StyleSheet.create({
   },
   achievementImg: {
     marginLeft: 18,
-    width: 38,
-    height: 42,
+    width: 31.5,
+    height: 36,
   },
   plus: {
-    fontFamily: 'Futura',
-    fontSize: 20,
+    fontFamily: 'Avenir',
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#00cec9',
     textAlign: 'right',
   },
-  plusSign: {
-    fontFamily: 'Futura',
-    fontSize: 20,
-    fontWeight: 'bold',
+  green: {
     color: '#00cec9',
-    textAlign: 'right',
   },
   minus: {
-    fontFamily: 'Futura',
-    fontSize: 20,
+    fontFamily: 'Avenir',
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#ff7675',
     textAlign: 'right',
   },
-  minusSign: {
-    fontFamily: 'Futura',
-    fontSize: 20,
-    fontWeight: 'bold',
+  red: {
     color: '#ff7675',
-    textAlign: 'right',
   },
   arrowUpImg: {
     width: 14,
@@ -97,8 +93,6 @@ const styles = StyleSheet.create({
   },
   verticalArrowLine: {
     position: 'absolute',
-    top: 210,
-    height: 350,
     width: 38,
     borderRightWidth: 2,
     borderRightColor: '#576371',

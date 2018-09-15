@@ -66,7 +66,7 @@ class Analytics extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Text style={styles.headline}>Analytics</Text>
-        <ScrollView showsVerticalScrollIndicator="false">
+        <ScrollView showsVerticalScrollIndicator={false}>
           <LineChart
             data={data}
             style={styles.lineChart}
@@ -75,41 +75,51 @@ class Analytics extends Component {
             chartConfig={chartConfig}
             bezier
           />
-          <View style={styles.verticalArrowLine} />
           <View style={styles.valuesWrapper}>
             {this.state.achievements.map(item => {
               if (item.val.type === 'plus') {
                 return (
                   <View key={item.key} style={styles.row}>
+                    <View style={styles.verticalArrowLine} />
                     <View style={{ flex: 1 }}>
                       <Image source={arrowUpImg} style={styles.arrowUpImg} />
                     </View>
-                    <Text style={[styles.text, { flex: 3 }]}>
+                    <Text style={[styles.text, { flex: 2 }]}>
                       {moment(item.val.date).format('MM/DD')}{' '}
                     </Text>
-                    <Text style={[styles.plusSign, { flex: 1 }]}>+</Text>
-                    <Text style={[styles.plus, { flex: 3 }]}>{item.val.points} Points</Text>
+                    <Text
+                      style={[styles.text, styles.habbitDescription, styles.green, { flex: 4 }]}
+                    >
+                      Good Sleep
+                    </Text>
+                    <Text style={[styles.plus, { flex: 1 }]}>+</Text>
+                    <Text style={[styles.plus, { flex: 1 }]}>{item.val.points}</Text>
                   </View>
                 );
               }
               if (item.val.type === 'minus') {
                 return (
                   <View key={item.key} style={styles.row}>
+                    <View style={styles.verticalArrowLine} />
                     <View style={{ flex: 1 }}>
                       <Image source={arrowDownImg} style={styles.arrowDownImg} />
                     </View>
-                    <Text style={[styles.text, { flex: 3 }]}>
+                    <Text style={[styles.text, { flex: 2 }]}>
                       {moment(item.val.date).format('MM/DD')}{' '}
                     </Text>
-                    <Text style={[styles.minusSign, { flex: 1 }]}>−</Text>
-                    <Text style={[styles.minus, { flex: 3 }]}>{item.val.points} Points</Text>
+                    <Text style={[styles.text, styles.habbitDescription, styles.red, { flex: 4 }]}>
+                      Good Sleep
+                    </Text>
+                    <Text style={[styles.minus, { flex: 1 }]}>−</Text>
+                    <Text style={[styles.minus, { flex: 1 }]}>{item.val.points}</Text>
                   </View>
                 );
               }
               if (item.val.type === 'achievement') {
                 return (
                   <View key={item.key}>
-                    <View style={styles.row} marginTop={10}>
+                    <View style={styles.verticalArrowLine} />
+                    <View style={styles.row} marginTop={5}>
                       <View style={{ flex: 1 }}>
                         <Image source={starImg} style={styles.starImg} />
                       </View>
