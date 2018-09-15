@@ -38,3 +38,9 @@ pids
 *.pid
 *.seed
 *.pid.lock
+
+// xcode setting files
+habbits.xcodeproj/xcuserdata/
+xcuserdata
+habbits.xcworkspace/
+Pods/
