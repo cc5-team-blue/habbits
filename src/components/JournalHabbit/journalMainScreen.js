@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, StatusBar, TextInput } from 'react-native';
+import { Text, View, StatusBar, TextInput, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import Rating from 'react-native-rating';
 import styles from '../../css/styleForJournal';
 import { firebaseInsert } from '../../helper';
+import emptyStar from '../../images/emptyStar.png';
+import fullStar from '../../images/fullStar.png';
 
 export class journalDescription extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ export class journalDescription extends Component {
   render() {
     const { goToJournalSuccess } = this.props;
     const { greatful, til } = this.state;
+
     return (
       <View>
         <StatusBar barStyle="light-content" />
@@ -26,7 +30,21 @@ export class journalDescription extends Component {
           </View>
           <View>
             <Text>Rate your day:</Text>
-            {/* Rating star component */}
+            <Rating
+              onChange={rating => console.log(rating)}
+              selectedStar={fullStar}
+              unselectedStar={emptyStar}
+              config={{
+                easing: Easing.inOut(Easing.ease),
+                duration: 100,
+              }}
+              stagger={80}
+              maxScale={1.2}
+              starStyle={{
+                width: 30,
+                height: 30,
+              }}
+            />
           </View>
           <View>
             <Text>One thing you&#039;re grateful for:</Text>
