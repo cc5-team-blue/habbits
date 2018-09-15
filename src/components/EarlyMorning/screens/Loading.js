@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, ActivityIndicator } from 'react-native';
-import { app } from '../../../db';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { app } from '../../../../db';
 
 export default class Loading extends Component {
   constructor(props) {

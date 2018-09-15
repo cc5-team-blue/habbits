@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
-import { app } from '../../../db';
-import happyRabbit from './images/success.png';
-import styles from './styles/styleForSuccess';
+import { app } from '../../../../db';
+import happyRabbit from '../images/success.png';
+import styles from '../styles/styleForBigSuccess';
 
-export default class Success extends Component {
+export default class BigSuccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,12 +35,15 @@ export default class Success extends Component {
         <View style={styles.container}>
           <View style={styles.yayImgContainer}>
             <View style={styles.awesomeWrapper}>
-              <Text style={[styles.awesomeText, { textAlign: 'center' }]}>Success!</Text>
-              <Text style={styles.youAreText}>Have an amazing day!</Text>
+              <Text style={styles.youAreText}>You are</Text>
+              <Text style={styles.awesomeText}>AWESOME!</Text>
             </View>
             <Image style={styles.happyRabbitImage} source={happyRabbit} />
-            <Text style={styles.pointsText}>Challenge Progress:</Text>
-            <Text style={[styles.challengeText, { color: '#3b495b' }]}>{this.state.times} / 5</Text>
+            <Text style={styles.countText}>
+              {this.state.times}
+              /5
+            </Text>
+            <Text style={styles.pointText}>You gained +300P</Text>
           </View>
           <View onTouchStart={this.handleClick} style={styles.yayButton}>
             <Text style={styles.yayText}>Yay!</Text>
