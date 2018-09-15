@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.2.6",
+    "babel-preset-react-native-stage-0": "^1.0.1",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -13,29 +14,25 @@
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.79.1",
     "flow-typed": "^2.5.1",
-    "jest": "^23.5.0",
+    "jest": "^23.6.0",
     "jest-cli": "^23.5.0",
-    "jest-expo": "~27.0.0",
+    "jest-react-native": "^18.0.0",
     "prettier": "^1.14.2",
-    "react-native-scripts": "1.14.0",
     "react-redux": "^5.0.7",
     "react-test-renderer": "16.3.1"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "dev": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" yarn start",
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "jest && yarn flow",
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest",
     "flow": "./node_modules/.bin/flow"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "react-native"
   },
   "dependencies": {
-    "expo": "^27.0.1",
     "firebase": "^5.4.2",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
@@ -43,6 +40,8 @@
     "react-native": "~0.55.4",
     "react-native-chart-kit": "^1.1.6",
     "react-native-percentage-circle": "^1.0.7",
+    "react-native-svg": "^6.5.2",
+    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.13.0",
     "react-navigation-redux-helpers": "^2.0.5",
     "redux": "^4.0.0",

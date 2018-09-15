@@ -10,7 +10,7 @@ import {
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 
-import stackNav from './StackNavigator';
+import swichNav from './SwitchNavigator';
 import UserInfo from '../components/UserInfo';
 import AppStateExample from '../components/trackComponent';
 
@@ -21,7 +21,7 @@ const { width, height } = Dimensions.get('window');
 const RootNavigator = createDrawerNavigator(
   {
     Home: {
-      screen: stackNav,
+      screen: swichNav,
       navigationOptions: {
         drawerLabel: 'home page',
         drawerIcon: () => <Icon name="rocket" size={24} />,
