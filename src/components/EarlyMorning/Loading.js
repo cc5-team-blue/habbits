@@ -23,7 +23,6 @@ export default class Loading extends Component {
     }
     return (
       <View style={styles.container}>
-        <Text>Loading</Text>
         <ActivityIndicator size="large" />
       </View>
     );
