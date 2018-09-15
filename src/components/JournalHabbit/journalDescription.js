@@ -3,6 +3,8 @@ import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
+import { setStartAndEndDate } from '../../helper';
+
 export const journalDescription = ({ goToJournalMain }) => (
   <View>
     <StatusBar barStyle="light-content" />
@@ -28,6 +30,7 @@ export const journalDescription = ({ goToJournalMain }) => (
 
 const mapDispatchToProps = dispatch => ({
   goToJournalMain: () => {
+    setStartAndEndDate();
     dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
   },
 });

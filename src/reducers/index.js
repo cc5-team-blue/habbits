@@ -15,6 +15,7 @@ import {
   IS_CONNECTED_CHANGE,
   RESETOFFLINECOUNTDOWN,
   SET_END_TIME,
+  GET_JOURNAL_DATA,
 } from '../actions';
 
 // It sets initial state
@@ -28,6 +29,7 @@ const initialState = {
   appState: AppState.currentState,
   isConnected: true,
   timerDuration: 0,
+  journalData: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -91,6 +93,13 @@ const reducer = (state = initialState, action) => {
         endTime: action.endTime,
         full: count,
         counter: count,
+      };
+    }
+    case GET_JOURNAL_DATA: {
+      console.log(action.journalData);
+      return {
+        ...state,
+        journalData: action.journalData,
       };
     }
     default: {

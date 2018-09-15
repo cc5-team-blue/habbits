@@ -6,6 +6,7 @@ export const APP_STATE_CHAGE = 'app state change';
 export const IS_CONNECTED_CHANGE = 'is connected change';
 export const RESETOFFLINECOUNTDOWN = 'reset offline countdown';
 export const SET_END_TIME = 'set end time';
+export const GET_JOURNAL_DATA = 'get journal data';
 
 // Action creater
 export const changeInterval = data => ({
@@ -40,4 +41,9 @@ export const resetOfflineCountdown = () => ({
 export const setEndTime = endTime => ({
   type: SET_END_TIME,
   endTime,
+});
+
+export const getJournalData = journalData => ({
+  type: GET_JOURNAL_DATA,
+  journalData,
 });
