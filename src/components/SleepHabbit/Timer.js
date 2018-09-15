@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
 import { NavigationActions } from 'react-navigation';
-import { changeInterval, countdown, updateConnectivity } from '../actions';
+import { changeInterval, countdown, updateConnectivity } from '../../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,12 +33,8 @@ export class Timer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-<<<<<<< HEAD:src/components/SleepHabbit/Timer.js
-    const { goToYay } = this.props;
-    // eslint-disable-next-line
-=======
     const { goToYay, goToOfflineRabbit, isConnected } = this.props;
->>>>>>> master:src/components/Timer.js
+    // eslint-disable-next-line
     if (nextProps.currentCounter._milliseconds === 0) {
       goToYay();
     }
