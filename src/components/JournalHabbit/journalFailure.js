@@ -1,26 +1,35 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
-export const journalFailure = ({ clickHabbit }) => (
-  <View>
+import { finishJournal } from '../../helper';
+import styles from '../../css/styleForJournal';
+import sadRabbit from '../../images/sadRabbit.png';
+
+export const journalFailure = ({ goToMain }) => (
+  <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
-    <Text>Aww Snap!</Text>
-    <View>
-      <Image />
-      <Text>You forgot to write a journal yesterday. I&#039;m disappointed.</Text>
-      <Text>You lost -100P</Text>
-    </View>
-    <View onTouchStart={clickHabbit}>
-      <Text>I&#039;m Sorry!</Text>
+    <Text style={[styles.innerHeadlineContainer, styles.headline]}>Aww Snap!</Text>
+    <View style={styles.innerContentsContainer}>
+      <View style={styles.failureContainer}>
+        <Image style={styles.sadRabbitImg} source={sadRabbit} />
+        <Text style={styles.forgotText}>
+          You forgot to write a journal yesterday. I&#039;m disappointed.
+        </Text>
+        <Text style={styles.lostPointText}>You lost -100P</Text>
+      </View>
+      <View onTouchStart={goToMain} style={styles.sorryImgButton}>
+        <Text style={styles.sorryButtonText}>I&#039;m Sorry!</Text>
+      </View>
     </View>
   </View>
 );
 
 const mapDispatchToProps = dispatch => ({
-  clickHabbit: () => {
-    dispatch(StackActions.push());
+  goToMain: () => {
+    finishJournal();
+    dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
 

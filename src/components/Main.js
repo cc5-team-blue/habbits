@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import firebase from 'react-native-firebase';
+import firebaseForJournal from 'firebase';
 import { updateConnectivity } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
@@ -81,7 +82,8 @@ class Main extends Component {
     * */
     this.notificationListener = firebase.notifications().onNotification(notification => {
       const { title, body } = notification;
-      this.props.showAlert(title, body);
+      const { showAlert } = this.props;
+      showAlert(title, body);
     });
 
     /*
@@ -91,7 +93,8 @@ class Main extends Component {
       .notifications()
       .onNotificationOpened(notificationOpen => {
         const { title, body } = notificationOpen.notification;
-        this.props.showAlert(title, body);
+        const { showAlert } = this.props;
+        showAlert(title, body);
       });
 
     /*
@@ -101,7 +104,8 @@ class Main extends Component {
     const notificationOpen = await firebase.notifications().getInitialNotification();
     if (notificationOpen) {
       const { title, body } = notificationOpen.notification;
-      this.props.showAlert(title, body);
+      const { showAlert } = this.props;
+      showAlert(title, body);
     }
     /*
     * Triggered for data only payload in foreground
@@ -203,6 +207,18 @@ const mapDispatchToProps = dispatch => ({
   },
   updateConnect: newConnectionState => {
     dispatch(updateConnectivity(newConnectionState));
+  },
+  goToJournal: () => {
+    firebaseForJournal
+      .database()
+      .ref('users/1/habits/JournalHabbit/isActive')
+      .on('value', data => {
+        if (data.val()) {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
+        } else {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+        }
+      });
   },
 });
 
