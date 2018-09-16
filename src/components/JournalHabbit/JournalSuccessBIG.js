@@ -11,7 +11,7 @@ export const journalSuccessBIG = ({ goToMain }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
     <View style={styles.innerContainer}>
-      <View style={[styles.contentsContainer, styles.sucessBackground]}>
+      <View style={[styles.contentsContainer, styles.sucessBackground, styles.successItemPosition]}>
         <View>
           <Text style={styles.youAreText}>You are</Text>
           <Text style={styles.awesomeText}>AWESOME!</Text>

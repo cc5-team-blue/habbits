@@ -11,7 +11,7 @@ export const journalSuccess = ({ goToMain }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
     <View style={styles.innerContainer}>
-      <View style={[styles.contentsContainer, styles.sucessBackground]}>
+      <View style={[styles.contentsContainer, styles.sucessBackground, styles.successItemPosition]}>
         <View>
           <Text style={[styles.successCommonText, styles.successText]}>Success!</Text>
           <Text style={[styles.successCommonText, styles.complimentText]}>

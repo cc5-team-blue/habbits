@@ -100,32 +100,44 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     width: '100%',
     height: '95%',
   },
   // journalMainScreen
+  mainItemPosition: {
+    alignItems: 'flex-start',
+  },
   journalInputBackground: {
     backgroundColor: '#fbfeff',
   },
   journalMainHeadline: {
-    width: 267,
-    height: 90,
+    width: '80%',
     fontFamily: 'Futura',
     fontSize: 30,
     fontWeight: 'bold',
     color: '#242733',
+    marginLeft: '8%',
   },
   journalMainText: {
-    width: '100%',
-    height: 20.5,
+    width: '80%',
     fontFamily: 'Avenir',
-    fontSize: 15,
-    textAlign: 'left',
-    color: '#3b495b',
+    fontSize: 16,
+    fontWeight: '500',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#151515',
+    marginTop: '10%',
+    marginLeft: '8%',
+    alignItems: 'flex-start',
+  },
+  itemPosition: {
+    alignItems: 'flex-start',
+    width: '80%',
+    marginLeft: '8%',
   },
   journalInput: {
-    width: 270,
+    width: 280,
     height: 45.5,
     borderRadius: 10,
     backgroundColor: '#ffffff',
@@ -135,10 +147,14 @@ const styles = StyleSheet.create({
     marginTop: 7,
     marginBottom: 7,
     padding: 12.5,
+    alignItems: 'center',
   },
   // Shared with jounalSuccess, journalSuccessBIG
   sucessBackground: {
     backgroundColor: '#fff7dd',
+  },
+  successItemPosition: {
+    alignItems: 'center',
   },
   // journalSuccess
   successCommonText: {
