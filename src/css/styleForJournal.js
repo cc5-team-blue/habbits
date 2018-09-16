@@ -2,6 +2,18 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   // Common style
+  outerContainer: {
+    height: '100%',
+    backgroundColor: '#3b495b',
+  },
+  bottomImgButton: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: '#ff627a',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '10%',
+  },
   bottomButtonText: {
     width: 272,
     height: 32.5,
@@ -17,49 +29,67 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   // journalDescription
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#3B495B',
+  journalImg: {
+    width: 79.5,
+    height: 79.5,
   },
-  rectangleContainer: {
-    flex: 7,
-    width: 325,
+  innerHeadlineContainer: {
+    marginLeft: '6%',
+    marginTop: '13%',
+    height: '8%',
+    width: '88%',
+  },
+  innerContentsContainer: {
+    marginLeft: '6%',
+    marginTop: '0%',
+    height: '80%',
+    width: '88%',
+  },
+  descriptionContainer: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    backgroundColor: '#fff7dd',
-    shadowColor: '#3b495b',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  bottomButton: {
-    width: 325,
-    height: 67.5,
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    backgroundColor: '#ff575c',
-    marginBottom: 30,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '89%',
+    backgroundColor: '#fff7dd',
   },
   headline: {
-    flex: 1,
-    paddingTop: 60,
-    width: 308,
-    height: 91,
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
     color: '#ffffff',
   },
-
-  // Shared with journalMainScreen, journalSuccess, jounarlSuccessBIG
-  outerContainer: {
-    height: '100%',
-    backgroundColor: '#3b495b',
+  bringImgButton: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: '#ff627a',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '11%',
   },
+  h2Text: {
+    marginTop: '10%',
+    fontFamily: 'Futura',
+    fontSize: 30,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#3b495b',
+  },
+  h3Text: {
+    fontFamily: 'Avenir',
+    fontSize: 16,
+    fontWeight: '900',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#3b495b',
+  },
+  textPosition: {
+    marginLeft: '14%',
+    marginRight: '8%',
+  },
+  // Shared with journalMainScreen, journalSuccess, jounarlSuccessBIG
   innerContainer: {
     marginLeft: '6%',
     marginTop: '12%',
@@ -73,14 +103,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: '95%',
-  },
-  bottomImgButton: {
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    backgroundColor: '#ff627a',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '10%',
   },
   // journalMainScreen
   journalInputBackground: {
