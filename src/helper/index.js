@@ -3,9 +3,8 @@ import { AsyncStorage } from 'react-native';
 import moment from 'moment';
 import 'moment-duration-format';
 
-export const sayHi = () => {
-  console.log("Don't do that");
-};
+// import firebaseSDK from db
+import { update, select } from '../../db';
 
 // Using in Timer.js
 export const setEndTimer = async time => {
@@ -39,4 +38,31 @@ export const removeEndTime = async () => {
   } catch (err) {
     console.log(err);
   }
+};
+
+// Using in Main.js
+export const isJournalActive = () => console.log(select('users/1/habits/JournalHabbit/isActive'));
+
+// Using in JounalDescription
+export const setStartAndEndDate = () => {
+  const startDate = moment().format();
+  const setDate = moment().add(30, 'd');
+  const endDate = setDate.format();
+  update('users/1/habits/JournalHabbit/', { isActive: true, startDate, endDate });
+};
+
+// Using in JournalMainScreen.js
+export const firebaseInsert = ({ greatful, til, starRate }) => {
+  const date = moment().format();
+  update(`users/1/habits/JournalHabbit/journals/${date}`, {
+    date,
+    greatful,
+    til,
+    rating: starRate,
+  });
+};
+
+// Using in JournalSuccess.js
+export const finishJournal = () => {
+  update('users/1/habits/JournalHabbit', { isActive: false });
 };

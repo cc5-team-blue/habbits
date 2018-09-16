@@ -1,34 +1,43 @@
 import React from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
-export const journalDescription = ({ clickHabbit }) => (
-  <View>
+import { setStartAndEndDate } from '../../helper';
+import styles from '../../css/styleForJournal';
+import journalImg from '../../images/journalImage.png';
+
+export const journalDescription = ({ goToJournalMain }) => (
+  <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
-    <Text>Daily Journal</Text>
-    <View>
-      <Image />
-      <View>
-        <Text>Description:</Text>
-        <Text>This modules helps you kep a journal for 30 consecutive days.</Text>
+    <Text style={[styles.innerHeadlineContainer, styles.headline]}>Daily Journal</Text>
+    <View style={styles.innerContentsContainer}>
+      <View style={styles.descriptionContainer}>
+        <Image style={styles.journalImg} source={journalImg} />
+        <View style={styles.textPosition}>
+          <Text style={styles.h2Text}>Description:</Text>
+          <Text style={styles.h3Text}>
+            This modules helps you kep a journal for 30 consecutive days.
+          </Text>
+        </View>
+        <View>
+          <Text style={styles.h2Text}>Challenge:</Text>
+          <Text style={styles.h3Text}>- 30-day challenge</Text>
+          <Text style={styles.h3Text}>- Answer 3 questions per day</Text>
+          <Text style={styles.h3Text}>- Don&#039;t miss a single day</Text>
+        </View>
       </View>
-      <View>
-        <Text>Challenge:</Text>
-        <Text>- 30-day challenge</Text>
-        <Text>- Answer 3 questions per day</Text>
-        <Text>- Don&#039;t miss a single day</Text>
+      <View onTouchStart={goToJournalMain} style={styles.bringImgButton}>
+        <Text style={styles.bottomButtonText}>Bring it on!</Text>
       </View>
-    </View>
-    <View onTouchStart={clickHabbit}>
-      <Text>Bring it on!</Text>
     </View>
   </View>
 );
 
 const mapDispatchToProps = dispatch => ({
-  clickHabbit: () => {
-    dispatch(StackActions.push());
+  goToJournalMain: () => {
+    setStartAndEndDate();
+    dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
   },
 });
 

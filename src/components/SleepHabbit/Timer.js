@@ -5,9 +5,6 @@ import PercentageCircle from 'react-native-percentage-circle';
 import { NavigationActions } from 'react-navigation';
 import { changeInterval, countdown, updateConnectivity } from '../../actions';
 
-// If you want to check access to Local Storage, add function from helper and add Button component import from react-native.
-// import { retrieveEndTime } from '../helper';
-
 const styles = StyleSheet.create({
   container: {
     marginTop: '30%',

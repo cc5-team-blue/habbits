@@ -28,6 +28,7 @@ const initialState = {
   appState: AppState.currentState,
   isConnected: true,
   timerDuration: 0,
+  journalData: false,
 };
 
 const reducer = (state = initialState, action) => {
