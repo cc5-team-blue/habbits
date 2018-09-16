@@ -15,8 +15,6 @@ const styles = StyleSheet.create({
     height: '10%',
   },
   bottomButtonText: {
-    width: 272,
-    height: 32.5,
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
@@ -185,6 +183,58 @@ const styles = StyleSheet.create({
   progressStats: {
     fontSize: 25,
     color: '#3b495b',
+  },
+  // journalFailure
+  failureContainer: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '89%',
+    backgroundColor: '#555291',
+  },
+  sadRabbitImg: {
+    width: 215,
+    height: 215,
+  },
+  forgotText: {
+    width: '80%',
+    marginTop: '10%',
+    fontFamily: 'Futura',
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#f9fada',
+  },
+  lostPointText: {
+    marginTop: '10%',
+    fontFamily: 'Futura',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#f9fada',
+  },
+  sorryImgButton: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: '#f9fada',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '11%',
+  },
+  sorryButtonText: {
+    fontFamily: 'Futura',
+    fontSize: 25,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#555291',
   },
   // journalSuccessBIG
   youAreText: {
