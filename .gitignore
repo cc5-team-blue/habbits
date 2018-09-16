@@ -1,11 +1,19 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+##Xcode
+!**/*.xcodeproj
+!**/*.pbxproj
+!**/*.xcworkspacedata
+
 ### ReactNative.Node Stack ###
 # Logs
 logs
 *.log
 yarn-debug.log*
 yarn-error.log*
+*.ipa
+*.xcuserstate
+project.xcworkspace
 
 # expo
 .expo/
@@ -13,6 +21,21 @@ yarn-error.log*
 # dependencies
 /node_modules
 build/
+
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+/android/
+
+# Gradle
+/build/
+/RNTester/android/app/build/
+/RNTester/android/app/gradle/
+/RNTester/android/app/gradlew
+/RNTester/android/app/gradlew.bat
+/ReactAndroid/build/
 
 # misc
 .env.local
@@ -44,3 +67,6 @@ habbits.xcodeproj/xcuserdata/
 xcuserdata
 habbits.xcworkspace/
 Pods/ 
+
+# Root dir shouldn't have Xcode project
+/*.xcodeproj
