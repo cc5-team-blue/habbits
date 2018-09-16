@@ -119,7 +119,35 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff7dd',
   },
   // journalSuccess
-
+  successCommonText: {
+    fontFamily: 'Futura',
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    textAlign: 'center',
+  },
+  successText: {
+    fontSize: 40,
+    color: '#3b495b',
+  },
+  complimentText: {
+    fontSize: 20,
+    color: '#7a8185',
+  },
+  checkCircleImage: {
+    width: 78.5,
+    height: 78.5,
+    marginTop: '25%',
+    marginBottom: '25%',
+  },
+  progressText: {
+    fontSize: 18,
+    color: '#7a8185',
+  },
+  progressStats: {
+    fontSize: 25,
+    color: '#3b495b',
+  },
   // journalSuccessBIG
   youAreText: {
     fontFamily: 'Futura',
@@ -143,8 +171,6 @@ const styles = StyleSheet.create({
     marginBottom: '12%',
   },
   statsText: {
-    width: 131.5,
-    height: 52,
     fontFamily: 'Futura',
     fontSize: 40,
     fontWeight: 'bold',
