@@ -13,13 +13,10 @@ const styles = StyleSheet.create({
 });
 
 export default class Loading extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
+    const { navigation } = this.props;
     app.auth().onAuthStateChanged(user => {
-      this.props.navigation.navigate(user ? 'Main' : 'SignUp');
+      navigation.navigate(user ? 'Main' : 'SignUp');
     });
   }
 

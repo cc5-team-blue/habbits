@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'moment-duration-format';
 
 // import firebaseSDK from db
-import { update, select } from '../../db';
+import { update } from '../../db';
 
 // Using in Timer.js
 export const setEndTimer = async time => {
@@ -39,9 +39,6 @@ export const removeEndTime = async () => {
     console.log(err);
   }
 };
-
-// Using in Main.js
-export const isJournalActive = () => console.log(select('users/1/habits/JournalHabbit/isActive'));
 
 // Using in JounalDescription
 export const setStartAndEndDate = () => {

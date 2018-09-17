@@ -2,13 +2,14 @@ import React from 'react';
 import { Text, View, Image, StatusBar, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import firebase from 'firebase';
+import { setMailAddress } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
 import analyticsImage from '../images/analyticsImage.png';
 import journalImage from '../images/journalImage.png';
 import styles from '../css/styleForMain';
 import Drawer from './Drawer';
+import { app } from '../../db';
 
 export const Main = ({ clickHabbit, goToAnalytics, achievements, goToJournal }) => (
   <View style={styles.container}>
@@ -90,8 +91,12 @@ const mapDispatchToProps = dispatch => ({
   goToAnalytics: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
   },
+  setMailToStore: () => {
+    const { currentUser } = app.auth();
+    dispatch(setMailAddress(currentUser.email));
+  },
   goToJournal: () => {
-    firebase
+    app
       .database()
       .ref('users/1/habits/JournalHabbit/isActive')
       .on('value', data => {

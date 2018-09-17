@@ -15,6 +15,7 @@ import {
   IS_CONNECTED_CHANGE,
   RESETOFFLINECOUNTDOWN,
   SET_END_TIME,
+  SET_EMAIL_ADDRESS,
 } from '../actions';
 
 // It sets initial state
@@ -29,6 +30,7 @@ const initialState = {
   isConnected: true,
   timerDuration: 0,
   journalData: false,
+  mailAddress: undefined,
 };
 
 const reducer = (state = initialState, action) => {
@@ -92,6 +94,13 @@ const reducer = (state = initialState, action) => {
         endTime: action.endTime,
         full: count,
         counter: count,
+      };
+    }
+    case SET_EMAIL_ADDRESS: {
+      console.log(action.email);
+      return {
+        ...state,
+        mailAddress: action.email,
       };
     }
     default: {
