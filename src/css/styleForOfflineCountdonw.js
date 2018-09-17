@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,11 +9,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B495B',
   },
   headline: {
-    paddingTop: heightRes(60),
-    paddingLeft: widthRes(30),
+    paddingTop: 60,
+    paddingLeft: 30,
     flex: 1,
-    width: widthRes(325),
-    height: heightRes(45.5),
+    width: 325,
+    height: 45.5,
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
@@ -25,15 +24,15 @@ const styles = StyleSheet.create({
   },
   rectangleContainer: {
     flex: 8,
-    width: widthRes(325),
+    width: 325,
     borderRadius: 10,
     backgroundColor: '#eb5e65',
     marginBottom: '4%',
   },
   seconds: {
-    marginTop: heightRes(171),
-    width: widthRes(325),
-    height: heightRes(78),
+    marginTop: 171,
+    width: 325,
+    height: 78,
     fontFamily: 'Futura',
     fontSize: 60,
     fontWeight: 'bold',
@@ -41,9 +40,9 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   toGoOffline: {
-    marginTop: heightRes(6),
-    width: widthRes(325),
-    height: heightRes(32.5),
+    marginTop: 6,
+    width: 325,
+    height: 32.5,
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
@@ -51,11 +50,11 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.68)',
   },
   enterFlightMode: {
-    marginTop: heightRes(155),
-    paddingLeft: widthRes(40),
-    paddingRight: widthRes(40),
-    width: widthRes(325),
-    height: heightRes(100),
+    marginTop: 155,
+    paddingLeft: 40,
+    paddingRight: 40,
+    width: 325,
+    height: 100,
     fontFamily: 'Futura',
     fontSize: 18,
     fontWeight: 'bold',

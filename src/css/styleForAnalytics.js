@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,12 +8,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B495B',
   },
   lineChart: {
-    marginTop: heightRes(20),
-    marginLeft: widthRes(10),
+    marginTop: 20,
+    marginLeft: 10,
   },
   valuesWrapper: {
-    paddingLeft: widthRes(30),
-    paddingRight: widthRes(30),
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   text: {
     fontFamily: 'Avenir',
@@ -25,40 +24,40 @@ const styles = StyleSheet.create({
   },
   habbitDescription: {
     color: '#6F829D',
-    paddingLeft: widthRes(30),
+    paddingLeft: 30,
   },
   unlocked: {
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: 'bold',
     color: '#ffeaa7',
-    marginLeft: widthRes(10),
+    marginLeft: 10,
   },
   achievement: {
-    marginTop: heightRes(4),
-    width: widthRes(71),
-    height: heightRes(48),
+    marginTop: 4,
+    width: 71,
+    height: 48,
     fontFamily: 'Futura',
-    fontSize: heightRes(15),
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'right',
     color: '#ffffff',
-    marginRight: widthRes(15),
+    marginRight: 15,
   },
   achievementWrapper: {
-    width: widthRes(258.5),
-    height: heightRes(58),
+    width: 258.5,
+    height: 58,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: widthRes(10),
+    marginLeft: 10,
     backgroundColor: '#eb5e65',
     borderRadius: 4,
   },
   achievementImg: {
-    marginLeft: widthRes(18),
-    width: widthRes(31.5),
-    height: heightRes(36),
+    marginLeft: 18,
+    width: 31.5,
+    height: 36,
   },
   plus: {
     fontFamily: 'Avenir',
@@ -81,27 +80,27 @@ const styles = StyleSheet.create({
     color: '#ff7675',
   },
   arrowUpImg: {
-    width: widthRes(14),
-    height: heightRes(14),
+    width: 14,
+    height: 14,
   },
   arrowDownImg: {
-    width: widthRes(14),
-    height: heightRes(14),
+    width: 14,
+    height: 14,
   },
   starImg: {
-    width: widthRes(14),
-    height: heightRes(14),
+    width: 14,
+    height: 14,
   },
   verticalArrowLine: {
     position: 'absolute',
-    width: widthRes(38),
+    width: 38,
     borderRightWidth: 2,
     borderRightColor: '#576371',
   },
   headline: {
-    paddingBottom: heightRes(10),
-    paddingTop: heightRes(60),
-    paddingLeft: widthRes(30),
+    paddingBottom: 10,
+    paddingTop: 60,
+    paddingLeft: 30,
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
@@ -114,8 +113,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: heightRes(2.5),
-    marginBottom: heightRes(2.5),
+    marginTop: 2.5,
+    marginBottom: 2.5,
   },
 });
 
