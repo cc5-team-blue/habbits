@@ -48,7 +48,10 @@ export default class WrongTime extends Component {
           </View>
           <View style={styles.center}>
             <Text style={styles.challengeText}>Challenge Progress</Text>
-            <Text style={styles.pointText}>{this.state.times} / 5</Text>
+            <Text style={styles.pointText}>
+              {this.state.times}
+              /5
+            </Text>
           </View>
         </View>
       </View>
