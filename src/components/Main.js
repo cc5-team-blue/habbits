@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image, StatusBar, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import firebase from 'firebase';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
 import analyticsImage from '../images/analyticsImage.png';
@@ -9,7 +10,7 @@ import journalImage from '../images/journalImage.png';
 import styles from '../css/styleForMain';
 import Drawer from './Drawer';
 
-export const Main = ({ clickHabbit, goToAnalytics, achievements }) => (
+export const Main = ({ clickHabbit, goToAnalytics, achievements, goToJournal }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
     <Drawer />
@@ -40,12 +41,12 @@ export const Main = ({ clickHabbit, goToAnalytics, achievements }) => (
         <View style={[styles.row, { paddingTop: 15 }]}>
           <View style={styles.item}>
             <View
-              onTouchStart={clickHabbit}
+              onTouchStart={goToJournal}
               style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}
             >
               <Image style={styles.journalHabbitImage} source={journalImage} />{' '}
             </View>{' '}
-            <View onTouchStart={clickHabbit} style={[styles.habbitTextBar, styles.left]}>
+            <View onTouchStart={goToJournal} style={[styles.habbitTextBar, styles.left]}>
               <Text style={styles.habbitText}>Daily Journal</Text>{' '}
             </View>{' '}
           </View>
@@ -88,6 +89,18 @@ const mapDispatchToProps = dispatch => ({
   },
   goToAnalytics: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
+  },
+  goToJournal: () => {
+    firebase
+      .database()
+      .ref('users/1/habits/JournalHabbit/isActive')
+      .on('value', data => {
+        if (data.val()) {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
+        } else {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+        }
+      });
   },
 });
 

@@ -2,10 +2,15 @@ import { createSwitchNavigator } from 'react-navigation';
 import { Easing, Animated } from 'react-native';
 import Main from '../components/Main';
 import Analytics from '../components/Analytics';
-import SuccessRabbit from '../components/SuccessRabbit';
-import CountdownToOffline from '../components/CountdownToOffline';
-import Failure from '../components/Failure';
-import TimerScreen from '../components/TimerScreen';
+import SuccessRabbit from '../components/SleepHabbit/SuccessRabbit';
+import CountdownToOffline from '../components/SleepHabbit/CountdownToOffline';
+import Failure from '../components/SleepHabbit/Failure';
+import TimerScreen from '../components/SleepHabbit/TimerScreen';
+import journalDescription from '../components/JournalHabbit/journalDescription';
+import journalFailure from '../components/JournalHabbit/journalFailure';
+import journalMainScreen from '../components/JournalHabbit/journalMainScreen';
+import journalSuccess from '../components/JournalHabbit/journalSuccess';
+import journalSuccessBIG from '../components/JournalHabbit/JournalSuccessBIG';
 
 // Here is the place we define app's pages with name
 // For example, Main page have reference to SampleComponent.
@@ -17,6 +22,11 @@ const switchNav = createSwitchNavigator(
     OffLineRabbit: { screen: Failure },
     TimerScreen: { screen: TimerScreen },
     Analytics: { screen: Analytics },
+    JournalDescription: { screen: journalDescription },
+    JournalFailure: { screen: journalFailure },
+    JournalMainScreen: { screen: journalMainScreen },
+    JournalSuccess: { screen: journalSuccess },
+    JournalSuccessBIG: { screen: journalSuccessBIG },
   },
   {
     headerMode: 'none',

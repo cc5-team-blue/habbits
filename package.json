@@ -26,6 +26,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "iosPlus": "react-native run-ios --simulator='iPhone 8 Plus' ",
     "test": "jest",
     "flow": "./node_modules/.bin/flow"
   },
@@ -40,11 +41,13 @@
     "react-native": "~0.55.4",
     "react-native-chart-kit": "^1.1.6",
     "react-native-percentage-circle": "^1.0.7",
+    "react-native-rating": "^2.0.4",
     "react-native-svg": "^6.5.2",
     "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.13.0",
     "react-navigation-redux-helpers": "^2.0.5",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "underscore": "^1.9.1"
   }
 }

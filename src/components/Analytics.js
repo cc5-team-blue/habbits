@@ -7,6 +7,7 @@ import arrowUpImg from '../images/arrow-up-circle.png';
 import arrowDownImg from '../images/arrow-down-circle.png';
 import starImg from '../images/star-circle.png';
 import styles from '../css/styleForAnalytics';
+import { widthRes, heightRes } from '../css/responsiveFunctions';
 
 const moment = require('moment');
 
@@ -50,6 +51,7 @@ class Analytics extends Component {
   }
 
   render() {
+    const { chart, achievements } = this.state;
     const chartConfig = {
       backgroundGradientFrom: '#3B495B',
       backgroundGradientTo: '#3B495B',
@@ -58,7 +60,7 @@ class Analytics extends Component {
     const data = {
       datasets: [
         {
-          data: this.state.chart,
+          data: chart,
         },
       ],
     };
@@ -66,56 +68,66 @@ class Analytics extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Text style={styles.headline}>Analytics</Text>
-        <ScrollView showsVerticalScrollIndicator="false">
+        <ScrollView showsVerticalScrollIndicator={false}>
           <LineChart
             data={data}
             style={styles.lineChart}
-            width={335}
-            height={180}
+            width={widthRes(335)}
+            height={heightRes(180)}
             chartConfig={chartConfig}
             bezier
           />
-          <View style={styles.verticalArrowLine} />
           <View style={styles.valuesWrapper}>
-            {this.state.achievements.map(item => {
+            {achievements.map(item => {
               if (item.val.type === 'plus') {
                 return (
                   <View key={item.key} style={styles.row}>
+                    <View style={styles.verticalArrowLine} />
                     <View style={{ flex: 1 }}>
                       <Image source={arrowUpImg} style={styles.arrowUpImg} />
                     </View>
-                    <Text style={[styles.text, { flex: 3 }]}>
+                    <Text style={[styles.text, { flex: 2 }]}>
                       {moment(item.val.date).format('MM/DD')}{' '}
                     </Text>
-                    <Text style={[styles.plusSign, { flex: 1 }]}>+</Text>
-                    <Text style={[styles.plus, { flex: 3 }]}>{item.val.points} Points</Text>
+                    <Text
+                      style={[styles.text, styles.habbitDescription, styles.green, { flex: 4 }]}
+                    >
+                      Good Sleep
+                    </Text>
+                    <Text style={[styles.plus, { flex: 1 }]}>+</Text>
+                    <Text style={[styles.plus, { flex: 1 }]}>{item.val.points}</Text>
                   </View>
                 );
               }
               if (item.val.type === 'minus') {
                 return (
                   <View key={item.key} style={styles.row}>
+                    <View style={styles.verticalArrowLine} />
                     <View style={{ flex: 1 }}>
                       <Image source={arrowDownImg} style={styles.arrowDownImg} />
                     </View>
-                    <Text style={[styles.text, { flex: 3 }]}>
+                    <Text style={[styles.text, { flex: 2 }]}>
                       {moment(item.val.date).format('MM/DD')}{' '}
                     </Text>
-                    <Text style={[styles.minusSign, { flex: 1 }]}>−</Text>
-                    <Text style={[styles.minus, { flex: 3 }]}>{item.val.points} Points</Text>
+                    <Text style={[styles.text, styles.habbitDescription, styles.red, { flex: 4 }]}>
+                      Good Sleep
+                    </Text>
+                    <Text style={[styles.minus, { flex: 1 }]}>−</Text>
+                    <Text style={[styles.minus, { flex: 1 }]}>{item.val.points}</Text>
                   </View>
                 );
               }
               if (item.val.type === 'achievement') {
                 return (
                   <View key={item.key}>
-                    <View style={styles.row} marginTop={10}>
+                    <View style={styles.verticalArrowLine} />
+                    <View style={styles.row} marginTop={heightRes(5)}>
                       <View style={{ flex: 1 }}>
                         <Image source={starImg} style={styles.starImg} />
                       </View>
                       <Text style={[styles.unlocked, { flex: 11 }]}>Achievement Unlocked!</Text>
                     </View>
-                    <View style={styles.row} marginBottom={10}>
+                    <View style={styles.row} marginBottom={heightRes(10)}>
                       <View style={{ flex: 1 }} />
                       <View style={[styles.achievementWrapper, { flex: 12 }]}>
                         <Image source={achievementImg} style={styles.achievementImg} />
