@@ -1,7 +1,6 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0",
-    "appKey": "habbits"
+    "sdkVersion": "27.0.0"
   },
   "name": "habbits",
   "displayName": "Habbits"
