@@ -2,26 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#39485C',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: '100%',
   },
   wrapper: {
-    height: 527.5,
     width: 325,
+    height: 527.5,
     borderRadius: 10,
-    backgroundColor: '#FFF8DC',
-    justifyContent: 'center',
+    backgroundColor: '#fff7dd',
+    marginTop: 14.5,
+    marginLeft: 25.5,
     alignItems: 'center',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowRadius: 2,
-    shadowOpacity: 1,
-    marginTop: 20,
-    marginBottom: 30,
   },
   header: {
     width: 199,
@@ -29,20 +20,19 @@ const styles = StyleSheet.create({
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
-    fontStyle: 'normal',
-    letterSpacing: 0,
     color: '#ffffff',
+    marginTop: 58,
+    marginLeft: 25.5,
   },
   text: {
     width: 235.5,
-    height: 117,
+    height: 120,
     fontFamily: 'Futura',
     fontSize: 30,
     fontWeight: 'bold',
-    fontStyle: 'normal',
-    letterSpacing: 0,
     textAlign: 'center',
     color: '#555291',
+    marginTop: 47,
   },
   text2: {
     width: 235.5,
@@ -50,14 +40,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Futura',
     fontSize: 40,
     fontWeight: 'bold',
-    fontStyle: 'normal',
-    letterSpacing: 0,
     textAlign: 'center',
     color: '#555291',
-  },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 35,
   },
   img: {
     width: 192,
@@ -66,11 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#000000',
     borderRadius: 100,
-  },
-  headerWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    marginTop: 51.5,
   },
 });
 

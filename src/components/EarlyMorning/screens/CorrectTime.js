@@ -59,21 +59,15 @@ export default class CorrectTime extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <View style={styles.headerWrapper}>
-          <Text style={styles.header}>Early Start</Text>
-        </View>
-        <View style={[styles.wrapper, { flex: 7 }]}>
-          <View style={[{ flex: 1 }, styles.center]}>
-            <Text style={styles.text}>Good Morning Handsome!</Text>
-          </View>
-          <View style={{ flex: 1 }}>
+        <Text style={styles.header}>Early Start</Text>
+        <View style={styles.wrapper}>
+          <Text style={styles.text}>Good Morning Handsome!</Text>
+          <View>
             <TouchableOpacity onPress={this.handleClick}>
               <View style={styles.img} />
             </TouchableOpacity>
           </View>
-          <View style={[{ flex: 1 }, styles.center]}>
-            <Text style={styles.text2}>PUSH ME</Text>
-          </View>
+          <Text style={styles.text2}>PUSH ME</Text>
         </View>
       </View>
     );
