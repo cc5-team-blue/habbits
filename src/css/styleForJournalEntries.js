@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthRes, heightRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,42 +7,42 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   wrapper: {
-    marginTop: 58,
-    marginLeft: 25.5,
+    marginTop: heightRes(58),
+    marginLeft: widthRes(25.5),
   },
   headline: {
-    width: 240,
-    height: 45.5,
+    width: widthRes(240),
+    height: heightRes(45.5),
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
     color: '#ffffff',
   },
   rectangleContainer: {
-    marginTop: 9,
-    width: 325,
-    height: 533,
+    marginTop: heightRes(9),
+    width: widthRes(325),
+    height: heightRes(533),
     borderRadius: 10,
     backgroundColor: '#fbfeff',
   },
   entriesWrapper: {
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 20.5,
-    marginRight: 20.5,
+    marginTop: heightRes(10),
+    marginBottom: heightRes(10),
+    marginLeft: widthRes(20.5),
+    marginRight: widthRes(20.5),
   },
   row: {
-    marginTop: 9,
-    marginBottom: 9,
+    marginTop: heightRes(9),
+    marginBottom: heightRes(9),
   },
   dateStarRow: {
     flexDirection: 'row',
-    marginBottom: 4,
+    marginBottom: heightRes(4),
   },
   date: {
     flex: 8,
-    width: 112.5,
-    height: 22,
+    width: widthRes(112.5),
+    height: heightRes(22),
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: '900',
@@ -52,17 +53,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   rating: {
-    width: 14,
-    height: 13,
+    width: widthRes(14),
+    height: heightRes(13),
     alignSelf: 'center',
-    marginRight: 2,
+    marginRight: widthRes(2),
   },
   entryRow: {
-    marginTop: 5,
+    marginTop: heightRes(5),
   },
   entryHeadline: {
-    width: 61.5,
-    height: 22,
+    width: widthRes(61.5),
+    height: heightRes(22),
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: '900',
@@ -71,8 +72,8 @@ const styles = StyleSheet.create({
     color: '#242733',
   },
   entryText: {
-    width: 280,
-    height: 44,
+    width: widthRes(280),
+    height: heightRes(44),
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: '500',
