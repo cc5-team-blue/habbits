@@ -3,7 +3,9 @@ import { StyleSheet, View, Text, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
 import { NavigationActions } from 'react-navigation';
-import { changeInterval, countdown, updateConnectivity } from '../../actions';
+import moment from 'moment';
+import { changeInterval, countdown, updateConnectivity, setCurrentCounter } from '../../actions';
+import { getDifference } from '../../helper';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eb5e65',
     alignItems: 'center',
     alignSelf: 'center',
+    transform: [{ rotate: '180deg' }],
   },
   timer: {
     fontFamily: 'Futura',
@@ -19,23 +22,25 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#fff',
+    transform: [{ rotate: '180deg' }],
   },
 });
 
 export class Timer extends Component {
   componentDidMount() {
-    const { timerStart, changeIntervalCall } = this.props;
+    const { displayDifference, changeIntervalCall } = this.props;
+    displayDifference();
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
 
     // Start Countdown and set intervalID to state.inverval
-    this.intervalID = setInterval(timerStart, 1000);
+    this.intervalID = setInterval(displayDifference, 1000);
     changeIntervalCall(this.intervalID);
   }
 
   shouldComponentUpdate(nextProps) {
     const { goToYay, goToOfflineRabbit, isConnected } = this.props;
     // eslint-disable-next-line
-    if (nextProps.currentCounter._milliseconds === 0) {
+    if (nextProps.currentCounter < 0) {
       goToYay();
     }
     if (isConnected === true) {
@@ -60,8 +65,22 @@ export class Timer extends Component {
 
   render() {
     const { currentCounter, full } = this.props;
-    const percentage = `${String(Math.floor((currentCounter * 100) / full))}%`;
-    const time = currentCounter.format('h:mm:ss');
+    const seconds = Math.floor((currentCounter / 1000) % 60);
+    const percentage = 100 - (seconds / 60) * 100;
+    // const minutes = (currentCounter / (1000 * 60)) % 60;
+    // const hours = (currentCounter / (1000 * 60 * 60)) % 24;
+    let timeFormatted;
+    console.log(currentCounter);
+    if (currentCounter > 3599999) {
+      timeFormatted = moment(currentCounter)
+        .utc()
+        .format('hh:mm');
+    } else {
+      timeFormatted = moment(currentCounter)
+        .utc()
+        .format('mm:ss');
+    }
+    // const time = currentCounter.format('h:mm:ss');
     return (
       <View style={styles.container}>
         <PercentageCircle
@@ -69,10 +88,11 @@ export class Timer extends Component {
           radius={100}
           percent={percentage}
           color="#fff"
+          bgcolor="#eb5e65"
           innerColor="#eb5e65"
         >
-          <Text style={styles.timer}> {time} </Text>{' '}
-        </PercentageCircle>{' '}
+          <Text style={styles.timer}> {timeFormatted} </Text>
+        </PercentageCircle>
       </View>
     );
   }
@@ -102,6 +122,10 @@ const mapDispatchToProps = dispatch => ({
   },
   updateConnect: newConnectionState => {
     dispatch(updateConnectivity(newConnectionState));
+  },
+  displayDifference: async () => {
+    const newCounter = await getDifference();
+    dispatch(setCurrentCounter(newCounter));
   },
 });
 

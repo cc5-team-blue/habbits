@@ -34,34 +34,21 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
+### ReactNative.Node Stack ###
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
+# expo
+.expo/
 
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
-
-# Bundle artifact
-*.jsbundle
-
-ios/Pods/
-# Gradle
-/build/
-/RNTester/android/app/build/
-/RNTester/android/app/gradle/
-/RNTester/android/app/gradlew
-/RNTester/android/app/gradlew.bat
-/ReactAndroid/build/
+# dependencies
+/node_modules
+build/
 
 # misc
 .env.local
@@ -91,7 +78,8 @@ pids
 // xcode setting files
 habbits.xcodeproj/xcuserdata/
 xcuserdata
-Pods/ 
 
 # Root dir shouldn't have Xcode project
 /*.xcodeproj
+/*.xcworkspace
+project.xcworkspace
