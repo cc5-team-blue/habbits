@@ -36,11 +36,14 @@ export default class Success extends Component {
           <View style={styles.yayImgContainer}>
             <View style={styles.awesomeWrapper}>
               <Text style={[styles.awesomeText, { textAlign: 'center' }]}>Success!</Text>
-              <Text style={styles.youAreText}>Have an amazing day!</Text>
+              <Text style={styles.amazingText}>Have an amazing day!</Text>
             </View>
             <Image style={styles.happyRabbitImage} source={happyRabbit} />
             <Text style={styles.pointsText}>Challenge Progress:</Text>
-            <Text style={[styles.challengeText, { color: '#3b495b' }]}>{this.state.times} / 5</Text>
+            <Text style={[styles.challengeText, { color: '#3b495b' }]}>
+              {this.state.times}
+              /5
+            </Text>
           </View>
           <View onTouchStart={this.handleClick} style={styles.yayButton}>
             <Text style={styles.yayText}>Yay!</Text>
