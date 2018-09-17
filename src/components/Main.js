@@ -46,21 +46,29 @@ class Main extends Component {
 
   checkPermission = async () => {
     const enabled = await firebase.messaging().hasPermission();
-    if (enabled) {
-      this.getToken();
-    } else {
-      this.requestPermission();
+    try {
+      if (enabled) {
+        this.getToken();
+      } else {
+        this.requestPermission();
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   getToken = async () => {
-    let fcmToken = await AsyncStorage.getItem('fcmToken', value);
-    if (!fcmToken) {
-      fcmToken = await firebase.messaging().getToken();
-      if (fcmToken) {
-        // user has a device token
-        await AsyncStorage.setItem('fcmToken', fcmToken);
+    try {
+      let fcmToken = await AsyncStorage.getItem('fcmToken', value);
+      if (!fcmToken) {
+        fcmToken = await firebase.messaging().getToken();
+        if (fcmToken) {
+          // user has a device token
+          await AsyncStorage.setItem('fcmToken', fcmToken);
+        }
       }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -70,7 +78,7 @@ class Main extends Component {
       await firebase.messaging().requestPermission();
       // User has authorised
       this.getToken();
-    } catch (error) {
+    } catch (e) {
       // User has rejected permissions
       console.log('permission rejected');
     }
