@@ -20,7 +20,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
 
 # Android/IntelliJ
 #
@@ -92,7 +91,6 @@ pids
 // xcode setting files
 habbits.xcodeproj/xcuserdata/
 xcuserdata
-habbits.xcworkspace/
 Pods/ 
 
 # Root dir shouldn't have Xcode project
