@@ -26,7 +26,6 @@ class CountdownToOffline extends Component {
 
     // Set Timer end time to current time + 30sec for MVP.
     const endTime = moment().add(7, 'hours');
-    console.log(endTime);
 
     // Set Timer end time to state.endTime and set initial duration to state.full.
     setEndTimer(endTime);

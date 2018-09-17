@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eb5e65',
     alignItems: 'center',
     alignSelf: 'center',
+    transform: [{ rotate: '180deg' }],
   },
   timer: {
     fontFamily: 'Futura',
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#fff',
+    transform: [{ rotate: '180deg' }],
   },
 });
 
