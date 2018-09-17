@@ -9,7 +9,12 @@ target 'habbits' do
   pod 'Firebase/Messaging'
 
   # Pods for habbits
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+        'RCTImage', # !!!!!
+    ]
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'habbitsTests' do
@@ -17,4 +22,12 @@ target 'habbits' do
     # Pods for testing
   end
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
 end
