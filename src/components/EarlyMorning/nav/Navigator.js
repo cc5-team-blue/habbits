@@ -21,7 +21,7 @@ const EarlyMorningNavigator = createSwitchNavigator(
     WrongTime,
   },
   {
-    initialRouteName: 'Start',
+    initialRouteName: 'Loading',
   }
 );
 

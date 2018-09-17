@@ -25,7 +25,7 @@ export default class Success extends Component {
   }
 
   handleClick = () => {
-    console.log('Clicked');
+    this.props.navigation.navigate('Loading');
   };
 
   render() {

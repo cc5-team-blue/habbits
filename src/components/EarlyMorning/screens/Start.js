@@ -13,7 +13,12 @@ export default class Start extends Component {
     app
       .database()
       .ref('users/0/habits/early_morning/')
-      .update({ tutorial: false })
+      .update({
+        tutorial: false,
+        active: true,
+        startDate: Date.now(),
+        clickDate: 0,
+      })
       .then(this.props.navigation.navigate('Main'));
   };
 

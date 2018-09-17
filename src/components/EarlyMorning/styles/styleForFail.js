@@ -1,0 +1,75 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  realContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#3B495B',
+  },
+  headline: {
+    flex: 1,
+    paddingTop: 60,
+    width: 308,
+    height: 91,
+    fontFamily: 'Futura',
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  rectangleContainer: {
+    flex: 7,
+    width: 325,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    backgroundColor: '#555291',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  retryButton: {
+    width: 325,
+    height: 67.5,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    backgroundColor: '#f9fada',
+    marginBottom: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sadRabbitImage: {
+    marginTop: 40,
+    width: 215,
+    height: 215,
+  },
+  warningText: {
+    marginTop: 35,
+    width: 235.5,
+    height: 90,
+    fontFamily: 'Futura',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#f9fada',
+  },
+  retryText: {
+    width: 272,
+    height: 32.5,
+    fontFamily: 'Futura',
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#555291',
+  },
+  pointText: {
+    width: 181.5,
+    height: 31,
+    fontFamily: 'Futura',
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#f9fada',
+  },
+});
+
+export default styles;
