@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from "firebase";
+import firebase from 'firebase';
 
 import {
   Text,
@@ -21,7 +21,6 @@ import journalImage from '../images/journalImage.png';
 import styles from '../css/styleForMain';
 import Drawer from './Drawer';
 import { app } from '../../db';
-
 
 class Main extends Component {
   async componentDidMount() {
@@ -224,6 +223,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToJournal: () => {
+    const { currentUser } = app.auth();
+    dispatch(setMailAddress(currentUser.email));
     app
       .database()
       .ref('users/1/habits/JournalHabbit/isActive')

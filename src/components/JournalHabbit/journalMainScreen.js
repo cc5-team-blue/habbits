@@ -13,15 +13,20 @@ export class journalDescription extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      greatful: '',
+      grateful: '',
       til: '',
       starRate: '',
+      mailAddress: props.mailAddress,
     };
   }
 
+  componentDidMount() {
+    console.log(this.state.mailAddress);
+  }
+
   render() {
-    const { goToJournalSuccess } = this.props;
-    const { greatful, til } = this.state;
+    const { goToJournalSuccess, mailAddress } = this.props;
+    const { grateful, til } = this.state;
 
     return (
       <View style={styles.outerContainer}>
@@ -64,8 +69,8 @@ export class journalDescription extends Component {
                   placeholder="Grateful for..."
                   autoCapitalize="none"
                   style={styles.journalInput}
-                  onChangeText={text => this.setState({ greatful: text })}
-                  value={greatful}
+                  onChangeText={text => this.setState({ grateful: text })}
+                  value={grateful}
                   returnKeyType="next"
                 />
               </View>
@@ -95,14 +100,19 @@ export class journalDescription extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  mailAddress: state.red.mailAddress,
+});
+
 const mapDispatchToProps = dispatch => ({
   goToJournalSuccess: state => {
+    console.log(state)
     firebaseInsert(state);
     dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalDescription);
