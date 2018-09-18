@@ -9,7 +9,7 @@ export default class Loading extends Component {
     const result = isLoggedIn();
     const { navigation } = this.props;
     result.then(data => {
-      console.log(data);
+      console.log('isLogin: ', data);
       if (data === 'true') {
         navigation.navigate('Main');
       } else {
