@@ -59,7 +59,7 @@ class Main extends Component {
 
   getToken = async () => {
     try {
-      let fcmToken = await AsyncStorage.getItem('fcmToken', value);
+      let fcmToken = await AsyncStorage.getItem('fcmToken');
       if (!fcmToken) {
         fcmToken = await firebase.messaging().getToken();
         if (fcmToken) {
