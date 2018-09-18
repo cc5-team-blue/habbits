@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import firebase from 'react-native-firebase';
 
 import {
   Text,
@@ -185,8 +185,8 @@ class Main extends Component {
             <View style={styles.achievements}>
               <Text style={styles.achievementsText}>Recent Achievements</Text>
               <View style={styles.achievementsIconContainer}>
-                {achievements.map(() => (
-                  <View style={styles.achievementsIcon} />
+                {achievements.map((_achievement, i) => (
+                  <View style={styles.achievementsIcon} key={String(i)} />
                 ))}
               </View>
             </View>
