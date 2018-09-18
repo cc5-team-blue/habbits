@@ -223,6 +223,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToJournal: () => {
+    const { currentUser } = app.auth();
+    dispatch(setMailAddress(currentUser.email));
     app
       .database()
       .ref('users/1/habits/JournalHabbit/isActive')

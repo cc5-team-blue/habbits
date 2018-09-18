@@ -16,11 +16,16 @@ export class journalDescription extends Component {
       greatful: '',
       til: '',
       starRate: '',
+      mailAddress: props.mailAddress,
     };
   }
 
+  componentDidMount() {
+    console.log(this.state.mailAddress);
+  }
+
   render() {
-    const { goToJournalSuccess } = this.props;
+    const { goToJournalSuccess, mailAddress } = this.props;
     const { greatful, til } = this.state;
 
     return (
@@ -95,14 +100,19 @@ export class journalDescription extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  mailAddress: state.red.mailAddress,
+});
+
 const mapDispatchToProps = dispatch => ({
   goToJournalSuccess: state => {
+    console.log(state)
     firebaseInsert(state);
     dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalDescription);
