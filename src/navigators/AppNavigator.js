@@ -12,7 +12,7 @@ import {
 
 import swichNav from './SwitchNavigator';
 import UserInfo from '../components/UserInfo';
-import AppStateExample from '../components/trackComponent';
+import Analytics from '../components/Analytics';
 
 const middleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 
@@ -34,10 +34,10 @@ const RootNavigator = createDrawerNavigator(
         drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
-    TrackPage: {
-      screen: AppStateExample,
+    Analytics: {
+      screen: Analytics,
       navigationOptions: {
-        drawerLabel: 'track example',
+        drawerLabel: 'Analytics',
         drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },

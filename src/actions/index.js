@@ -7,6 +7,7 @@ export const IS_CONNECTED_CHANGE = 'is connected change';
 export const RESETOFFLINECOUNTDOWN = 'reset offline countdown';
 export const SET_END_TIME = 'set end time';
 export const GET_JOURNAL_DATA = 'get journal data';
+export const SET_EMAIL_ADDRESS = 'set email address';
 
 // Action creater
 export const changeInterval = data => ({
@@ -41,4 +42,9 @@ export const resetOfflineCountdown = () => ({
 export const setEndTime = endTime => ({
   type: SET_END_TIME,
   endTime,
+});
+
+export const setMailAddress = email => ({
+  type: SET_EMAIL_ADDRESS,
+  email,
 });

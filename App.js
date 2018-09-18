@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 
 // import { migrate } from './migrate';
 // import { AppNavigator } from './src/navigators/AppNavigator';
-import AuthNavigator from './src/navigators/AuthNavigator';
-import EarlyMorningNavigator from './src/components/EarlyMorning/Navigator';
+// import AuthNavigator from './src/navigators/AuthNavigator';
+import EarlyMorningNavigator from './src/components/EarlyMorning/nav/Navigator';
 
 import store from './src/store';
 

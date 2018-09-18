@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from "firebase";
 import { Text, View, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -13,6 +14,7 @@ import {
 } from '../../actions';
 import styles from '../../css/styleForOfflineCountdonw';
 import { setEndTimer } from '../../helper';
+import Exit from '../ExitButton';
 
 class CountdownToOffline extends Component {
   componentDidMount() {
@@ -68,7 +70,10 @@ class CountdownToOffline extends Component {
     const { offlineSeconds } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.headline}>Sleep Timer</Text>
+        <View style={styles.headlineWrapper}>
+          <Text style={styles.headline}>Sleep Timer</Text>
+          <Exit />
+        </View>
         <View style={styles.rectangleContainer}>
           <Text style={styles.seconds}>{offlineSeconds}s</Text>
           <Text style={styles.toGoOffline}>to go offline</Text>

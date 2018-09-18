@@ -33,6 +33,7 @@ export const journalSuccess = ({ goToMain }) => (
 
 const mapDispatchToProps = dispatch => ({
   goToMain: () => {
+    // For production: finishJournal() should be commentout, it's using for testing.
     finishJournal();
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },

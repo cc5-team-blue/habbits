@@ -11,6 +11,7 @@ import journalFailure from '../components/JournalHabbit/journalFailure';
 import journalMainScreen from '../components/JournalHabbit/journalMainScreen';
 import journalSuccess from '../components/JournalHabbit/journalSuccess';
 import journalSuccessBIG from '../components/JournalHabbit/JournalSuccessBIG';
+import MainNavigator from './AuthNavigator';
 
 // Here is the place we define app's pages with name
 // For example, Main page have reference to SampleComponent.
@@ -27,11 +28,12 @@ const switchNav = createSwitchNavigator(
     JournalMainScreen: { screen: journalMainScreen },
     JournalSuccess: { screen: journalSuccess },
     JournalSuccessBIG: { screen: journalSuccessBIG },
+    Authentication: { screen: MainNavigator },
   },
   {
     headerMode: 'none',
     mode: 'modal',
-    initialRouteName: 'Main',
+    initialRouteName: 'Authentication',
     navigationOptions: {
       gesturesEnabled: false,
     },
