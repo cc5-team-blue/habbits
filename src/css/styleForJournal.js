@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthRes, heightRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   // Common style
@@ -28,8 +29,8 @@ const styles = StyleSheet.create({
   },
   // journalDescription
   journalImg: {
-    width: 79.5,
-    height: 79.5,
+    width: widthRes(79.5),
+    height: heightRes(79.5),
   },
   innerHeadlineContainer: {
     marginLeft: '6%',
@@ -135,8 +136,8 @@ const styles = StyleSheet.create({
     marginLeft: '8%',
   },
   journalInput: {
-    width: 280,
-    height: 45.5,
+    width: widthRes(280),
+    height: heightRes(45.5),
     borderRadius: 10,
     backgroundColor: '#ffffff',
     borderStyle: 'solid',
@@ -171,8 +172,8 @@ const styles = StyleSheet.create({
     color: '#7a8185',
   },
   checkCircleImage: {
-    width: 78.5,
-    height: 78.5,
+    width: widthRes(78.5),
+    height: heightRes(78.5),
     marginTop: '25%',
     marginBottom: '25%',
   },
@@ -195,8 +196,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#555291',
   },
   sadRabbitImg: {
-    width: 215,
-    height: 215,
+    width: widthRes(215),
+    height: heightRes(215),
   },
   forgotText: {
     width: '80%',
@@ -253,8 +254,8 @@ const styles = StyleSheet.create({
     color: '#3B495B',
   },
   happyRabbitImage: {
-    width: 130,
-    height: 219.5,
+    width: widthRes(130),
+    height: heightRes(219.5),
     marginTop: '10%',
     marginBottom: '12%',
   },
