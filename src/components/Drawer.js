@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export const Drawer = ({ openDrawer }) => (
   <View>
     <TouchableOpacity style={{ position: 'absolute', left: '88%', top: 52 }} onPress={openDrawer}>
-      <Icon color="white" name="cog" size={20} />
+      <Icon color="white" name="bars" size={22} />
     </TouchableOpacity>
   </View>
 );
