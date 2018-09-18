@@ -97,7 +97,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 2,
     borderRightColor: '#576371',
   },
+  headlineWrapper: {
+    // flex: 1,
+    flexDirection: 'row',
+  },
   headline: {
+    flex: 10,
     paddingBottom: 10,
     paddingTop: 60,
     paddingLeft: 30,

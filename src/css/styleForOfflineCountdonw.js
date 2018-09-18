@@ -8,12 +8,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#3B495B',
   },
+  headlineWrapper: {
+    // flex: 1
+    flexDirection: 'row',
+  },
   headline: {
+    flex: 10,
     paddingTop: 60,
     paddingLeft: 30,
-    flex: 1,
-    width: 325,
-    height: 45.5,
+    paddingBottom: 10,
+    // width: 325,
+    // height: 45.5,
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',

@@ -5,11 +5,15 @@ import { NavigationActions } from 'react-navigation';
 
 import sadRabbit from '../../images/sadRabbit.png';
 import styles from '../../css/styleForSadness';
+import ExitButton from '../ExitButton';
 
 export const Failure = ({ goToHome }) => (
   <View style={styles.realContainer}>
     <StatusBar barStyle="light-content" />
-    <Text style={styles.headline}>Aww Snap!</Text>
+    <View style={styles.headlineWrapper}>
+      <Text style={styles.headline}>Aww Snap!</Text>
+      <ExitButton />
+    </View>
     <View style={styles.rectangleContainer}>
       <Image style={styles.sadRabbitImage} source={sadRabbit} />
       <Text style={styles.warningText}>

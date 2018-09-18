@@ -8,11 +8,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#3B495B',
   },
+  headlineWrapper: {
+    // flex: 1
+    flexDirection: 'row',
+  },
   headline: {
-    flex: 1,
+    flex: 10,
+    paddingBottom: 10,
     paddingTop: 60,
-    width: 308,
-    height: 91,
+    paddingLeft: 30,
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',

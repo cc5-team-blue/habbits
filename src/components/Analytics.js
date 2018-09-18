@@ -7,6 +7,7 @@ import arrowUpImg from '../images/arrow-up-circle.png';
 import arrowDownImg from '../images/arrow-down-circle.png';
 import starImg from '../images/star-circle.png';
 import styles from '../css/styleForAnalytics';
+import Exit from './ExitButton';
 
 const moment = require('moment');
 
@@ -66,7 +67,10 @@ class Analytics extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Text style={styles.headline}>Analytics</Text>
+        <View style={styles.headlineWrapper}>
+          <Text style={styles.headline}>Analytics</Text>
+          <Exit />
+        </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <LineChart
             data={data}
