@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import firebase from "firebase";
+
 import {
   Text,
   View,
@@ -19,6 +21,7 @@ import journalImage from '../images/journalImage.png';
 import styles from '../css/styleForMain';
 import Drawer from './Drawer';
 import { app } from '../../db';
+
 
 class Main extends Component {
   async componentDidMount() {
