@@ -8,6 +8,7 @@ import arrowDownImg from '../images/arrow-down-circle.png';
 import starImg from '../images/star-circle.png';
 import styles from '../css/styleForAnalytics';
 import Exit from './ExitButton';
+import { widthRes, heightRes } from '../css/responsiveFunctions';
 
 const moment = require('moment');
 
@@ -124,13 +125,13 @@ class Analytics extends Component {
                 return (
                   <View key={item.key}>
                     <View style={styles.verticalArrowLine} />
-                    <View style={styles.row} marginTop={5}>
+                    <View style={styles.row} marginTop={heightRes(5)}>
                       <View style={{ flex: 1 }}>
                         <Image source={starImg} style={styles.starImg} />
                       </View>
                       <Text style={[styles.unlocked, { flex: 11 }]}>Achievement Unlocked!</Text>
                     </View>
-                    <View style={styles.row} marginBottom={10}>
+                    <View style={styles.row} marginBottom={heightRes(10)}>
                       <View style={{ flex: 1 }} />
                       <View style={[styles.achievementWrapper, { flex: 12 }]}>
                         <Image source={achievementImg} style={styles.achievementImg} />
