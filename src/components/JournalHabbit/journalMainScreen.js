@@ -13,7 +13,7 @@ export class journalDescription extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      greatful: '',
+      grateful: '',
       til: '',
       starRate: '',
       mailAddress: props.mailAddress,
@@ -26,7 +26,7 @@ export class journalDescription extends Component {
 
   render() {
     const { goToJournalSuccess, mailAddress } = this.props;
-    const { greatful, til } = this.state;
+    const { grateful, til } = this.state;
 
     return (
       <View style={styles.outerContainer}>
@@ -69,8 +69,8 @@ export class journalDescription extends Component {
                   placeholder="Grateful for..."
                   autoCapitalize="none"
                   style={styles.journalInput}
-                  onChangeText={text => this.setState({ greatful: text })}
-                  value={greatful}
+                  onChangeText={text => this.setState({ grateful: text })}
+                  value={grateful}
                   returnKeyType="next"
                 />
               </View>

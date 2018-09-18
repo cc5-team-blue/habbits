@@ -49,11 +49,11 @@ export const setStartAndEndDate = () => {
 };
 
 // Using in JournalMainScreen.js
-export const firebaseInsert = ({ greatful, til, starRate }) => {
+export const firebaseInsert = ({ grateful, til, starRate }) => {
   const date = moment().format();
   update(`users/1/habits/JournalHabbit/journals/${date}`, {
     date,
-    greatful,
+    grateful,
     til,
     rating: starRate,
   });
