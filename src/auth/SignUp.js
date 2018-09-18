@@ -3,6 +3,7 @@ import { Text, TextInput, View, StatusBar } from 'react-native';
 
 import { app } from '../../db';
 import styles from '../css/styleForAuth';
+import { getItemFromLS, setSignupDataToLS } from '../helper';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -16,29 +17,23 @@ export default class SignUp extends React.Component {
   }
 
   handleSignUp = () => {
+    const { firstName, email, password } = this.state;
+    const { navigation } = this.props;
     app
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate('Main'))
+      .createUserWithEmailAndPassword(email, password)
+      .then(data => {
+        console.log(firstName, data.user.uid);
+        setSignupDataToLS(firstName, data.user.uid);
+        navigation.navigate('Main');
+        getItemFromLS();
+      })
       .catch(error => this.setState({ errorMessage: error.message }));
   };
 
-  // export default class SignUp extends React.Component {
-  //   constructor() {
-  //     super();
-  //     this.state = {
-  //       email: '',
-  //       password: '',
-  //       errorMessage: null,
-  //     };
-  //   }
-
-  //   handleSignUp = () => {
-  //     // TODO: Firebase stuff...
-  //     console.log('handleSignUp');
-  //   };
-
   render() {
+    const { firstName, email, password, errorMessage } = this.state;
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -46,42 +41,35 @@ export default class SignUp extends React.Component {
           <View style={styles.signupWrapper}>
             <Text style={styles.headline}>Good to meet you!</Text>
             <View style={styles.errorWrapper}>
-              {this.state.errorMessage && (
-                <Text style={{ color: 'red' }}>{this.state.errorMessage}</Text>
-              )}
+              {errorMessage && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
             </View>
             <TextInput
               placeholder="First Name"
               autoCapitalize="none"
               style={styles.textInput}
-              onChangeText={firstName => this.setState({ firstName })}
-              value={this.state.firstName}
+              onChangeText={text => this.setState({ firstName: text })}
+              value={firstName}
               returnKeyType="next"
             />
             <TextInput
               placeholder="Email"
               autoCapitalize="none"
               style={styles.textInput}
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email}
+              onChangeText={text => this.setState({ email: text })}
+              value={email}
             />
             <TextInput
               secureTextEntry
               placeholder="Password"
               autoCapitalize="none"
               style={styles.textInput}
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
+              onChangeText={text => this.setState({ password: text })}
+              value={password}
             />
             <View style={styles.signupButton} onTouchStart={this.handleSignUp}>
-              {' '}
               <Text style={styles.signupText}>SIGN UP</Text>
             </View>
-            <View
-              style={styles.switchSignIn}
-              onTouchStart={() => this.props.navigation.navigate('Login')}
-            >
-              {' '}
+            <View style={styles.switchSignIn} onTouchStart={() => navigation.navigate('Login')}>
               <Text style={styles.switchSignInText}>
                 Already a user? <Text style={styles.bold}>Sign in!</Text>
               </Text>
