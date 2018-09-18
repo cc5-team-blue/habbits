@@ -23,9 +23,12 @@ export default class SignUp extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(data => {
-        console.log(firstName, data.user.uid);
-        setSignupDataToLS(firstName, data.user.uid);
         navigation.navigate('Main');
+        setSignupDataToLS(firstName, data.user.uid);
+        app
+          .database()
+          .ref(`users/${data.user.uid}/name`)
+          .update({ name: firstName });
         getItemFromLS();
       })
       .catch(error => this.setState({ errorMessage: error.message }));
