@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthRes, heightRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   realContainer: {
@@ -14,9 +15,9 @@ const styles = StyleSheet.create({
   },
   headline: {
     flex: 10,
-    paddingBottom: 10,
-    paddingTop: 60,
-    paddingLeft: 30,
+    paddingBottom: heightRes(10),
+    paddingTop: heightRes(60),
+    paddingLeft: widthRes(30),
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
   },
   rectangleContainer: {
     flex: 7,
-    width: 325,
+    width: widthRes(325),
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     backgroundColor: '#555291',
@@ -32,24 +33,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   retryButton: {
-    width: 325,
-    height: 67.5,
+    width: widthRes(325),
+    height: heightRes(67.5),
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     backgroundColor: '#f9fada',
-    marginBottom: 30,
+    marginBottom: heightRes(30),
     alignItems: 'center',
     justifyContent: 'center',
   },
   sadRabbitImage: {
-    marginTop: 46,
-    width: 249.5,
-    height: 249,
+    marginTop: heightRes(46),
+    width: widthRes(249.5),
+    height: heightRes(249),
   },
   warningText: {
-    marginTop: 40.5,
-    width: 235.5,
-    height: 120,
+    marginTop: heightRes(40.5),
+    width: widthRes(235.5),
+    height: heightRes(120),
     fontFamily: 'Futura',
     fontSize: 18,
     fontWeight: 'bold',
@@ -57,8 +58,8 @@ const styles = StyleSheet.create({
     color: '#f9fada',
   },
   retryText: {
-    width: 272,
-    height: 32.5,
+    width: widthRes(272),
+    height: heightRes(32.5),
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
