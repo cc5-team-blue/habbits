@@ -1,29 +1,25 @@
-import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, ActivityIndicator } from 'react-native';
 
-// import firebase from 'react-native-firebase';
-import { app } from '../../db';
+import styles from '../css/styleForAuth';
+import { isLoggedIn } from '../helper';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default class Loading extends React.Component {
+export default class Loading extends Component {
   componentDidMount() {
+    const result = isLoggedIn();
     const { navigation } = this.props;
-    app.auth().onAuthStateChanged(user => {
-      navigation.navigate(user ? 'Main' : 'SignUp');
+    result.then(data => {
+      if (data === 'true') {
+        navigation.navigate('Main');
+      } else {
+        navigation.navigate('SignUp');
+      }
     });
   }
 
-  // export default class Loading extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.loading}>
         <Text>Loading</Text>
         <ActivityIndicator size="large" />
       </View>
