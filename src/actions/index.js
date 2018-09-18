@@ -7,7 +7,7 @@ export const IS_CONNECTED_CHANGE = 'is connected change';
 export const RESETOFFLINECOUNTDOWN = 'reset offline countdown';
 export const SET_END_TIME = 'set end time';
 export const GET_JOURNAL_DATA = 'get journal data';
-export const SET_CURRENT_COUNTER = 'set current counter for timer.js';
+export const SET_EMAIL_ADDRESS = 'set email address';
 
 // Action creater
 export const changeInterval = data => ({
@@ -44,7 +44,7 @@ export const setEndTime = endTime => ({
   endTime,
 });
 
-export const setCurrentCounter = counter => ({
-  type: SET_CURRENT_COUNTER,
-  counter,
+export const setMailAddress = email => ({
+  type: SET_EMAIL_ADDRESS,
+  email,
 });
