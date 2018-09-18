@@ -45,11 +45,11 @@ export default class Main extends Component {
         .ref(`users/0/habits/early_morning/`)
         .on('value', data => {
           const result = data.toJSON();
-          const date = moment(result.clickDate);
+          const date = result.clickDate !== 0 ? moment(result.clickDate) : 0;
           const now = moment(Date.now());
           const diff = moment.duration(now.diff(date));
           if (result.times < 5) {
-            if (diff.days() >= 1) {
+            if (date !== 0 && diff.days() >= 1) {
               app
                 .database()
                 .ref(`users/0/habits/early_morning/`)
