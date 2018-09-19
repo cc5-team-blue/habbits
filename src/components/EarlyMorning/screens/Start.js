@@ -7,19 +7,34 @@ import styles from '../styles/styleForStart';
 export default class Start extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: '',
+    };
+  }
+
+  componentDidMount() {
+    app.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user: user.uid });
+      }
+    });
   }
 
   handleClick = () => {
-    app
-      .database()
-      .ref('users/0/habits/early_morning/')
-      .update({
-        tutorial: false,
-        active: true,
-        startDate: Date.now(),
-        clickDate: 0,
-      })
-      .then(this.props.navigation.navigate('Main'));
+    if (this.state.user !== '') {
+      const db = app.database();
+      const ref = db.ref('users');
+      const child = ref.child(`${this.state.user}/habits/early_morning`);
+      child
+        .update({
+          tutorial: false,
+          active: true,
+          startDate: Date.now(),
+          clickDate: 0,
+          times: 0,
+        })
+        .then(this.props.navigation.navigate('MainScreen'));
+    }
   };
 
   render() {

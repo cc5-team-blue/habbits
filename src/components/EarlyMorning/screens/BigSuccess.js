@@ -8,19 +8,19 @@ export default class BigSuccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userID: 0,
-      active: false,
+      user: '',
       times: 0,
     };
   }
 
   componentDidMount() {
+    this.setState({ user: app.auth().currentUser.uid });
     app
       .database()
-      .ref(`users/${this.state.userID}/habits/early_morning/`)
+      .ref(`users/${this.state.user}/habits/early_morning/`)
       .on('value', data => {
         const result = data.toJSON();
-        this.setState({ active: result.active, times: result.times });
+        this.setState({ times: result.times });
       });
   }
 
