@@ -16,6 +16,7 @@ import {
   RESETOFFLINECOUNTDOWN,
   SET_END_TIME,
   SET_EMAIL_ADDRESS,
+  SET_CURRENT_COUNTER,
 } from '../actions';
 
 // It sets initial state
@@ -101,6 +102,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mailAddress: action.email,
+      };
+    }
+    case SET_CURRENT_COUNTER: {
+      return {
+        ...state,
+        counter: action.counter,
       };
     }
     default: {

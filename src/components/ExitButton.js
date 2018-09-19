@@ -22,7 +22,6 @@ const Exit = ({ goBackToHome }) => (
 
 const mapDispatchToProps = dispatch => ({
   goBackToHome: () => {
-    console.log('exit is clicked here');
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
