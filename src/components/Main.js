@@ -126,12 +126,12 @@ class Main extends Component {
   }
 
   render() {
-    const { clickHabbit, achievements, goToAnalytics, goToJournal } = this.props;
+    const { clickHabbit, achievements, goToAnalytics, goToJournal, name } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
+        <Text style={styles.headline}>Good Evening {name}</Text>{' '}
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>
@@ -197,6 +197,8 @@ class Main extends Component {
 const mapStateToProps = state => ({
   state: state.nav,
   achievements: ['streak', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
+  name: state.red.name,
+  uid: state.red.uid,
 });
 
 const mapDispatchToProps = dispatch => ({
