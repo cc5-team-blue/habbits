@@ -132,13 +132,13 @@ class Main extends Component {
       goToAnalytics,
       goToJournal,
       goToEarlyMorning,
-      name,
+      // name,
     } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {name}</Text>{' '}
+        <Text style={styles.headline}>Good Evening {'Nour'}</Text>{' '}
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>

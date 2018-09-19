@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthRes, heightRes } from '../../../css/responsiveFunctions';
 
 const styles = StyleSheet.create({
   realContainer: {
@@ -13,32 +14,30 @@ const styles = StyleSheet.create({
   },
   awesomeWrapper: {
     paddingTop: 0,
-    marginBottom: 23.5,
+    marginBottom: heightRes(23.5),
   },
   youAreText: {
-    width: 280,
-    height: 29.5,
+    width: widthRes(280),
+    height: heightRes(29.5),
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
-    fontStyle: 'normal',
-    letterSpacing: 0,
     textAlign: 'center',
     color: 'rgba(59,73,91, 0.68)',
   },
   pointText: {
-    width: 245.5,
-    height: 32.5,
+    width: widthRes(245.5),
+    height: heightRes(32.5),
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#3b495b',
-    marginBottom: 41,
+    marginBottom: heightRes(41),
   },
   challengeText: {
-    width: 245.5,
-    height: 32.5,
+    width: widthRes(245.5),
+    height: heightRes(32.5),
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
@@ -54,19 +53,19 @@ const styles = StyleSheet.create({
     color: '#3B495B',
   },
   countText: {
-    width: 77,
-    height: 52,
+    width: widthRes(77),
+    height: heightRes(52),
     fontFamily: 'Futura',
     fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#3b495b',
-    marginBottom: 22,
+    marginBottom: heightRes(22),
   },
   happyRabbitImage: {
-    width: 130,
-    height: 219.5,
-    marginBottom: 20.5,
+    width: widthRes(130),
+    height: heightRes(219.5),
+    marginBottom: heightRes(20.5),
   },
   yayImgContainer: {
     borderTopLeftRadius: 10,
@@ -83,14 +82,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff627a',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 67.5,
+    height: heightRes(67.5),
   },
   yayText: {
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
-    fontStyle: 'normal',
-    letterSpacing: 0,
     color: '#ffffff',
   },
 });

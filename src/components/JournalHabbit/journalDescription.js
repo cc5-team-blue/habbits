@@ -17,7 +17,7 @@ export const journalDescription = ({ goToJournalMain }) => (
         <View style={styles.textPosition}>
           <Text style={styles.h2Text}>Description:</Text>
           <Text style={styles.h3Text}>
-            This modules helps you keep a journal for 30 consecutive days.
+            This module helps you keep a journal for 30 consecutive days.
           </Text>
         </View>
         <View>
