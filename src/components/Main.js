@@ -126,7 +126,7 @@ class Main extends Component {
   }
 
   render() {
-    const { clickHabbit, achievements, goToAnalytics, goToJournal } = this.props;
+    const { clickHabbit, achievements, goToAnalytics, goToJournal, goToEarlyMorning } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -146,11 +146,11 @@ class Main extends Component {
                   <Text style={styles.habbitText}>Good Sleep</Text>{' '}
                 </View>{' '}
               </View>
-              <View style={styles.item}>
-                <View onTouchStart={clickHabbit} style={[styles.habbitWrapper, styles.right]}>
+              <View style={styles.item} onTouchStart={goToEarlyMorning}>
+                <View style={[styles.habbitWrapper, styles.right]}>
                   <Image style={styles.earlyStartImg} source={earlyStartImg} />{' '}
                 </View>{' '}
-                <View onTouchStart={clickHabbit} style={[styles.habbitTextBar, styles.right]}>
+                <View style={[styles.habbitTextBar, styles.right]}>
                   <Text style={styles.habbitText}>Early Start</Text>{' '}
                 </View>{' '}
               </View>
@@ -230,6 +230,9 @@ const mapDispatchToProps = dispatch => ({
           dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
         }
       });
+  },
+  goToEarlyMorning: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'EarlyMorning' }));
   },
 });
 
