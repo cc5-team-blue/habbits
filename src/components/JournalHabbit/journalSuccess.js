@@ -7,7 +7,7 @@ import { finishJournal } from '../../helper';
 import styles from '../../css/styleForJournal';
 import checkCircle from '../../images/check-circle.png';
 
-export const journalSuccess = ({ goToMain }) => (
+export const journalSuccess = ({ goToMain, uid }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
     <View style={styles.innerContainer}>
@@ -24,22 +24,26 @@ export const journalSuccess = ({ goToMain }) => (
           <Text style={[styles.successCommonText, styles.progressStats]}>5/30</Text>
         </View>
       </View>
-      <View onTouchStart={goToMain} style={styles.bottomImgButton}>
+      <View onTouchStart={() => goToMain(uid)} style={styles.bottomImgButton}>
         <Text style={styles.bottomButtonText}>Yay!</Text>
       </View>
     </View>
   </View>
 );
 
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
 const mapDispatchToProps = dispatch => ({
-  goToMain: () => {
+  goToMain: uid => {
     // For production: finishJournal() should be commentout, it's using for testing.
-    finishJournal();
+    finishJournal(uid);
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalSuccess);
