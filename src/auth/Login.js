@@ -1,11 +1,13 @@
 import React from 'react';
 import { Text, TextInput, View, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 
 import { app } from '../../db';
 import styles from '../css/styleForAuth';
 import { setSignupDataToLS } from '../helper';
+import { saveNameToStore, saveUidToStore } from '../actions';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,25 +17,24 @@ export default class Login extends React.Component {
     };
   }
 
-  handleLogin = () => {
+  handleLogin = async () => {
     const { email, password } = this.state;
-    const { navigation } = this.props;
-    app
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        const { currentUser } = app.auth();
-        const { uid } = currentUser;
-        app
-          .database()
-          .ref(`users/${uid}/name`)
-          .on('value', data => {
-            const name = data.val();
-            setSignupDataToLS(name.name, uid);
-          });
-        navigation.navigate('Main');
-      })
-      .catch(error => this.setState({ errorMessage: error.message }));
+    const { navigation, saveName, saveUid } = this.props;
+    try {
+      await app.auth().signInWithEmailAndPassword(email, password);
+      const { currentUser } = await app.auth();
+      const { uid } = currentUser;
+      const nameFromFB = await app.database().ref(`users/${uid}/name`);
+      await nameFromFB.on('value', data => {
+        const name = data.val();
+        saveName(name.name);
+        saveUid(uid);
+        setSignupDataToLS(name.name, uid);
+      });
+      await navigation.navigate('Main');
+    } catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   };
 
   render() {
@@ -79,3 +80,17 @@ export default class Login extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  saveName: name => {
+    dispatch(saveNameToStore(name));
+  },
+  saveUid: uid => {
+    dispatch(saveUidToStore(uid));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
