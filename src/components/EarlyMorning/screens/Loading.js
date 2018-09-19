@@ -32,6 +32,7 @@ export default class Loading extends Component {
     // .database()
     // .ref('users/0/habits/early_morning/')
     earlyMorning.on('value', data => {
+      console.log(result);
       const result = data.toJSON();
       if (result.tutorial) {
         this.props.navigation.navigate('Start');

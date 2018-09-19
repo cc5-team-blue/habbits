@@ -76,8 +76,8 @@ class Analytics extends Component {
           <LineChart
             data={data}
             style={styles.lineChart}
-            width={335}
-            height={180}
+            width={widthRes(335)}
+            height={heightRes(180)}
             chartConfig={chartConfig}
             bezier
           />

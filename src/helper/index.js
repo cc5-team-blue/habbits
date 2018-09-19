@@ -6,13 +6,93 @@ import 'moment-duration-format';
 // import firebaseSDK from db
 import { update, select } from '../../db';
 
-// Using in Timer.js
+// Using in CountdownToOffline.js
 export const setEndTimer = async time => {
   try {
     await AsyncStorage.setItem('endTime', time);
   } catch (err) {
     console.log(err);
   }
+};
+
+export const getAllKeyFromLS = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    return keys;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// Loading.js
+export const isLoggedIn = async () => {
+  try {
+    const items = await AsyncStorage.getItem('isLoggedIn');
+    // It return promise.
+    return items;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// Loading.js
+export const getNameFromLS = async () => {
+  try {
+    const name = await AsyncStorage.getItem('name');
+    // It return promise.
+    return name;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// Loading.js
+export const getUidFromLS = async () => {
+  try {
+    const uid = await AsyncStorage.getItem('uid');
+    // It return promise.
+    return uid;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// SignUp.js
+export const setSignupDataToLS = async (firstName, uid) => {
+  try {
+    await AsyncStorage.setItem('name', firstName);
+    await AsyncStorage.setItem('uid', uid);
+    await AsyncStorage.setItem('isLoggedIn', 'true');
+    const loginStatus = await AsyncStorage.getItem('isLoggedIn');
+    console.log('isLogin: ', loginStatus);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// logout helper
+export const logout = async () => {
+  try {
+    await AsyncStorage.setItem('isLoggedIn', 'false');
+    const loginStatus = await AsyncStorage.getItem('isLoggedIn');
+    console.log('isLogin: ', loginStatus);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getItemFromLS = async () => {
+  try {
+    const items = await AsyncStorage.getItem('isLoggedIn');
+    return items;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
 };
 
 // Using in Timer.js
@@ -53,11 +133,11 @@ export const setStartAndEndDate = () => {
 };
 
 // Using in JournalMainScreen.js
-export const firebaseInsert = ({ greatful, til, starRate }) => {
+export const firebaseInsert = ({ grateful, til, starRate }) => {
   const date = moment().format();
   update(`users/1/habits/JournalHabbit/journals/${date}`, {
     date,
-    greatful,
+    grateful,
     til,
     rating: starRate,
   });

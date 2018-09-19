@@ -126,12 +126,19 @@ class Main extends Component {
   }
 
   render() {
-    const { clickHabbit, achievements, goToAnalytics, goToJournal, goToEarlyMorning } = this.props;
+    const {
+      clickHabbit,
+      achievements,
+      goToAnalytics,
+      goToJournal,
+      goToEarlyMorning,
+      // name,
+    } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {'Habbits'}</Text>
+        <Text style={styles.headline}>Good Evening {'Nour'}</Text>
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>
@@ -182,8 +189,8 @@ class Main extends Component {
             <View style={styles.achievements}>
               <Text style={styles.achievementsText}>Recent Achievements</Text>
               <View style={styles.achievementsIconContainer}>
-                {achievements.map(() => (
-                  <View style={styles.achievementsIcon} />
+                {achievements.map((_, i) => (
+                  <View key={String(i)} style={styles.achievementsIcon} />
                 ))}
               </View>
             </View>
@@ -197,6 +204,8 @@ class Main extends Component {
 const mapStateToProps = state => ({
   state: state.nav,
   achievements: ['streak', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
+  name: state.red.name,
+  uid: state.red.uid,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -220,6 +229,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToJournal: () => {
+    const { currentUser } = app.auth();
+    dispatch(setMailAddress(currentUser.email));
     app
       .database()
       .ref('users/1/habits/JournalHabbit/isActive')

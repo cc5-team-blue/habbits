@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import styles from '../css/styleForSuccess';
+import { logout } from '../helper';
 
 export const UserInfo = ({ clickHabbit }) => (
   <View style={styles.realContainer}>
@@ -18,6 +19,7 @@ export const UserInfo = ({ clickHabbit }) => (
 
 const mapDispatchToProps = dispatch => ({
   clickHabbit: () => {
+    logout();
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });

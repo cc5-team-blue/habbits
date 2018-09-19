@@ -31,8 +31,8 @@ class CountdownToOffline extends Component {
                     </View>
                   </View>
                   <View style={styles.entryRow}>
-                    <Text style={styles.entryHeadline}>Greatful</Text>
-                    <Text style={styles.entryText}>{item.greatful}</Text>
+                    <Text style={styles.entryHeadline}>Grateful</Text>
+                    <Text style={styles.entryText}>{item.grateful}</Text>
                   </View>
                   <View style={styles.entryRow}>
                     <Text style={styles.entryHeadline}>Learned</Text>
@@ -54,21 +54,21 @@ const mapStateToProps = state => ({
       id: 1,
       date: 'Tuesday, 04/09',
       rating: 3,
-      greatful: 'I’m happy to have my friends who support me every single day.',
+      grateful: 'I’m happy to have my friends who support me every single day.',
       learned: 'TIL: Apple is very slow in processes its certificates. I’m now waiting for 3 days.',
     },
     {
       id: 2,
       date: 'Tuesday, 04/09',
       rating: 5,
-      greatful: 'I’m happy to have my friends who support me every single day.',
+      grateful: 'I’m happy to have my friends who support me every single day.',
       learned: 'TIL: Apple is very slow in processes its certificates. I’m now waiting for 3 days.',
     },
     {
       id: 3,
       date: 'Tuesday, 04/09',
       rating: 2,
-      greatful: 'I’m happy to have my friends who support me every single day.',
+      grateful: 'I’m happy to have my friends who support me every single day.',
       learned: 'TIL: Apple is very slow in processes its certificates. I’m now waiting for 3 days.',
     },
   ],
