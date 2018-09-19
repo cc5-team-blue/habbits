@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'moment-duration-format';
 
 // import firebaseSDK from db
-import { update, select } from '../../db';
+import { app, update } from '../../db';
 
 // Using in CountdownToOffline.js
 export const setEndTimer = async time => {
@@ -113,6 +113,7 @@ export const getDifference = async () => {
   } catch (err) {
     console.log(err);
   }
+  return 0;
 };
 
 // Using in Timer.js
@@ -124,29 +125,57 @@ export const removeEndTime = async () => {
   }
 };
 
-// Using in JounalDescription
-export const setStartAndEndDate = () => {
-  const startDate = moment().format();
-  const setDate = moment().add(30, 'd');
-  const endDate = setDate.format();
-  update('users/1/habits/JournalHabbit/', { isActive: true, startDate, endDate });
+// Using in jounalDescription.js
+export const setStartAndEndDate = uid => {
+  const startDate = Date.now();
+  const setDate = moment(startDate).add(30, 'd');
+  const endDate = setDate.valueOf();
+  update(`users/${uid}/habits/JournalHabbit/`, { isActive: true, startDate, endDate });
 };
 
-// Using in JournalMainScreen.js
-export const firebaseInsert = ({ grateful, til, starRate }) => {
-  const date = moment().format();
-  update(`users/1/habits/JournalHabbit/journals/${date}`, {
+// Using in journalMainScreen.js
+export const firebaseInsert = ({ grateful, til, starRate }, uid) => {
+  const date = Date.now();
+  update(`users/${uid}/habits/JournalHabbit/journals/${date}`, {
     date,
     grateful,
     til,
     rating: starRate,
   });
+  update(`users/${uid}/habits/JournalHabbit/`, { lastUpdate: date });
 };
 
-// Using in Main.js
-export const isJournalActive = () => console.log(select('users/1/habits/JournalHabbit/isActive'));
+// Using in journalSuccess.js
+export const finishJournal = uid => {
+  update(`users/${uid}/habits/JournalHabbit`, { isActive: false });
+};
 
-// Using in JournalSuccess.js
-export const finishJournal = () => {
-  update('users/1/habits/JournalHabbit', { isActive: false });
+// Using in journalSuccessBIG.js
+export const getJournalPoint = uid => {
+  const path = `users/${uid}/history/`;
+  const data = {
+    date: Date.now(),
+    points: 300,
+    type: 'plus',
+    habbits: 'Daily Journal',
+  };
+  app
+    .database()
+    .ref(path)
+    .push(data);
+};
+
+// Using in journalFailure.js
+export const loseJournalPoint = uid => {
+  const path = `users/${uid}/history/`;
+  const data = {
+    date: Date.now(),
+    points: 100,
+    type: 'minus',
+    habbits: 'Daily Journal',
+  };
+  app
+    .database()
+    .ref(path)
+    .push(data);
 };
