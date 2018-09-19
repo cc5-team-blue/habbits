@@ -182,8 +182,8 @@ class Main extends Component {
             <View style={styles.achievements}>
               <Text style={styles.achievementsText}>Recent Achievements</Text>
               <View style={styles.achievementsIconContainer}>
-                {achievements.map(() => (
-                  <View style={styles.achievementsIcon} />
+                {achievements.map((_, i) => (
+                  <View key={i} style={styles.achievementsIcon} />
                 ))}
               </View>
             </View>
