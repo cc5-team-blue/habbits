@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 // import { migrate } from './migrate';
-// import { AppNavigator } from './src/navigators/AppNavigator';
+import { AppNavigator } from './src/navigators/AppNavigator';
 // import AuthNavigator from './src/navigators/AuthNavigator';
-import EarlyMorningNavigator from './src/components/EarlyMorning/nav/Navigator';
+// import EarlyMorningNavigator from './src/components/EarlyMorning/nav/Navigator';
 
 import store from './src/store';
 
@@ -12,8 +12,8 @@ import store from './src/store';
 
 const App = () => (
   <Provider store={store}>
-    {/* <AppNavigator /> */}
-    <EarlyMorningNavigator />
+    <AppNavigator />
+    {/* <EarlyMorningNavigator /> */}
     {/* <AuthNavigator /> */}
   </Provider>
 );

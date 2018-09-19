@@ -11,7 +11,7 @@ import journalFailure from '../components/JournalHabbit/journalFailure';
 import journalMainScreen from '../components/JournalHabbit/journalMainScreen';
 import journalSuccess from '../components/JournalHabbit/journalSuccess';
 import journalSuccessBIG from '../components/JournalHabbit/JournalSuccessBIG';
-import MainNavigator from './AuthNavigator';
+import MainNavigator from './MainNavigator';
 
 // Here is the place we define app's pages with name
 // For example, Main page have reference to SampleComponent.
