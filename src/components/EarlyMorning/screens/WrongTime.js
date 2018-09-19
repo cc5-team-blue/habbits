@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image, View, StatusBar, TouchableOpacity } from 'react-native';
+import { Text, Image, View, StatusBar } from 'react-native';
 import { app } from '../../../../db';
 import styles from '../styles/styleForWrongTime';
 import RabbitImg from '../images/rabbit.png';
@@ -8,24 +8,29 @@ export default class WrongTime extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userID: 0,
+      user: '0',
       active: false,
       times: 0,
     };
   }
 
   componentDidMount() {
-    app
-      .database()
-      .ref(`users/${this.state.userID}/habits/early_morning/`)
-      .on('value', data => {
-        const result = data.toJSON();
-        this.setState({ active: result.active, times: result.times });
-      });
+    const db = app.database();
+    const ref = db.ref('users');
+    const user = ref.child(this.state.user);
+    const habits = user.child('habits');
+    const earlyMorning = habits.child('early_morning');
+    // app
+    //   .database()
+    //   .ref(`users/${this.state.user}/habits/early_morning/`)
+    earlyMorning.on('value', data => {
+      const result = data.toJSON();
+      this.setState({ active: result.active, times: result.times });
+    });
   }
 
   componentWillUnmount() {
-    this.setState({ userID: 0, active: false, times: 0 });
+    this.setState({ user: 0, active: false, times: 0 });
   }
 
   handleClick = () => {
