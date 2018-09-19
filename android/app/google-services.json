@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "856945851988",
+    "firebase_url": "https://test-d3d42.firebaseio.com",
+    "project_id": "test-d3d42",
+    "storage_bucket": "test-d3d42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856945851988:android:ee1006a2eeedb1ea",
+        "android_client_info": {
+          "package_name": "com.habbits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856945851988-lrb2udvoccebek2telq1vtmchgq2hvam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUGf_TzFkYF4XpFuf7oM1bCs0wFBYAaD0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
