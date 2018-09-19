@@ -6,6 +6,15 @@ import 'moment-duration-format';
 // import firebaseSDK from db
 import { update, select } from '../../db';
 
+// Using in CountdownToOffline.js
+export const setEndTimer = async time => {
+  try {
+    await AsyncStorage.setItem('endTime', time);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // Loading.js
 export const isLoggedIn = async () => {
   try {
