@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthRes, heightRes } from '../../../css/responsiveFunctions';
 
 const styles = StyleSheet.create({
   realContainer: {
@@ -6,20 +7,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B495B',
   },
   container: {
-    marginLeft: 25,
-    marginTop: 51.5,
-    width: 325,
-    height: 594,
+    marginLeft: widthRes(25),
+    marginTop: heightRes(51.5),
+    width: widthRes(325),
+    height: heightRes(594),
   },
   awesomeWrapper: {
     paddingTop: 0,
-    marginBottom: 45.5,
-    width: 272,
-    height: 65,
+    marginBottom: heightRes(45.5),
+    width: widthRes(272),
+    height: heightRes(65),
   },
   amazingText: {
-    width: 280,
-    height: 29.5,
+    width: widthRes(280),
+    height: heightRes(29.5),
     fontFamily: 'Futura',
     fontSize: 18,
     fontWeight: 'bold',
@@ -51,17 +52,17 @@ const styles = StyleSheet.create({
     color: '#3B495B',
   },
   happyRabbitImage: {
-    width: 130,
-    height: 219.5,
-    marginBottom: 48,
+    width: widthRes(130),
+    height: heightRes(219.5),
+    marginBottom: heightRes(48),
   },
   yayImgContainer: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 325,
-    height: 526.5,
+    width: widthRes(325),
+    height: heightRes(526.5),
     backgroundColor: '#ffe5d8',
   },
   yayButton: {
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ff627a',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 67.5,
+    height: heightRes(67.5),
   },
   yayText: {
     fontFamily: 'Futura',

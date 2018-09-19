@@ -44,7 +44,7 @@ export default class Start extends Component {
         <Text style={styles.header}>Early Start</Text>
         <View style={styles.wrapper}>
           <Image source={coffeeImg} style={styles.img} />
-          <Text style={styles.title}>Describtion:</Text>
+          <Text style={styles.title}>Description:</Text>
           <Text style={styles.text}>This modules helps you build an early morning habbit.</Text>
           <Text style={styles.title2}>Challenge:</Text>
           <Text style={styles.text2}>
