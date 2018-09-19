@@ -15,11 +15,46 @@ export const setEndTimer = async time => {
   }
 };
 
+export const getAllKeyFromLS = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    return keys;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
 // Loading.js
 export const isLoggedIn = async () => {
   try {
     const items = await AsyncStorage.getItem('isLoggedIn');
+    // It return promise.
     return items;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// Loading.js
+export const getNameFromLS = async () => {
+  try {
+    const name = await AsyncStorage.getItem('name');
+    // It return promise.
+    return name;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// Loading.js
+export const getUidFromLS = async () => {
+  try {
+    const uid = await AsyncStorage.getItem('uid');
+    // It return promise.
+    return uid;
   } catch (err) {
     console.log(err);
   }
