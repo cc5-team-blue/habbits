@@ -17,10 +17,14 @@ import {
   SET_END_TIME,
   SET_EMAIL_ADDRESS,
   SET_CURRENT_COUNTER,
+  SAVE_NAME_TO_STORE,
+  SAVE_UID_TO_STORE,
 } from '../actions';
 
 // It sets initial state
 const initialState = {
+  uid: '',
+  name: '',
   endTime: undefined,
   full: undefined,
   counter: undefined,
@@ -108,6 +112,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         counter: action.counter,
+      };
+    }
+    case SAVE_NAME_TO_STORE: {
+      return {
+        ...state,
+        name: action.name,
+      };
+    }
+    case SAVE_UID_TO_STORE: {
+      return {
+        ...state,
+        uid: action.uid,
       };
     }
     default: {

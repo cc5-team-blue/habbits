@@ -1,32 +1,50 @@
-import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 
-// import firebase from 'react-native-firebase';
-import { app } from '../../db';
+import styles from '../css/styleForAuth';
+import { isLoggedIn, getAllKeyFromLS, getNameFromLS, getUidFromLS } from '../helper';
+import { saveNameToStore, saveUidToStore } from '../actions';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default class Loading extends React.Component {
-  componentDidMount() {
+class Loading extends Component {
+  async componentDidMount() {
+    const { saveName, saveUid } = this.props;
+    const keys = await getAllKeyFromLS();
+    console.log('Existng keys are: ', keys);
+    // result is the return value from LS
+    const result = await isLoggedIn();
     const { navigation } = this.props;
-    app.auth().onAuthStateChanged(user => {
-      navigation.navigate(user ? 'Main' : 'SignUp');
-    });
+    if (result === 'true') {
+      const name = await getNameFromLS();
+      saveName(name);
+      const uid = await getUidFromLS();
+      saveUid(uid);
+      navigation.navigate('Main');
+    } else {
+      navigation.navigate('SignUp');
+    }
   }
 
-  // export default class Loading extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.loading}>
         <Text>Loading</Text>
         <ActivityIndicator size="large" />
       </View>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  saveName: name => {
+    dispatch(saveNameToStore(name));
+  },
+  saveUid: uid => {
+    dispatch(saveUidToStore(uid));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Loading);

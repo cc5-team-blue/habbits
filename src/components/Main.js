@@ -126,7 +126,14 @@ class Main extends Component {
   }
 
   render() {
-    const { clickHabbit, achievements, goToAnalytics, goToJournal, goToEarlyMorning } = this.props;
+    const {
+      clickHabbit,
+      achievements,
+      goToAnalytics,
+      goToJournal,
+      goToEarlyMorning,
+      // name,
+    } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -183,7 +190,7 @@ class Main extends Component {
               <Text style={styles.achievementsText}>Recent Achievements</Text>
               <View style={styles.achievementsIconContainer}>
                 {achievements.map((_, i) => (
-                  <View key={i} style={styles.achievementsIcon} />
+                  <View key={String(i)} style={styles.achievementsIcon} />
                 ))}
               </View>
             </View>
@@ -197,6 +204,8 @@ class Main extends Component {
 const mapStateToProps = state => ({
   state: state.nav,
   achievements: ['streak', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
+  name: state.red.name,
+  uid: state.red.uid,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -220,6 +229,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToJournal: () => {
+    const { currentUser } = app.auth();
+    dispatch(setMailAddress(currentUser.email));
     app
       .database()
       .ref('users/1/habits/JournalHabbit/isActive')
