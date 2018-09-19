@@ -1,11 +1,13 @@
 import React from 'react';
 import { Text, TextInput, View, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 
 import { app } from '../../db';
 import styles from '../css/styleForAuth';
 import { getItemFromLS, setSignupDataToLS } from '../helper';
+import { saveNameToStore, saveUidToStore } from '../actions';
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,22 +18,23 @@ export default class SignUp extends React.Component {
     };
   }
 
-  handleSignUp = () => {
+  handleSignUp = async () => {
     const { firstName, email, password } = this.state;
-    const { navigation } = this.props;
-    app
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(data => {
-        navigation.navigate('Main');
-        setSignupDataToLS(firstName, data.user.uid);
-        app
-          .database()
-          .ref(`users/${data.user.uid}/name`)
-          .update({ name: firstName });
-        getItemFromLS();
-      })
-      .catch(error => this.setState({ errorMessage: error.message }));
+    const { navigation, saveName, saveUid } = this.props;
+    try {
+      const returnFromFB = await app.auth().createUserWithEmailAndPassword(email, password);
+      await saveName(firstName);
+      await saveUid(returnFromFB.user.uid);
+      setSignupDataToLS(firstName, returnFromFB.user.uid);
+      await app
+        .database()
+        .ref(`users/${returnFromFB.user.uid}/name`)
+        .update({ name: firstName });
+      getItemFromLS();
+      navigation.navigate('Main');
+    } catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
   };
 
   render() {
@@ -83,3 +86,17 @@ export default class SignUp extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  saveName: name => {
+    dispatch(saveNameToStore(name));
+  },
+  saveUid: uid => {
+    dispatch(saveUidToStore(uid));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignUp);
