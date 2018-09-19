@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 
 import styles from '../css/styleForAuth';
-import { isLoggedIn } from '../helper';
+import { isLoggedIn, getAllKeyFromLS, getNameFromLS, getUidFromLS } from '../helper';
+import { saveNameToStore, saveUidToStore } from '../actions';
 
-export default class Loading extends Component {
-  componentDidMount() {
-    const result = isLoggedIn();
+class Loading extends Component {
+  async componentDidMount() {
+    const { saveName, saveUid } = this.props;
+    const keys = await getAllKeyFromLS();
+    console.log('Existng keys are: ', keys);
+    // result is the return value from LS
+    const result = await isLoggedIn();
     const { navigation } = this.props;
-    result.then(data => {
-      console.log('isLogin: ', data);
-      if (data === 'true') {
-        navigation.navigate('Main');
-      } else {
-        navigation.navigate('SignUp');
-      }
-    });
+    if (result === 'true') {
+      const name = await getNameFromLS();
+      saveName(name);
+      const uid = await getUidFromLS();
+      saveUid(uid);
+      navigation.navigate('Main');
+    } else {
+      navigation.navigate('SignUp');
+    }
   }
 
   render() {
@@ -27,3 +34,17 @@ export default class Loading extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  saveName: name => {
+    dispatch(saveNameToStore(name));
+  },
+  saveUid: uid => {
+    dispatch(saveUidToStore(uid));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Loading);
