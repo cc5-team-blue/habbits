@@ -91,7 +91,7 @@ class Analytics extends Component {
                       <Image source={arrowUpImg} style={styles.arrowUpImg} />
                     </View>
                     <Text style={[styles.text, { flex: 2 }]}>
-                      {moment(item.val.date).format('MM/DD')}{' '}
+                      {moment(item.val.date).format('MM/DD')}
                     </Text>
                     <Text
                       style={[styles.text, styles.habbitDescription, styles.green, { flex: 4 }]}
@@ -111,7 +111,7 @@ class Analytics extends Component {
                       <Image source={arrowDownImg} style={styles.arrowDownImg} />
                     </View>
                     <Text style={[styles.text, { flex: 2 }]}>
-                      {moment(item.val.date).format('MM/DD')}{' '}
+                      {moment(item.val.date).format('MM/DD')}
                     </Text>
                     <Text style={[styles.text, styles.habbitDescription, styles.red, { flex: 4 }]}>
                       Good Sleep

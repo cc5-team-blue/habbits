@@ -141,14 +141,12 @@ export default class SignUp extends React.Component {
               value={this.state.password}
             />
             <View style={styles.signupButton} onTouchStart={this.handleSignUp}>
-              {' '}
               <Text style={styles.signupText}>SIGN UP</Text>
             </View>
             <View
               style={styles.switchSignIn}
               onTouchStart={() => this.props.navigation.navigate('Login')}
             >
-              {' '}
               <Text style={styles.switchSignInText}>
                 Already a user? <Text style={styles.bold}>Sign in!</Text>
               </Text>
