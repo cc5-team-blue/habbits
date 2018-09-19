@@ -40,7 +40,7 @@ export class Timer extends Component {
   shouldComponentUpdate(nextProps) {
     const { goToYay, goToOfflineRabbit, isConnected } = this.props;
     // eslint-disable-next-line
-    if (nextProps.currentCounter === 0) {
+    if (nextProps.currentCounter < 0) {
       goToYay();
     }
     if (isConnected === true) {
