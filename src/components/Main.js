@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from "firebase";
+import firebase from 'react-native-firebase';
 
 import {
   Text,
@@ -21,7 +21,6 @@ import journalImage from '../images/journalImage.png';
 import styles from '../css/styleForMain';
 import Drawer from './Drawer';
 import { app } from '../../db';
-
 
 class Main extends Component {
   async componentDidMount() {
@@ -127,7 +126,7 @@ class Main extends Component {
   }
 
   render() {
-    const { clickHabbit, achievements, goToAnalytics } = this.props;
+    const { clickHabbit, achievements, goToAnalytics, goToJournal } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -157,14 +156,11 @@ class Main extends Component {
               </View>
             </View>
             <View style={[styles.row, { paddingTop: 15 }]}>
-              <View style={styles.item}>
-                <View
-                  onTouchStart={clickHabbit}
-                  style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}
-                >
+              <View style={styles.item} onTouchStart={goToJournal}>
+                <View style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}>
                   <Image style={styles.journalHabbitImage} source={journalImage} />{' '}
                 </View>{' '}
-                <View onTouchStart={clickHabbit} style={[styles.habbitTextBar, styles.left]}>
+                <View style={[styles.habbitTextBar, styles.left]}>
                   <Text style={styles.habbitText}>Daily Journal</Text>{' '}
                 </View>{' '}
               </View>

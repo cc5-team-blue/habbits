@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'moment-duration-format';
 
 // import firebaseSDK from db
-import { update } from '../../db';
+import { update, select } from '../../db';
 
 // Using in Timer.js
 export const setEndTimer = async time => {
@@ -16,15 +16,19 @@ export const setEndTimer = async time => {
 };
 
 // Using in Timer.js
-export const retrieveEndTime = async () => {
+export const getDifference = async () => {
   try {
     const endTime = await AsyncStorage.getItem('endTime');
     if (endTime !== null) {
       const end = moment(endTime);
       const currentTime = moment();
-      const remainingTime = end.diff(currentTime, 'seconds');
-      const count = moment.duration({ seconds: remainingTime });
-      console.log(count);
+      const remainingTime = end.diff(currentTime, 'HH:mm:ss');
+      // const remainingTime = end.diff(currentTime, 'seconds');
+      // ToDo: Make it work with 7h and render it conditionally:
+      // if h > 0, show hh:mm
+      // if h = 0, show mm:ss
+      // const count = moment.duration({ seconds: remainingTime });
+      return remainingTime;
     }
   } catch (err) {
     console.log(err);
@@ -58,6 +62,9 @@ export const firebaseInsert = ({ greatful, til, starRate }) => {
     rating: starRate,
   });
 };
+
+// Using in Main.js
+export const isJournalActive = () => console.log(select('users/1/habits/JournalHabbit/isActive'));
 
 // Using in JournalSuccess.js
 export const finishJournal = () => {
