@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthRes, heightRes } from '../../../css/responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,27 +7,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#39485C',
   },
   wrapper: {
-    height: 527.5,
-    width: 325,
+    height: heightRes(527.5),
+    width: widthRes(325),
     borderRadius: 10,
     backgroundColor: '#FFF8DC',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 14.5,
-    marginBottom: 21.5,
-    marginLeft: 25,
+    marginTop: heightRes(14.5),
+    marginBottom: heightRes(21.5),
+    marginLeft: widthRes(25),
   },
   header: {
-    width: 199,
-    height: 45.5,
+    width: widthRes(199),
+    height: heightRes(45.5),
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
     color: '#ffffff',
   },
   headlineText: {
-    width: 235.5,
-    height: 60,
+    width: widthRes(235.5),
+    height: heightRes(60),
     fontFamily: 'Futura',
     fontSize: 18,
     fontWeight: 'bold',
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   },
   challengeText: {
     width: '100%',
-    height: 29.5,
+    height: heightRes(29.5),
     fontFamily: 'Futura',
     fontSize: 18,
     fontWeight: 'bold',
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   },
   pointText: {
     width: '100%',
-    height: 32.5,
+    height: heightRes(32.5),
     fontFamily: 'Futura',
     fontSize: 25,
     fontWeight: 'bold',
@@ -57,18 +58,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageWrapper: {
-    marginTop: 55.5,
-    marginBottom: 60,
+    marginTop: heightRes(55.5),
+    marginBottom: heightRes(60),
   },
   img: {
-    width: 204.5,
-    height: 204.5,
+    width: widthRes(204.5),
+    height: heightRes(204.5),
   },
   headerWrapper: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
-    marginLeft: 25,
+    marginLeft: widthRes(25),
   },
 });
 
