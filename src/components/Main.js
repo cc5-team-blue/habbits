@@ -131,7 +131,7 @@ class Main extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {'Habbits'}</Text>{' '}
+        <Text style={styles.headline}>Good Evening {'Nour'}</Text>{' '}
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>

@@ -34,27 +34,7 @@ export class journalDescription extends Component {
               styles.mainItemPosition,
             ]}
           >
-            <Text style={styles.journalMainHeadline}>Hi Hiro, how was your day?</Text>
-            <View>
-              <Text style={styles.journalMainText}>Rate your day:</Text>
-            </View>
-            <View style={styles.itemPosition}>
-              <Rating
-                onChange={rating => this.setState({ starRate: rating })}
-                selectedStar={fullStar}
-                unselectedStar={emptyStar}
-                config={{
-                  easing: Easing.inOut(Easing.ease),
-                  duration: 100,
-                }}
-                stagger={80}
-                maxScale={1.2}
-                starStyle={{
-                  width: 30,
-                  height: 30,
-                }}
-              />
-            </View>
+            <Text style={styles.journalMainHeadline}>Hi Nour, how was your day?</Text>
             <View>
               <Text style={styles.journalMainText}>
                 One thing you&#039;re <Text style={styles.bold}>grateful</Text> for:
@@ -85,6 +65,26 @@ export class journalDescription extends Component {
                 />
               </View>
             </View>
+            <View>
+              <Text style={styles.journalMainText}>Rate your day:</Text>
+            </View>
+            <View style={styles.itemPosition}>
+              <Rating
+                onChange={rating => this.setState({ starRate: rating })}
+                selectedStar={fullStar}
+                unselectedStar={emptyStar}
+                config={{
+                  easing: Easing.inOut(Easing.ease),
+                  duration: 100,
+                }}
+                stagger={80}
+                maxScale={1.2}
+                starStyle={{
+                  width: 34,
+                  height: 34,
+                }}
+              />
+            </View>
           </View>
           <View onTouchStart={() => goToJournalSuccess(this.state)} style={styles.bottomImgButton}>
             <Text style={styles.bottomButtonText}>Submit!</Text>
@@ -95,6 +95,10 @@ export class journalDescription extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  currentCounter: state.red.counter,
+});
+
 const mapDispatchToProps = dispatch => ({
   goToJournalSuccess: state => {
     firebaseInsert(state);
@@ -103,6 +107,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalDescription);
