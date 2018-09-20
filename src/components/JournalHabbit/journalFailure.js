@@ -3,11 +3,11 @@ import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-import { finishJournal } from '../../helper';
+import { finishJournal, loseJournalPoint } from '../../helper';
 import styles from '../../css/styleForJournal';
 import sadRabbit from '../../images/sadRabbit.png';
 
-export const journalFailure = ({ goToMain }) => (
+export const journalFailure = ({ goToMain, uid }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
     <Text style={[styles.innerHeadlineContainer, styles.headline]}>Aww Snap!</Text>
@@ -19,21 +19,26 @@ export const journalFailure = ({ goToMain }) => (
         </Text>
         <Text style={styles.lostPointText}>You lost -100P</Text>
       </View>
-      <View onTouchStart={goToMain} style={styles.sorryImgButton}>
+      <View onTouchStart={() => goToMain(uid)} style={styles.sorryImgButton}>
         <Text style={styles.sorryButtonText}>I&#039;m Sorry!</Text>
       </View>
     </View>
   </View>
 );
 
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
 const mapDispatchToProps = dispatch => ({
-  goToMain: () => {
-    finishJournal();
+  goToMain: uid => {
+    finishJournal(uid);
+    loseJournalPoint(uid);
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalFailure);

@@ -7,7 +7,7 @@ import { setStartAndEndDate } from '../../helper';
 import styles from '../../css/styleForJournal';
 import journalImg from '../../images/journalImage.png';
 
-export const journalDescription = ({ goToJournalMain }) => (
+export const journalDescription = ({ uid, goToJournalMain }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
     <Text style={[styles.innerHeadlineContainer, styles.headline]}>Daily Journal</Text>
@@ -27,21 +27,25 @@ export const journalDescription = ({ goToJournalMain }) => (
           <Text style={styles.h3Text}>- Don&#039;t miss a single day</Text>
         </View>
       </View>
-      <View onTouchStart={goToJournalMain} style={styles.bringImgButton}>
+      <View onTouchStart={() => goToJournalMain(uid)} style={styles.bringImgButton}>
         <Text style={styles.bottomButtonText}>Bring it on!</Text>
       </View>
     </View>
   </View>
 );
 
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
 const mapDispatchToProps = dispatch => ({
-  goToJournalMain: () => {
-    setStartAndEndDate();
+  goToJournalMain: data => {
+    setStartAndEndDate(data);
     dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalDescription);
