@@ -132,6 +132,7 @@ class Main extends Component {
       goToAnalytics,
       goToJournal,
       goToEarlyMorning,
+      uid,
       // name,
     } = this.props;
     return (
@@ -163,7 +164,7 @@ class Main extends Component {
               </View>
             </View>
             <View style={[styles.row, { paddingTop: 15 }]}>
-              <View style={styles.item} onTouchStart={goToJournal}>
+              <View style={styles.item} onTouchStart={() => goToJournal(uid)}>
                 <View style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}>
                   <Image style={styles.journalHabbitImage} source={journalImage} />
                 </View>
@@ -228,19 +229,16 @@ const mapDispatchToProps = dispatch => ({
   updateConnect: newConnectionState => {
     dispatch(updateConnectivity(newConnectionState));
   },
-  goToJournal: () => {
-    const { currentUser } = app.auth();
-    dispatch(setMailAddress(currentUser.email));
-    app
-      .database()
-      .ref('users/1/habits/JournalHabbit/isActive')
-      .on('value', data => {
-        if (data.val()) {
-          dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
-        } else {
-          dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
-        }
-      });
+  goToJournal: async uid => {
+    const path = `users/${uid}/habits/JournalHabbit/isActive`;
+    const isActive = await app.database().ref(path);
+    isActive.on('value', data => {
+      if (data.val()) {
+        dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
+      } else {
+        dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+      }
+    });
   },
   goToEarlyMorning: () => {
     dispatch(NavigationActions.navigate({ routeName: 'EarlyMorning' }));
