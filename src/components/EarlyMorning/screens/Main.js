@@ -72,7 +72,6 @@ class MainScreen extends Component {
               times: 0,
               startDate: '',
               clickDate: 0,
-              active: false,
               tutorial: true,
             });
 
