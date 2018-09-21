@@ -15,10 +15,10 @@ import {
   IS_CONNECTED_CHANGE,
   RESETOFFLINECOUNTDOWN,
   SET_END_TIME,
-  SET_EMAIL_ADDRESS,
   SET_CURRENT_COUNTER,
   SAVE_NAME_TO_STORE,
   SAVE_UID_TO_STORE,
+  SET_JOURNAL_COUNT,
 } from '../actions';
 
 // It sets initial state
@@ -35,7 +35,7 @@ const initialState = {
   isConnected: true,
   timerDuration: 0,
   journalData: false,
-  mailAddress: undefined,
+  journalCount: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -101,13 +101,6 @@ const reducer = (state = initialState, action) => {
         counter: count,
       };
     }
-    case SET_EMAIL_ADDRESS: {
-      console.log(action.email);
-      return {
-        ...state,
-        mailAddress: action.email,
-      };
-    }
     case SET_CURRENT_COUNTER: {
       return {
         ...state,
@@ -124,6 +117,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         uid: action.uid,
+      };
+    }
+    case SET_JOURNAL_COUNT: {
+      return {
+        ...state,
+        journalCount: action.count,
       };
     }
     default: {

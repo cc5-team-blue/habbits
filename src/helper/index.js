@@ -127,14 +127,21 @@ export const removeEndTime = async () => {
 
 // Using in jounalDescription.js
 export const setStartAndEndDate = uid => {
+  // set start date as unix timestamp
   const startDate = Date.now();
   const setDate = moment(startDate).add(30, 'd');
+  // set end date as unix timestamp
   const endDate = setDate.valueOf();
-  update(`users/${uid}/habits/JournalHabbit/`, { isActive: true, startDate, endDate });
+  update(`users/${uid}/habits/JournalHabbit/info/`, {
+    isActive: true,
+    startDate,
+    endDate,
+    counter: 0,
+  });
 };
 
 // Using in journalMainScreen.js
-export const firebaseInsert = ({ grateful, til, starRate }, uid) => {
+export const firebaseInsert = ({ grateful, til, starRate, currentJournalCount }, uid) => {
   const date = Date.now();
   update(`users/${uid}/habits/JournalHabbit/journals/${date}`, {
     date,
@@ -142,12 +149,15 @@ export const firebaseInsert = ({ grateful, til, starRate }, uid) => {
     til,
     rating: starRate,
   });
-  update(`users/${uid}/habits/JournalHabbit/`, { lastUpdate: date });
+  update(`users/${uid}/habits/JournalHabbit/info/`, {
+    lastUpdate: date,
+    counter: currentJournalCount + 1,
+  });
 };
 
 // Using in journalSuccess.js
 export const finishJournal = uid => {
-  update(`users/${uid}/habits/JournalHabbit`, { isActive: false });
+  update(`users/${uid}/habits/JournalHabbit/info/`, { isActive: false });
 };
 
 // Using in journalSuccessBIG.js

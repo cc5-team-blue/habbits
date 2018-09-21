@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { setMailAddress, updateConnectivity } from '../actions';
+import { updateConnectivity, setJournalCount } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
 import analyticsImage from '../images/analyticsImage.png';
@@ -133,13 +133,13 @@ class Main extends Component {
       goToJournal,
       goToEarlyMorning,
       uid,
-      // name,
+      name,
     } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {'Nour'}</Text>{' '}
+        <Text style={styles.headline}>Good Evening {name}</Text>{' '}
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>
@@ -207,6 +207,7 @@ const mapStateToProps = state => ({
   achievements: ['streak', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
   name: state.red.name,
   uid: state.red.uid,
+  redirect: false,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -215,10 +216,6 @@ const mapDispatchToProps = dispatch => ({
   },
   goToAnalytics: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
-  },
-  setMailToStore: () => {
-    const { currentUser } = app.auth();
-    dispatch(setMailAddress(currentUser.email));
   },
 
   showAlert: (title, body) => {
@@ -230,19 +227,44 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToJournal: async uid => {
-    const path = `users/${uid}/habits/JournalHabbit/isActive`;
-    const isActive = await app.database().ref(path);
-    isActive.on('value', data => {
-      if (data.val()) {
-        dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
-      } else {
+    const path = `users/${uid}/habits/JournalHabbit/info`;
+    const info = await app.database().ref(path);
+    let redirect = true;
+    info.on('value', data => {
+      const response = data.val();
+      if (!response) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+        redirect = false;
+      } else {
+        const { isActive, lastUpdate, counter } = data.val();
+        dispatch(setJournalCount(counter));
+        const currentTime = Date.now();
+        // check if Daily Journal is Active or not
+        if (!isActive && redirect) {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+          redirect = false;
+        } // check if second time in same day(less than 14 hours) or not
+        else if (currentTime - lastUpdate < 50400000 && redirect) {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
+          redirect = false;
+        } // check if user write journal daily(less than 30 hours) or not
+        else if (currentTime - lastUpdate < 108000000 && redirect) {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
+          redirect = false;
+        } // check if user didn't write journal within 30 hours
+        else if (currentTime - lastUpdate > 108000000 && redirect) {
+          dispatch(NavigationActions.navigate({ routeName: 'JournalFailure' }));
+          redirect = false;
+        }
       }
     });
   },
   goToEarlyMorning: () => {
     dispatch(NavigationActions.navigate({ routeName: 'EarlyMorning' }));
   },
+  // setJournalCount: count => {
+  //   dispatch(setJournalCount(count));
+  // },
 });
 
 export default connect(
