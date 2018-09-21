@@ -13,15 +13,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Main extends Component {
+export default class MainScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '0',
+      user: '',
     };
   }
 
   componentWillMount() {
+    this.setState({ user: app.auth().currentUser.uid });
+  }
+
+  componentDidMount() {
     const db = app.database();
     const ref = db.ref('users');
     const user = ref.child(this.state.user);
@@ -30,8 +34,7 @@ export default class Main extends Component {
     const earlyMorning = habits.child('early_morning');
 
     // if the time is correct
-    // if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
-    if (moment().hour() === 6 && (moment().minute() >= 1 && moment().minute() <= 59)) {
+    if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
       // app.database().ref(`users/0/habits/early_morning/`);
       earlyMorning.on('value', data => {
         const result = data.toJSON();
@@ -47,9 +50,6 @@ export default class Main extends Component {
           }
         } else {
           // add 300 points
-          // app;
-          // .database()
-          // .ref(`users/0/achievements`)
           achievements
             .push({ type: 'plus', date: Date.now(), points: 300 })
             .then(() => {
@@ -63,9 +63,6 @@ export default class Main extends Component {
       });
       // else if the time is wrong
     } else {
-      // app
-      //   .database()
-      //   .ref(`users/0/habits/early_morning/`)
       earlyMorning.on('value', data => {
         const result = data.toJSON();
         const date = result.clickDate !== 0 ? moment(result.clickDate) : 0;
@@ -76,8 +73,6 @@ export default class Main extends Component {
           // if a day did not pass without clicking
           if (date !== 0 && diff.days() >= 1) {
             // app
-            //   .database()
-            //   .ref(`users/0/habits/early_morning/`)
             earlyMorning.update({
               times: 0,
               startDate: '',
@@ -87,9 +82,6 @@ export default class Main extends Component {
             });
 
             // remove 100 points
-            // app
-            //   .database()
-            //   .ref(`users/0/achievements`)
             achievements
               .push({ type: 'minus', date: Date.now(), points: 100 })
               .then(() => {
@@ -105,9 +97,6 @@ export default class Main extends Component {
           }
         } else {
           // add 300 points
-          // app
-          //   .database()
-          //   .ref(`users/0/achievements`)
           achievements
             .push({ type: 'plus', date: Date.now(), points: 300 })
             .then(() => {

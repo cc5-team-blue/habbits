@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Text, Image, View, StatusBar } from 'react-native';
+import { Text, Image, View, StatusBar, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { app } from '../../../../db';
+
+// import ExitButton from './ExitButton';
 import styles from '../styles/styleForWrongTime';
 import RabbitImg from '../images/rabbit.png';
 
@@ -9,38 +12,49 @@ export default class WrongTime extends Component {
     super(props);
     this.state = {
       user: '0',
-      active: false,
       times: 0,
     };
   }
 
   componentDidMount() {
+    const uid = app.auth().currentUser.uid;
+    this.setState({ user: uid });
+
     const db = app.database();
     const ref = db.ref('users');
     const user = ref.child(this.state.user);
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
-    // app
-    //   .database()
-    //   .ref(`users/${this.state.user}/habits/early_morning/`)
     earlyMorning.on('value', data => {
       const result = data.toJSON();
-      this.setState({ active: result.active, times: result.times });
+      this.setState({ times: result.times });
     });
   }
 
   componentWillUnmount() {
-    this.setState({ user: 0, active: false, times: 0 });
+    this.setState({ user: 0, times: 0 });
   }
 
   handleClick = () => {
-    console.log('Clicked');
+    this.props.navigation.navigate('Main');
   };
 
   render() {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
+        <View
+          style={{
+            paddingBottom: 10,
+            marginTop: 50,
+            paddingRight: 27,
+            alignItems: 'flex-end',
+          }}
+        >
+          <TouchableOpacity onPress={this.handleClick}>
+            <Icon color="white" name="times" size={24} />
+          </TouchableOpacity>
+        </View>
         <View style={styles.headerWrapper}>
           <Text style={styles.header}>Early Start</Text>
         </View>
