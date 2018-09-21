@@ -23,21 +23,6 @@ class Loading extends Component {
     };
   }
 
-  componentWillMount = async () => {
-    const db = app.database();
-    const ref = db.ref('users');
-    const user = ref.child(this.state.uid);
-    const habits = user.child('habits');
-    const earlyMorning = habits.child('early_morning');
-
-    await earlyMorning.on('value', data => {
-      // const result = data.toJSON();
-      if (!data.exists()) {
-        earlyMorning.set({ tutorial: true });
-      }
-    });
-  };
-
   componentDidMount = () => {
     const db = app.database();
     const ref = db.ref('users');
