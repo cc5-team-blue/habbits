@@ -26,13 +26,14 @@
     "dev": "REACT_DEBUGGER=\"unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||\" yarn start",
     "start": "react-native start",
     "android": "react-native run-android",
+    "android-dev": "adb reverse tcp:8081 tcp:8081 && react-native run-android",
     "ios": "react-native run-ios",
     "iosPlus": "react-native run-ios --simulator='iPhone 8 Plus' ",
     "test": "jest",
     "flow": "./node_modules/.bin/flow",
     "clear": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-*",
     "clearIos": "cd ios && rm -rf Pods && pod update && pod install && cd ../",
-    "clearAndroid": "cd android && ./gradrew clean && cd ../",
+    "clearAndroid": "cd android/ && ./gradlew clean && cd ../",
     "clearNode": "rm -rf node_modules/ && yarn"
   },
   "jest": {
