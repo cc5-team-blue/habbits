@@ -231,13 +231,17 @@ const mapDispatchToProps = dispatch => ({
     info.on('value', data => {
       const { isActive, lastUpdate } = data.val();
       const currentTime = Date.now();
+      // check if Daily Journal is Active or not
       if (!isActive) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
-      } else if (currentTime - lastUpdate < 50400000) {
+      } // check if second time in same day(less than 14 hours) or not
+      else if (currentTime - lastUpdate < 50400000) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
-      } else if (currentTime - lastUpdate < 108000000) {
+      } // check if user write journal daily(less than 30 hours) or not
+      else if (currentTime - lastUpdate < 108000000) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
-      } else if (currentTime - lastUpdate > 108000000) {
+      } // check if user didn't write journal within 30 hours
+      else if (currentTime - lastUpdate > 108000000) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalFailure' }));
       }
     });
