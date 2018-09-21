@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForBigSuccess';
 
-export default class BigSuccess extends Component {
+class BigSuccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
       times: 0,
     };
   }
 
-  componentDidMount() {
-    this.setState({ user: app.auth().currentUser.uid });
-    app
+  async componentDidMount() {
+    const { uid } = this.props;
+    await app
       .database()
-      .ref(`users/${this.state.user}/habits/early_morning/`)
+      .ref(`users/${uid}/habits/early_morning/`)
       .on('value', data => {
         const result = data.toJSON();
         this.setState({ times: result.times });
@@ -25,7 +25,7 @@ export default class BigSuccess extends Component {
   }
 
   handleClick = () => {
-    console.log('Clicked');
+    this.props.navigation.navigate('Loading');
   };
 
   render() {
@@ -53,3 +53,12 @@ export default class BigSuccess extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(BigSuccess);

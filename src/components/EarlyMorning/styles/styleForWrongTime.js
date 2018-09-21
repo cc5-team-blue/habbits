@@ -13,17 +13,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF8DC',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: heightRes(14.5),
+    // marginTop: heightRes(14.5),
     marginBottom: heightRes(21.5),
     marginLeft: widthRes(25),
   },
+  headlineWrapper: {
+    // flex: 1
+    flexDirection: 'row',
+  },
   header: {
-    width: widthRes(199),
-    height: heightRes(45.5),
+    flex: 10,
+    paddingTop: heightRes(60),
+    paddingLeft: widthRes(30),
+    paddingBottom: heightRes(10),
+    // width: 325,
+    // height: 45.5,
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',
+    fontStyle: 'normal',
     color: '#ffffff',
+    alignSelf: 'flex-start',
+    bottom: 0,
   },
   headlineText: {
     width: widthRes(235.5),
@@ -33,7 +44,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#555291',
-    // marginTop: 30,
   },
   challengeText: {
     width: '100%',
@@ -64,12 +74,6 @@ const styles = StyleSheet.create({
   img: {
     width: widthRes(204.5),
     height: heightRes(204.5),
-  },
-  headerWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    marginLeft: widthRes(25),
   },
 });
 

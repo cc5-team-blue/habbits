@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 import { app } from '../../../../db';
 
 const moment = require('moment');
@@ -13,22 +14,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class MainScreen extends Component {
+class MainScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: '',
-    };
   }
 
-  componentWillMount() {
-    this.setState({ user: app.auth().currentUser.uid });
-  }
-
-  componentDidMount() {
+  componentDidMount = () => {
     const db = app.database();
     const ref = db.ref('users');
-    const user = ref.child(this.state.user);
+    const { uid } = this.props;
+    const user = ref.child(uid);
     const achievements = user.child('achievements');
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
@@ -109,7 +104,7 @@ export default class MainScreen extends Component {
         }
       });
     }
-  }
+  };
 
   render() {
     return (
@@ -120,3 +115,12 @@ export default class MainScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(MainScreen);

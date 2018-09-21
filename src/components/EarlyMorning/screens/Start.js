@@ -1,47 +1,41 @@
 import React, { Component } from 'react';
 import { Text, StatusBar, View, Image } from 'react-native';
+import { connect } from 'react-redux';
 import { app } from '../../../../db';
+import Exit from '../../ExitButton';
 import coffeeImg from '../images/coffee.png';
 import styles from '../styles/styleForStart';
 
-export default class Start extends Component {
+class Start extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: '',
-    };
-  }
-
-  componentDidMount() {
-    app.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user: user.uid });
-      }
-    });
+    this.state = { uid: this.props.uid };
   }
 
   handleClick = () => {
-    if (this.state.user !== '') {
-      const db = app.database();
-      const ref = db.ref('users');
-      const child = ref.child(`${this.state.user}/habits/early_morning`);
-      child
-        .update({
-          tutorial: false,
-          active: true,
-          startDate: Date.now(),
-          clickDate: 0,
-          times: 0,
-        })
-        .then(this.props.navigation.navigate('MainScreen'));
-    }
+    const db = app.database();
+    const ref = db.ref('users');
+    const user = ref.child(this.state.uid);
+    const habits = user.child('habits');
+    const earlyMorning = habits.child('early_morning');
+    earlyMorning
+      .update({
+        tutorial: false,
+        startDate: Date.now(),
+        clickDate: 0,
+        times: 0,
+      })
+      .then(this.props.navigation.navigate('MainScreen'));
   };
 
   render() {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Text style={styles.header}>Early Start</Text>
+        <View style={styles.headlineWrapper}>
+          <Text style={styles.header}>Early Start</Text>
+          <Exit />
+        </View>
         <View style={styles.wrapper}>
           <Image source={coffeeImg} style={styles.img} />
           <Text style={styles.title}>Description:</Text>
@@ -64,3 +58,12 @@ export default class Start extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Start);
