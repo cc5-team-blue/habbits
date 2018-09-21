@@ -49,7 +49,7 @@ const RootNavigator = createDrawerNavigator(
     contentComponent: Sidemenu,
     drawerPosition: 'left',
     drawerWidth: Math.min(height, width) * 0.6,
-    drawerBackgroundColor: 'white',
+    drawerBackgroundColor: '#EB5E65',
   }
 );
 

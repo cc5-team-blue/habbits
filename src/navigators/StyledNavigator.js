@@ -3,13 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, ScrollView, View, Text, Image } from 'react-native';
 import journalIcon from '../images/journalImage.png';
+import habbitLogo from '../images/habbitLogo.png';
+import logout from '../images/logout.png';
 import style from '../css/styleForNav';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 class SideMenu extends Component {
   navigateToScreen = route => () => {
@@ -20,25 +16,31 @@ class SideMenu extends Component {
   };
 
   render() {
-    const { name } = this.props;
+    const { name, points } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={style.container}>
         <ScrollView>
           <View style={style.wrapper}>
+            <View style={style.logoWrapper}>
+              <Image style={style.habbitLogo} source={habbitLogo} />
+              <Text style={style.habbitText}>Habbits</Text>
+            </View>
             <Text style={style.header}>{name}</Text>
+            <Text style={style.points}>{points} Points</Text>
             <View style={style.navSectionStyle}>
               <Text style={style.navItemStyle} onPress={this.navigateToScreen('Analytics')}>
-                <Image style={style.icon} source={journalIcon} />
-                Journal Entries
+                <Image style={style.journalIcon} source={journalIcon} />
+                <Text style={style.navText}> Journal Entries</Text>
               </Text>
               <Text style={style.navItemStyle} onPress={this.navigateToScreen('Analytics')}>
-                Log Out
+                <Image style={style.logoutIcon} source={logout} />
+                <Text style={style.navText}> Log Out</Text>
               </Text>
             </View>
           </View>
         </ScrollView>
         <View style={style.footerContainer}>
-          <Text>Built with ♥ in Tokyo</Text>
+          <Text style={{ color: 'white' }}>Built with ♥ in Tokyo</Text>
         </View>
       </View>
     );
@@ -57,6 +59,7 @@ class SideMenu extends Component {
 const mapStateToProps = state => ({
   name: state.red.name,
   uid: state.red.uid,
+  points: 0,
 });
 
 const mapDispatchToProps = dispatch => ({});
