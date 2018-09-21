@@ -134,6 +134,7 @@ class Main extends Component {
       goToEarlyMorning,
       uid,
       name,
+      redirect,
     } = this.props;
     return (
       <View style={styles.container}>
@@ -207,6 +208,7 @@ const mapStateToProps = state => ({
   achievements: ['streak', 'none', 'none', 'none', 'none', 'none', 'none', 'none'],
   name: state.red.name,
   uid: state.red.uid,
+  redirect: false,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -228,21 +230,26 @@ const mapDispatchToProps = dispatch => ({
   goToJournal: async uid => {
     const path = `users/${uid}/habits/JournalHabbit/info`;
     const info = await app.database().ref(path);
+    let redirect = true;
     info.on('value', data => {
       const { isActive, lastUpdate } = data.val();
       const currentTime = Date.now();
       // check if Daily Journal is Active or not
-      if (!isActive) {
+      if (!isActive && redirect) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+        redirect = false;
       } // check if second time in same day(less than 14 hours) or not
-      else if (currentTime - lastUpdate < 50400000) {
+      else if (currentTime - lastUpdate < 50400000 && redirect) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
+        redirect = false;
       } // check if user write journal daily(less than 30 hours) or not
-      else if (currentTime - lastUpdate < 108000000) {
+      else if (currentTime - lastUpdate < 108000000 && redirect) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
+        redirect = false;
       } // check if user didn't write journal within 30 hours
-      else if (currentTime - lastUpdate > 108000000) {
+      else if (currentTime - lastUpdate > 108000000 && redirect) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalFailure' }));
+        redirect = false;
       }
     });
   },
