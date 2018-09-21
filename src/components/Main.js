@@ -139,7 +139,7 @@ class Main extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {name}</Text>{' '}
+        <Text style={styles.headline}>Good Evening {name}</Text>
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>
@@ -148,43 +148,43 @@ class Main extends Component {
                   onTouchStart={clickHabbit}
                   style={[styles.habbitWrapper, styles.left, { backgroundColor: '#eb5e65' }]}
                 >
-                  <Image style={styles.sleepHabbitImage} source={sleepHabbitImg} />{' '}
-                </View>{' '}
+                  <Image style={styles.sleepHabbitImage} source={sleepHabbitImg} />
+                </View>
                 <View onTouchStart={clickHabbit} style={[styles.habbitTextBar, styles.left]}>
-                  <Text style={styles.habbitText}>Good Sleep</Text>{' '}
-                </View>{' '}
+                  <Text style={styles.habbitText}>Good Sleep</Text>
+                </View>
               </View>
               <View style={styles.item} onTouchStart={goToEarlyMorning}>
                 <View style={[styles.habbitWrapper, styles.right]}>
-                  <Image style={styles.earlyStartImg} source={earlyStartImg} />{' '}
-                </View>{' '}
+                  <Image style={styles.earlyStartImg} source={earlyStartImg} />
+                </View>
                 <View style={[styles.habbitTextBar, styles.right]}>
-                  <Text style={styles.habbitText}>Early Start</Text>{' '}
-                </View>{' '}
+                  <Text style={styles.habbitText}>Early Start</Text>
+                </View>
               </View>
             </View>
             <View style={[styles.row, { paddingTop: 15 }]}>
               <View style={styles.item} onTouchStart={() => goToJournal(uid)}>
                 <View style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}>
-                  <Image style={styles.journalHabbitImage} source={journalImage} />{' '}
-                </View>{' '}
+                  <Image style={styles.journalHabbitImage} source={journalImage} />
+                </View>
                 <View style={[styles.habbitTextBar, styles.left]}>
-                  <Text style={styles.habbitText}>Daily Journal</Text>{' '}
-                </View>{' '}
+                  <Text style={styles.habbitText}>Daily Journal</Text>
+                </View>
               </View>
               <View style={styles.item}>
                 <View
                   onTouchStart={goToAnalytics}
                   style={[styles.habbitWrapper, styles.right, { backgroundColor: '#576371' }]}
                 >
-                  <Image style={styles.analyticsImage} source={analyticsImage} />{' '}
-                </View>{' '}
+                  <Image style={styles.analyticsImage} source={analyticsImage} />
+                </View>
                 <View
                   onTouchStart={goToAnalytics}
                   style={[styles.habbitTextBar, styles.right, { backgroundColor: '#6F829D' }]}
                 >
-                  <Text style={styles.habbitText}>Analytics</Text>{' '}
-                </View>{' '}
+                  <Text style={styles.habbitText}>Analytics</Text>
+                </View>
               </View>
             </View>
             <View style={styles.achievements}>
@@ -195,7 +195,7 @@ class Main extends Component {
                 ))}
               </View>
             </View>
-          </View>{' '}
+          </View>
         </ScrollView>
       </View>
     );

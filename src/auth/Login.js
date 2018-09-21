@@ -65,11 +65,9 @@ class Login extends React.Component {
               value={password}
             />
             <View style={styles.signupButton} onTouchStart={this.handleLogin}>
-              {' '}
               <Text style={styles.signupText}>SIGN IN</Text>
             </View>
             <View style={styles.switchSignIn} onTouchStart={() => navigation.navigate('SignUp')}>
-              {' '}
               <Text style={styles.switchSignInText}>
                 New here? <Text style={styles.bold}>Sign up!</Text>
               </Text>

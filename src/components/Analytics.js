@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, ScrollView, StatusBar } from 'react-native';
+import { Text, View, Image, ScrollView, StatusBar, ActivityIndicator } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { app } from '../../db';
 import achievementImg from '../images/achievement.png';
@@ -17,7 +17,8 @@ class Analytics extends Component {
     super();
     this.state = {
       achievements: [],
-      chart: [],
+      // To make it work in adroid, we need to set initial value in chart
+      chart: [0, 1, 2, 3, 17],
       points: 0,
       count: 0,
     };
@@ -65,6 +66,15 @@ class Analytics extends Component {
         },
       ],
     };
+    if (JSON.stringify(chart) === JSON.stringify([0, 1, 2, 3, 17])) {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <ActivityIndicator size="large" />
+        </View>
+      );
+    }
+
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -79,6 +89,7 @@ class Analytics extends Component {
             width={widthRes(335)}
             height={heightRes(180)}
             chartConfig={chartConfig}
+            xAccessor={({ index }) => index}
             bezier
           />
           <View style={styles.valuesWrapper}>
@@ -91,7 +102,7 @@ class Analytics extends Component {
                       <Image source={arrowUpImg} style={styles.arrowUpImg} />
                     </View>
                     <Text style={[styles.text, { flex: 2 }]}>
-                      {moment(item.val.date).format('MM/DD')}{' '}
+                      {moment(item.val.date).format('MM/DD')}
                     </Text>
                     <Text
                       style={[styles.text, styles.habbitDescription, styles.green, { flex: 4 }]}
@@ -111,7 +122,7 @@ class Analytics extends Component {
                       <Image source={arrowDownImg} style={styles.arrowDownImg} />
                     </View>
                     <Text style={[styles.text, { flex: 2 }]}>
-                      {moment(item.val.date).format('MM/DD')}{' '}
+                      {moment(item.val.date).format('MM/DD')}
                     </Text>
                     <Text style={[styles.text, styles.habbitDescription, styles.red, { flex: 4 }]}>
                       Good Sleep
