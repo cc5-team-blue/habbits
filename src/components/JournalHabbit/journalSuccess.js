@@ -3,11 +3,10 @@ import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-import { finishJournal } from '../../helper';
 import styles from '../../css/styleForJournal';
 import checkCircle from '../../images/check-circle.png';
 
-export const journalSuccess = ({ goToMain, uid }) => (
+export const journalSuccess = ({ goToMain, counter }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
     <View style={styles.innerContainer}>
@@ -21,10 +20,13 @@ export const journalSuccess = ({ goToMain, uid }) => (
         <Image style={styles.checkCircleImage} source={checkCircle} />
         <View>
           <Text style={[styles.successCommonText, styles.progressText]}>Challenge Progress:</Text>
-          <Text style={[styles.successCommonText, styles.progressStats]}>5/30</Text>
+          <Text style={[styles.successCommonText, styles.progressStats]}>
+            {counter}
+            /30
+          </Text>
         </View>
       </View>
-      <View onTouchStart={() => goToMain(uid)} style={styles.bottomImgButton}>
+      <View onTouchStart={goToMain} style={styles.bottomImgButton}>
         <Text style={styles.bottomButtonText}>Yay!</Text>
       </View>
     </View>
@@ -33,12 +35,11 @@ export const journalSuccess = ({ goToMain, uid }) => (
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  counter: state.red.journalCount,
 });
 
 const mapDispatchToProps = dispatch => ({
-  goToMain: uid => {
-    // For production: finishJournal() should be commentout, it's using for testing.
-    finishJournal(uid);
+  goToMain: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });
