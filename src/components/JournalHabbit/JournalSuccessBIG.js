@@ -27,6 +27,10 @@ export const journalSuccessBIG = ({ goToMain, uid }) => (
   </View>
 );
 
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
 const mapDispatchToProps = dispatch => ({
   goToMain: uid => {
     finishJournal(uid);
@@ -36,6 +40,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(journalSuccessBIG);
