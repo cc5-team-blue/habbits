@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { setMailAddress, updateConnectivity } from '../actions';
+import { updateConnectivity } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
 import analyticsImage from '../images/analyticsImage.png';
@@ -133,13 +133,13 @@ class Main extends Component {
       goToJournal,
       goToEarlyMorning,
       uid,
-      // name,
+      name,
     } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Drawer />
-        <Text style={styles.headline}>Good Evening {'Nour'}</Text>{' '}
+        <Text style={styles.headline}>Good Evening {name}</Text>{' '}
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>
@@ -216,10 +216,6 @@ const mapDispatchToProps = dispatch => ({
   goToAnalytics: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
   },
-  setMailToStore: () => {
-    const { currentUser } = app.auth();
-    dispatch(setMailAddress(currentUser.email));
-  },
 
   showAlert: (title, body) => {
     Alert.alert(title, body, [{ text: 'OK', onPress: () => console.log('OK Pressed') }], {
@@ -230,13 +226,19 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateConnectivity(newConnectionState));
   },
   goToJournal: async uid => {
-    const path = `users/${uid}/habits/JournalHabbit/isActive`;
-    const isActive = await app.database().ref(path);
-    isActive.on('value', data => {
-      if (data.val()) {
-        dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
-      } else {
+    const path = `users/${uid}/habits/JournalHabbit/info`;
+    const info = await app.database().ref(path);
+    info.on('value', data => {
+      const { isActive, lastUpdate } = data.val();
+      const currentTime = Date.now();
+      if (!isActive) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
+      } else if (currentTime - lastUpdate < 50400000) {
+        dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
+      } else if (currentTime - lastUpdate < 108000000) {
+        dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
+      } else if (currentTime - lastUpdate > 108000000) {
+        dispatch(NavigationActions.navigate({ routeName: 'JournalFailure' }));
       }
     });
   },
