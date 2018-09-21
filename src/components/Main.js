@@ -134,7 +134,6 @@ class Main extends Component {
       goToEarlyMorning,
       uid,
       name,
-      redirect,
     } = this.props;
     return (
       <View style={styles.container}>
