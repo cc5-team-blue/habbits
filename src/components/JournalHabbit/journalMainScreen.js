@@ -20,7 +20,7 @@ export class journalDescription extends Component {
   }
 
   render() {
-    const { goToJournalSuccess } = this.props;
+    const { goToJournalSuccess, uid } = this.props;
     const { grateful, til } = this.state;
 
     return (
@@ -86,7 +86,10 @@ export class journalDescription extends Component {
               />
             </View>
           </View>
-          <View onTouchStart={() => goToJournalSuccess(this.state)} style={styles.bottomImgButton}>
+          <View
+            onTouchStart={() => goToJournalSuccess(this.state, uid)}
+            style={styles.bottomImgButton}
+          >
             <Text style={styles.bottomButtonText}>Submit!</Text>
           </View>
         </View>
@@ -96,12 +99,13 @@ export class journalDescription extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentCounter: state.red.counter,
+  // currentCounter: state.red.counter,
+  uid: state.red.uid,
 });
 
 const mapDispatchToProps = dispatch => ({
-  goToJournalSuccess: state => {
-    firebaseInsert(state);
+  goToJournalSuccess: (state, uid) => {
+    firebaseInsert(state, uid);
     dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
   },
 });
