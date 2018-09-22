@@ -16,27 +16,21 @@ const styles = StyleSheet.create({
 });
 
 class Loading extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      uid: this.props.uid,
-    };
-  }
-
   componentDidMount = () => {
+    const { uid, navigation } = this.props;
     const db = app.database();
     const ref = db.ref('users');
-    const user = ref.child(this.state.uid);
+    const user = ref.child(uid);
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
 
     earlyMorning.on('value', data => {
       if (data.exists()) {
         const result = data.toJSON();
-        if (result.tutorial === true) {
-          this.props.navigation.navigate('Start');
+        if (result.tutorial) {
+          navigation.navigate('Start');
         } else {
-          this.props.navigation.navigate('MainScreen');
+          navigation.navigate('MainScreen');
         }
       } else {
         earlyMorning.set({ tutorial: true });

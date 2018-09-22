@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { app } from '../../../../db';
+import { saveTimesToStore } from '../../../actions/index';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForBigSuccess';
 
@@ -14,21 +15,24 @@ class BigSuccess extends Component {
   }
 
   async componentDidMount() {
-    const { uid } = this.props;
+    const { uid, updateClickTimes } = this.props;
     await app
       .database()
       .ref(`users/${uid}/habits/early_morning/`)
       .on('value', data => {
         const result = data.toJSON();
         this.setState({ times: result.times });
+        updateClickTimes(result.times);
       });
   }
 
   handleClick = () => {
-    this.props.navigation.navigate('Loading');
+    const { navigation } = this.props;
+    navigation.navigate('Loading');
   };
 
   render() {
+    const { times } = this.props;
     return (
       <View style={styles.realContainer}>
         <StatusBar barStyle="light-content" />
@@ -40,7 +44,7 @@ class BigSuccess extends Component {
             </View>
             <Image style={styles.happyRabbitImage} source={happyRabbit} />
             <Text style={styles.countText}>
-              {this.state.times}
+              {times}
               /5
             </Text>
             <Text style={styles.pointText}>You gained +300P</Text>
@@ -56,9 +60,16 @@ class BigSuccess extends Component {
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  times: state.red.earlyTimes,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateClickTimes: clickTime => {
+    dispatch(saveTimesToStore(clickTime));
+  },
 });
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(BigSuccess);

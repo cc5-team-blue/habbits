@@ -2,22 +2,20 @@ import React, { Component } from 'react';
 import { Text, StatusBar, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { app } from '../../../../db';
+import { saveTimesToStore } from '../../../actions/index';
 import Exit from '../../ExitButton';
 import coffeeImg from '../images/coffee.png';
 import styles from '../styles/styleForStart';
 
 class Start extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { uid: this.props.uid };
-  }
-
   handleClick = () => {
     const db = app.database();
     const ref = db.ref('users');
-    const user = ref.child(this.state.uid);
+    const { uid, updateClickTimes, navigation } = this.props;
+    const user = ref.child(uid);
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
+    updateClickTimes(0);
     earlyMorning
       .update({
         tutorial: false,
@@ -25,7 +23,7 @@ class Start extends Component {
         clickDate: 0,
         times: 0,
       })
-      .then(this.props.navigation.navigate('MainScreen'));
+      .then(navigation.navigate('MainScreen'));
   };
 
   render() {
@@ -63,7 +61,13 @@ const mapStateToProps = state => ({
   uid: state.red.uid,
 });
 
+const mapDispatchToProps = dispatch => ({
+  updateClickTimes: clickTime => {
+    dispatch(saveTimesToStore(clickTime));
+  },
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Start);

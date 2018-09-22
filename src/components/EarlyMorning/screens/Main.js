@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
+import { saveTimesToStore } from '../../../actions/index';
 import { app } from '../../../../db';
 
 const moment = require('moment');
@@ -15,17 +16,14 @@ const styles = StyleSheet.create({
 });
 
 class MainScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount = () => {
+    const { uid } = this.props;
     const db = app.database();
     const ref = db.ref('users');
-    const { uid } = this.props;
     const user = ref.child(uid);
     const achievements = user.child('achievements');
     const habits = user.child('habits');
+    // const totalPoints = user.child('totalPoints');
     const earlyMorning = habits.child('early_morning');
 
     // if the time is correct
@@ -45,6 +43,11 @@ class MainScreen extends Component {
           }
         } else {
           // add 300 points
+          user.on('value', data2 => {
+            const result2 = data2.toJSON();
+            const total = result2.totalPoints + 300;
+            user.set({ totalPoints: total });
+          });
           achievements
             .push({ type: 'plus', date: Date.now(), points: 300 })
             .then(() => {
@@ -76,6 +79,11 @@ class MainScreen extends Component {
             });
 
             // remove 100 points
+            user.on('value', data2 => {
+              const result2 = data2.toJSON();
+              const total = result2.totalPoints - 100;
+              user.set({ totalPoints: total });
+            });
             achievements
               .push({ type: 'minus', date: Date.now(), points: 100 })
               .then(() => {
@@ -91,6 +99,11 @@ class MainScreen extends Component {
           }
         } else {
           // add 300 points
+          user.on('value', data2 => {
+            const result2 = data2.toJSON();
+            const total = result2.totalPoints + 300;
+            user.set({ totalPoints: total });
+          });
           achievements
             .push({ type: 'plus', date: Date.now(), points: 300 })
             .then(() => {
@@ -117,9 +130,16 @@ class MainScreen extends Component {
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  times: state.red.earlyTimes,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateClickTimes: clickTime => {
+    dispatch(saveTimesToStore(clickTime));
+  },
 });
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(MainScreen);
