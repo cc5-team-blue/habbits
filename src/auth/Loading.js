@@ -28,7 +28,7 @@ class Loading extends Component {
   render() {
     return (
       <View style={styles.loading}>
-        <Text>Loading</Text>
+        <Text style={styles.loadingText}> Loading </Text>
         <ActivityIndicator size="large" />
       </View>
     );
