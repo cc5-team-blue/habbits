@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, ScrollView, StatusBar, ActivityIndicator } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { connect } from 'react-redux';
 import { app } from '../../db';
 import achievementImg from '../images/achievement.png';
 import arrowUpImg from '../images/arrow-up-circle.png';
@@ -25,17 +26,19 @@ class Analytics extends Component {
   }
 
   componentDidMount() {
+    const { uid } = this.props;
     const db = app.database();
-    const ref = db.ref('users/0/achievements');
+    const ref = db.ref(`users/${uid}/history`);
     const achievements = [];
     const chart = [];
     let points = 0;
-    ref.on('value', data => {
+    ref.once('value', data => {
       data.forEach(child => {
         const obj = {};
         obj.key = child.key;
         obj.val = child.val();
         achievements.push(obj);
+        const reversedList = achievements.reverse();
 
         if (child.val().type === 'plus') {
           points += child.val().points;
@@ -47,13 +50,13 @@ class Analytics extends Component {
           chart.push(Number(points));
         }
 
-        this.setState({ achievements, chart, points });
+        this.setState({ reversedList, chart, points });
       });
     });
   }
 
   render() {
-    const { chart, achievements } = this.state;
+    const { chart, reversedList } = this.state;
     const chartConfig = {
       backgroundGradientFrom: '#3B495B',
       backgroundGradientTo: '#3B495B',
@@ -93,7 +96,7 @@ class Analytics extends Component {
             bezier
           />
           <View style={styles.valuesWrapper}>
-            {achievements.map(item => {
+            {reversedList.map(item => {
               if (item.val.type === 'plus') {
                 return (
                   <View key={item.key} style={styles.row}>
@@ -107,7 +110,7 @@ class Analytics extends Component {
                     <Text
                       style={[styles.text, styles.habbitDescription, styles.green, { flex: 4 }]}
                     >
-                      Good Sleep
+                      {item.val.habbits}
                     </Text>
                     <Text style={[styles.plus, { flex: 1 }]}>+</Text>
                     <Text style={[styles.plus, { flex: 1 }]}>{item.val.points}</Text>
@@ -125,7 +128,7 @@ class Analytics extends Component {
                       {moment(item.val.date).format('MM/DD')}
                     </Text>
                     <Text style={[styles.text, styles.habbitDescription, styles.red, { flex: 4 }]}>
-                      Good Sleep
+                      {item.val.habbits}
                     </Text>
                     <Text style={[styles.minus, { flex: 1 }]}>−</Text>
                     <Text style={[styles.minus, { flex: 1 }]}>{item.val.points}</Text>
@@ -160,4 +163,14 @@ class Analytics extends Component {
   }
 }
 
-export default Analytics;
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+  name: state.red.name,
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Analytics);

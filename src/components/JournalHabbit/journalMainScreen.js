@@ -120,7 +120,7 @@ const mapDispatchToProps = dispatch => ({
     // save data to firebase
     firebaseInsert(state, uid);
     // write counter in redux state state.dayCounter
-    if (state.currentJournalCount === 30) {
+    if (state.currentJournalCount === 29) {
       dispatch(NavigationActions.navigate({ routeName: 'JournalSuccessBIG' }));
     } else {
       dispatch(setJournalCount(state.currentJournalCount + 1));
