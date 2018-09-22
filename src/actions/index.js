@@ -10,6 +10,7 @@ export const GET_JOURNAL_DATA = 'get journal data';
 export const SET_CURRENT_COUNTER = 'set current counter for timer.js';
 export const SAVE_NAME_TO_STORE = 'save user name to store';
 export const SAVE_UID_TO_STORE = 'save user uid to store';
+export const SAVE_TIMES_TO_STORE = 'save user click times to store';
 export const SET_JOURNAL_COUNT = 'set journal count to redux state';
 
 // Action creater
@@ -60,6 +61,11 @@ export const saveNameToStore = name => ({
 export const saveUidToStore = uid => ({
   type: SAVE_UID_TO_STORE,
   uid,
+});
+
+export const saveTimesToStore = clickTime => ({
+  type: SAVE_TIMES_TO_STORE,
+  clickTime,
 });
 
 export const setJournalCount = count => ({

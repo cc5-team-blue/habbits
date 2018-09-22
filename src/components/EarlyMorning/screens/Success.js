@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForSuccess';
 
-export default class Success extends Component {
+class Success extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
+      uid: this.props.uid,
       times: 0,
     };
   }
 
-  componentWillMount() {
-    this.setState({ user: app.auth().currentUser.uid });
-  }
+  async componentDidMount() {
+    const db = app.database();
+    const ref = db.ref('users');
+    const user = ref.child(this.state.uid);
+    const habits = user.child('habits');
+    const earlyMorning = habits.child('early_morning');
 
-  componentDidMount() {
-    app
-      .database()
-      .ref(`users/${this.state.user}/habits/early_morning/`)
-      .on('value', data => {
-        const result = data.toJSON();
-        this.setState({ active: result.active, times: result.times });
-      });
+    await earlyMorning.on('value', data => {
+      const result = data.toJSON();
+      this.setState({ times: result.times });
+    });
   }
 
   handleClick = () => {
@@ -56,3 +56,12 @@ export default class Success extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Success);

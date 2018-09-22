@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 import { app } from '../../../../db';
+import { saveTimesToStore } from '../../../actions/index';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForBigSuccess';
 
-export default class BigSuccess extends Component {
+class BigSuccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
       times: 0,
     };
   }
 
-  componentDidMount() {
-    this.setState({ user: app.auth().currentUser.uid });
-    app
+  async componentDidMount() {
+    const { uid, updateClickTimes } = this.props;
+    await app
       .database()
-      .ref(`users/${this.state.user}/habits/early_morning/`)
+      .ref(`users/${uid}/habits/early_morning/`)
       .on('value', data => {
         const result = data.toJSON();
         this.setState({ times: result.times });
+        updateClickTimes(result.times);
       });
   }
 
   handleClick = () => {
-    console.log('Clicked');
+    const { navigation } = this.props;
+    navigation.navigate('Loading');
   };
 
   render() {
+    const { times } = this.props;
     return (
       <View style={styles.realContainer}>
         <StatusBar barStyle="light-content" />
@@ -40,7 +44,7 @@ export default class BigSuccess extends Component {
             </View>
             <Image style={styles.happyRabbitImage} source={happyRabbit} />
             <Text style={styles.countText}>
-              {this.state.times}
+              {times}
               /5
             </Text>
             <Text style={styles.pointText}>You gained +300P</Text>
@@ -53,3 +57,19 @@ export default class BigSuccess extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+  times: state.red.earlyTimes,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateClickTimes: clickTime => {
+    dispatch(saveTimesToStore(clickTime));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BigSuccess);

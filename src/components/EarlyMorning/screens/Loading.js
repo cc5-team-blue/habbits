@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ActivityIndicator, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 import { app } from '../../../../db';
 
 const styles = StyleSheet.create({
@@ -14,34 +15,28 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Loading extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: '',
-    };
-  }
-
-  componentWillMount() {
-    this.setState({ user: app.auth().currentUser.uid });
-  }
-
-  componentDidMount() {
+class Loading extends Component {
+  componentDidMount = () => {
+    const { uid, navigation } = this.props;
     const db = app.database();
     const ref = db.ref('users');
-    const user = ref.child(this.state.user);
+    const user = ref.child(uid);
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
+
     earlyMorning.on('value', data => {
-      console.log(result);
-      const result = data.toJSON();
-      if (result.tutorial) {
-        this.props.navigation.navigate('Start');
+      if (data.exists()) {
+        const result = data.toJSON();
+        if (result.tutorial) {
+          navigation.navigate('Start');
+        } else {
+          navigation.navigate('MainScreen');
+        }
       } else {
-        this.props.navigation.navigate('MainScreen');
+        earlyMorning.set({ tutorial: true });
       }
     });
-  }
+  };
 
   render() {
     return (
@@ -52,3 +47,12 @@ export default class Loading extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Loading);

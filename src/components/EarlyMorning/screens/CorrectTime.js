@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import { Text, View, StatusBar, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { saveTimesToStore } from '../../../actions/index';
 import { app } from '../../../../db';
 import styles from '../styles/styleForCorrectTime';
 
-export default class CorrectTime extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: '',
-      times: 0,
-    };
-  }
+class CorrectTime extends Component {
+  async componentDidMount() {
+    const { uid, updateClickTimes } = this.props;
+    const db = app.database();
+    const ref = db.ref('users');
+    const user = ref.child(uid);
+    const habits = user.child('habits');
+    const earlyMorning = habits.child('early_morning');
 
-  componentDidMount() {
-    this.setState({ user: app.auth().currentUser.uid });
-
-    app
-      .database()
-      .ref(`users/${this.state.user}/habits/early_morning/`)
-      .on('value', data => {
-        const result = data.toJSON();
-        this.setState({
-          times: result.times,
-        });
-      });
+    await earlyMorning.on('value', data => {
+      const result = data.toJSON();
+      updateClickTimes(result.times);
+    });
   }
 
   handleClick = () => {
-    app
-      .database()
-      .ref(`users/${this.state.user}/habits/early_morning/`)
-      .update({ times: this.state.times + 1, clickDate: Date.now() });
-    this.props.navigation.navigate('Success');
+    const { uid, times, updateClickTimes, navigation } = this.props;
+    const db = app.database();
+    const ref = db.ref('users');
+    const user = ref.child(uid);
+    const habits = user.child('habits');
+    const earlyMorning = habits.child('early_morning');
+    earlyMorning.update({ times: times + 1, clickDate: Date.now() });
+    const newTimes = times + 1;
+    updateClickTimes(newTimes);
+    navigation.navigate('Success');
   };
 
   render() {
@@ -53,3 +52,19 @@ export default class CorrectTime extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  uid: state.red.uid,
+  times: state.red.earlyTimes,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateClickTimes: clickTime => {
+    dispatch(saveTimesToStore(clickTime));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CorrectTime);

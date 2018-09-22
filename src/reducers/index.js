@@ -18,6 +18,7 @@ import {
   SET_CURRENT_COUNTER,
   SAVE_NAME_TO_STORE,
   SAVE_UID_TO_STORE,
+  SAVE_TIMES_TO_STORE,
   SET_JOURNAL_COUNT,
 } from '../actions';
 
@@ -35,6 +36,8 @@ const initialState = {
   isConnected: true,
   timerDuration: 0,
   journalData: false,
+  mailAddress: undefined,
+  earlyTimes: 0,
   journalCount: 0,
 };
 
@@ -117,6 +120,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         uid: action.uid,
+      };
+    }
+    case SAVE_TIMES_TO_STORE: {
+      return {
+        ...state,
+        earlyTimes: action.clickTime,
       };
     }
     case SET_JOURNAL_COUNT: {
