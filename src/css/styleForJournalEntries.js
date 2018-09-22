@@ -7,12 +7,18 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   wrapper: {
-    marginTop: heightRes(58),
+    marginTop: heightRes(30),
     marginLeft: widthRes(25.5),
   },
+  headlineWrapper: {
+    // flex: 1,
+    flexDirection: 'row',
+  },
   headline: {
-    width: widthRes(240),
-    height: heightRes(45.5),
+    flex: 10,
+    paddingBottom: heightRes(7),
+    paddingTop: heightRes(30),
+    paddingLeft: widthRes(12),
     fontFamily: 'Futura',
     fontSize: 35,
     fontWeight: 'bold',

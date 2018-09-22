@@ -7,6 +7,7 @@ import _ from 'underscore';
 import star from '../../images/star.png';
 import styles from '../../css/styleForJournalEntries';
 import { app } from '../../../db';
+import ExitButton from '../ExitButton';
 
 class CountdownToOffline extends Component {
   constructor(props) {
@@ -39,7 +40,12 @@ class CountdownToOffline extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <View style={styles.wrapper}>
-          <Text style={styles.headline}>Your Journal</Text>
+          <View style={styles.headlineWrapper}>
+            <Text style={styles.headline}>Your Journal</Text>
+            <View style={{ "marginTop": -10}}>
+              <ExitButton />
+            </View>
+          </View>
           <View style={styles.rectangleContainer}>
             <ScrollView style={styles.entriesWrapper} showsVerticalScrollIndicator={false}>
               {entries.map(item => (
