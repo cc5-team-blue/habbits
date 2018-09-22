@@ -71,7 +71,7 @@ class SideMenu extends Component {
 const mapStateToProps = state => ({
   name: state.red.name,
   uid: state.red.uid,
-  points: 0,
+  points: state.red.totalPoints,
 });
 
 // const mapDispatchToProps = dispatch => ({});
