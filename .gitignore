@@ -95,3 +95,5 @@ Pods/
 
 # Root dir shouldn't have Xcode project
 /*.xcodeproj
+android/gradle.properties
+gradle.properties
