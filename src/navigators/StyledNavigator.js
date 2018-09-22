@@ -1,18 +1,22 @@
-import { DrawerItems, SafeAreaView, NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, View, Text, Image } from 'react-native';
+import { ScrollView, View, Text, Image } from 'react-native';
 import journalIcon from '../images/journalImage.png';
 import habbitLogo from '../images/habbitLogo.png';
-import logout from '../images/logout.png';
+import logoutImg from '../images/logout.png';
 import style from '../css/styleForNav';
+
+import { logout } from '../helper';
 
 class SideMenu extends Component {
   navigateToScreen = route => () => {
+    const { navigation } = this.props;
     const navigateAction = NavigationActions.navigate({
       routeName: route,
     });
-    this.props.navigation.dispatch(navigateAction);
+    logout();
+    navigation.dispatch(navigateAction);
   };
 
   render() {
@@ -33,7 +37,7 @@ class SideMenu extends Component {
                 <Text style={style.navText}> Journal Entries</Text>
               </Text>
               <Text style={style.navItemStyle} onPress={this.navigateToScreen('Analytics')}>
-                <Image style={style.logoutIcon} source={logout} />
+                <Image style={style.logoutIcon} source={logoutImg} />
                 <Text style={style.navText}> Log Out</Text>
               </Text>
             </View>
@@ -62,9 +66,9 @@ const mapStateToProps = state => ({
   points: 0,
 });
 
-const mapDispatchToProps = dispatch => ({});
+// const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(SideMenu);
