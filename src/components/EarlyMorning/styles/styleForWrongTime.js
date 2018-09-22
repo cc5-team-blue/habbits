@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     marginLeft: widthRes(25),
   },
   headlineWrapper: {
-    // flex: 1
+    flex: 1,
     flexDirection: 'row',
   },
   header: {
-    flex: 10,
+    flex: 1,
     paddingTop: heightRes(60),
     paddingLeft: widthRes(30),
     paddingBottom: heightRes(10),

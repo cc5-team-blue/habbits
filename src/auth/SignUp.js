@@ -47,6 +47,7 @@ class SignUp extends React.Component {
     if (loading) {
       return (
         <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
           <ActivityIndicator size="large" />
           <Text style={styles.loadingText}>Preparing you for a bright future...</Text>
         </View>

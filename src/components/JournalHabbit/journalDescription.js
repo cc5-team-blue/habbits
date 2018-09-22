@@ -6,11 +6,15 @@ import { NavigationActions } from 'react-navigation';
 import { setStartAndEndDate } from '../../helper';
 import styles from '../../css/styleForJournal';
 import journalImg from '../../images/journalImage.png';
+import Exit from '../ExitButton';
 
 export const journalDescription = ({ uid, goToJournalMain }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" />
-    <Text style={[styles.innerHeadlineContainer, styles.headline]}>Daily Journal</Text>
+    <View style={styles.headlineWrapper}>
+      <Text style={styles.header}>Daily Journal</Text>
+      <Exit />
+    </View>
     <View style={styles.innerContentsContainer}>
       <View style={styles.descriptionContainer}>
         <Image style={styles.journalImg} source={journalImg} />

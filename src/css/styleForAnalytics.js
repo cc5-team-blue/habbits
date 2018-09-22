@@ -122,6 +122,42 @@ const styles = StyleSheet.create({
     marginTop: heightRes(2.5),
     marginBottom: heightRes(2.5),
   },
+  loadingText: {
+    fontFamily: 'Futura',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  waitRabbit: {
+    marginTop: heightRes(48),
+    width: widthRes(215),
+    height: heightRes(215),
+  },
+  noData: {
+    marginTop: heightRes(48),
+    width: widthRes(250),
+    height: heightRes(31),
+    fontFamily: 'Futura',
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  waitText: {
+    marginTop: heightRes(37.5),
+    width: widthRes(250),
+    fontFamily: 'Futura',
+    fontSize: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#ffffff',
+  },
+  waitWrapper: {
+    flex: 7,
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
