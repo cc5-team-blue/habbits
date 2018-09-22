@@ -3,6 +3,10 @@ import { widthRes, heightRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   // Common style
+  headlineWrapper: {
+    // flex: 1,
+    flexDirection: 'row',
+  },
   outerContainer: {
     height: '100%',
     backgroundColor: '#3b495b',
@@ -276,6 +280,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgba(59, 73, 91, 0.68)',
     marginBottom: '5%',
+  },
+  header: {
+    flex: 10,
+    paddingTop: heightRes(60),
+    paddingLeft: widthRes(22),
+    paddingBottom: heightRes(10),
+    fontFamily: 'Futura',
+    fontSize: 35,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    color: '#ffffff',
+    alignSelf: 'flex-start',
+    bottom: 0,
   },
 });
 

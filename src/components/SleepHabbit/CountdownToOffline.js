@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, NetInfo } from 'react-native';
+import { Text, View, NetInfo, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
@@ -69,6 +69,7 @@ class CountdownToOffline extends Component {
     const { offlineSeconds } = this.props;
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <View style={styles.headlineWrapper}>
           <Text style={styles.headline}>Sleep Timer</Text>
           <Exit />

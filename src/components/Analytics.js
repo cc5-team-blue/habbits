@@ -10,6 +10,8 @@ import starImg from '../images/star-circle.png';
 import styles from '../css/styleForAnalytics';
 import Exit from './ExitButton';
 import { widthRes, heightRes } from '../css/responsiveFunctions';
+import loadStyles from '../css/styleForAuth';
+import timeRabbit from '../images/sadRabbit.png';
 
 const moment = require('moment');
 
@@ -56,7 +58,7 @@ class Analytics extends Component {
   }
 
   render() {
-    const { chart, reversedList } = this.state;
+    const { chart, reversedList, achievements } = this.state;
     const chartConfig = {
       backgroundGradientFrom: '#3B495B',
       backgroundGradientTo: '#3B495B',
@@ -71,9 +73,28 @@ class Analytics extends Component {
     };
     if (JSON.stringify(chart) === JSON.stringify([0, 0, 0, 0, 0])) {
       return (
-        <View style={styles.container}>
+        <View style={loadStyles.loading}>
           <StatusBar barStyle="light-content" />
           <ActivityIndicator size="large" />
+          <Text style={loadStyles.loadingText}>Getting fresh data...</Text>
+        </View>
+      );
+    }
+
+    console.log(achievements);
+    if (achievements.length === 0) {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <View style={styles.headlineWrapper}>
+            <Text style={styles.headline}>Analytics</Text>
+            <Exit />
+          </View>
+          <View style={styles.waitWrapper}>
+            <Image source={timeRabbit} style={styles.waitRabbit} />
+            <Text style={styles.noData}>No data yet.</Text>
+            <Text style={styles.waitText}>Come back again after you finished a habbit.</Text>
+          </View>
         </View>
       );
     }
