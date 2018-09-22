@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   warningText: {
     marginTop: heightRes(40.5),
     width: widthRes(235.5),
-    height: heightRes(120),
     fontFamily: 'Futura',
     fontSize: 18,
     fontWeight: 'bold',
@@ -65,6 +64,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#555291',
+  },
+  minusText: {
+    marginTop: heightRes(15),
+    width: widthRes(235.5),
+    fontFamily: 'Futura',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#f9fada',
   },
 });
 

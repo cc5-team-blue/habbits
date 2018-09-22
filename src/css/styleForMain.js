@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3B495B',
   },
   headline: {
-    paddingTop: heightRes(55.5),
+    paddingTop: heightRes(75.5),
     paddingLeft: widthRes(25),
     width: widthRes(308),
     fontFamily: 'Futura',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   wrapper: {
-    marginTop: heightRes(20),
+    marginTop: heightRes(30),
     alignItems: 'center',
     marginLeft: widthRes(24),
     marginRight: widthRes(24),
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   achievements: {
-    paddingTop: '4%',
+    paddingTop: '8%',
     width: '100%',
   },
   achievementsText: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
-    marginBottom: heightRes(20),
+    marginBottom: heightRes(10),
   },
   achievementsIcon: {
     marginTop: heightRes(15),

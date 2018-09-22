@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, NetInfo } from 'react-native';
+import { StyleSheet, View, Text, NetInfo, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import PercentageCircle from 'react-native-percentage-circle';
 import { NavigationActions } from 'react-navigation';
@@ -24,6 +24,25 @@ const styles = StyleSheet.create({
     color: '#fff',
     transform: [{ rotate: '180deg' }],
   },
+  timerForAndroid: {
+    fontFamily: 'Futura',
+    fontSize: 48,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#fff',
+    transform: [{ rotate: '180deg' }],
+  },
+  timerForseconds: {
+    fontFamily: 'Futura',
+    fontSize: 33,
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    letterSpacing: 0,
+    color: '#fff',
+    opacity: 0.5,
+    transform: [{ rotate: '180deg' }],
+  },
 });
 
 export class Timer extends Component {
@@ -38,7 +57,7 @@ export class Timer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { goToYay, goToOfflineRabbit, isConnected } = this.props;
+    const { goToYay, goToOfflineRabbit, isConnected, goToFailureMinus } = this.props;
     // eslint-disable-next-line
     if (nextProps.currentCounter < 0) {
       goToYay();
@@ -48,7 +67,7 @@ export class Timer extends Component {
       return false;
     }
     if (nextProps.isConnected === true) {
-      goToOfflineRabbit();
+      goToFailureMinus();
     }
     return true;
   }
@@ -70,17 +89,30 @@ export class Timer extends Component {
     // const minutes = (currentCounter / (1000 * 60)) % 60;
     // const hours = (currentCounter / (1000 * 60 * 60)) % 24;
     let timeFormatted;
+    let secondsFormatted;
     console.log(currentCounter);
     if (currentCounter > 3599999) {
       timeFormatted = moment(currentCounter)
         .utc()
         .format('hh:mm');
+      secondsFormatted = moment(currentCounter)
+        .utc()
+        .format('ss');
     } else {
       timeFormatted = moment(currentCounter)
         .utc()
         .format('mm:ss');
     }
     // const time = currentCounter.format('h:mm:ss');
+
+    if (Platform.OS === 'android') {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.timerForseconds}> {secondsFormatted || ''}s</Text>
+          <Text style={styles.timerForAndroid}> {timeFormatted} </Text>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <PercentageCircle
@@ -126,6 +158,9 @@ const mapDispatchToProps = dispatch => ({
   displayDifference: async () => {
     const newCounter = await getDifference();
     dispatch(setCurrentCounter(newCounter));
+  },
+  goToFailureMinus: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'FailureMinus' }));
   },
 });
 

@@ -7,11 +7,11 @@ export const IS_CONNECTED_CHANGE = 'is connected change';
 export const RESETOFFLINECOUNTDOWN = 'reset offline countdown';
 export const SET_END_TIME = 'set end time';
 export const GET_JOURNAL_DATA = 'get journal data';
-export const SET_EMAIL_ADDRESS = 'set email address';
 export const SET_CURRENT_COUNTER = 'set current counter for timer.js';
 export const SAVE_NAME_TO_STORE = 'save user name to store';
 export const SAVE_UID_TO_STORE = 'save user uid to store';
 export const SAVE_TIMES_TO_STORE = 'save user click times to store';
+export const SET_JOURNAL_COUNT = 'set journal count to redux state';
 
 // Action creater
 export const changeInterval = data => ({
@@ -48,11 +48,6 @@ export const setEndTime = endTime => ({
   endTime,
 });
 
-export const setMailAddress = email => ({
-  type: SET_EMAIL_ADDRESS,
-  email,
-});
-
 export const setCurrentCounter = counter => ({
   type: SET_CURRENT_COUNTER,
   counter,
@@ -71,4 +66,9 @@ export const saveUidToStore = uid => ({
 export const saveTimesToStore = clickTime => ({
   type: SAVE_TIMES_TO_STORE,
   clickTime,
+});
+
+export const setJournalCount = count => ({
+  type: SET_JOURNAL_COUNT,
+  count,
 });

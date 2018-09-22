@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     color: '#7a8185',
   },
   checkCircleImage: {
-    width: widthRes(78.5),
+    width: widthRes(80),
     height: heightRes(78.5),
     marginTop: '25%',
     marginBottom: '25%',

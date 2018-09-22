@@ -26,14 +26,11 @@ class SignUp extends React.Component {
       await saveName(firstName);
       await saveUid(returnFromFB.user.uid);
       setSignupDataToLS(firstName, returnFromFB.user.uid);
-      await app
-        .database()
-        .ref(`users/${returnFromFB.user.uid}/name`)
-        .update({ name: firstName });
-      await app
-        .database()
-        .ref(`users/${returnFromFB.user.uid}/`)
-        .update({ totalPoints: 0 });
+      const userNamePath = `users/${returnFromFB.user.uid}/name`;
+      const userRootPath = `users/${returnFromFB.user.uid}`;
+      const firebaseDB = await app.database();
+      await firebaseDB.ref(userNamePath).update({ name: firstName });
+      await firebaseDB.ref(userRootPath).update({ totalPoints: 0 });
       getItemFromLS();
       navigation.navigate('Main');
     } catch (err) {

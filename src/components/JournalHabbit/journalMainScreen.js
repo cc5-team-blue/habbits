@@ -8,19 +8,31 @@ import styles from '../../css/styleForJournal';
 import { firebaseInsert } from '../../helper';
 import emptyStar from '../../images/emptyStar.png';
 import fullStar from '../../images/fullStar.png';
+import { app } from '../../../db';
+import { setJournalCount } from '../../actions';
 
-export class journalDescription extends Component {
+export class JournalMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
       grateful: '',
       til: '',
       starRate: '',
+      currentJournalCount: 0,
     };
   }
 
+  async componentDidMount() {
+    const { uid } = this.props;
+    const path = `users/${uid}/habits/JournalHabbit/info/counter`;
+    const count = await app.database().ref(path);
+    count.on('value', data => {
+      this.setState({ currentJournalCount: data.val() });
+    });
+  }
+
   render() {
-    const { goToJournalSuccess, uid } = this.props;
+    const { goToJournalSuccess, uid, name } = this.props;
     const { grateful, til } = this.state;
 
     return (
@@ -34,7 +46,7 @@ export class journalDescription extends Component {
               styles.mainItemPosition,
             ]}
           >
-            <Text style={styles.journalMainHeadline}>Hi Nour, how was your day?</Text>
+            <Text style={styles.journalMainHeadline}>Hi {name}, how was your day?</Text>
             <View>
               <Text style={styles.journalMainText}>
                 One thing you&#039;re <Text style={styles.bold}>grateful</Text> for:
@@ -99,18 +111,25 @@ export class journalDescription extends Component {
 }
 
 const mapStateToProps = state => ({
-  // currentCounter: state.red.counter,
   uid: state.red.uid,
+  name: state.red.name,
 });
 
 const mapDispatchToProps = dispatch => ({
   goToJournalSuccess: (state, uid) => {
+    // save data to firebase
     firebaseInsert(state, uid);
-    dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
+    // write counter in redux state state.dayCounter
+    if (state.currentJournalCount === 29) {
+      dispatch(NavigationActions.navigate({ routeName: 'JournalSuccessBIG' }));
+    } else {
+      dispatch(setJournalCount(state.currentJournalCount + 1));
+      dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
+    }
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(journalDescription);
+)(JournalMain);
