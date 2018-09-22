@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View, StatusBar } from 'react-native';
+import { Text, TextInput, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import { app } from '../../db';
@@ -15,12 +15,14 @@ class SignUp extends React.Component {
       email: '',
       password: '',
       errorMessage: null,
+      loading: false,
     };
   }
 
   handleSignUp = async () => {
-    const { firstName, email, password } = this.state;
+    const { firstName, email, password, loading } = this.state;
     const { navigation, saveName, saveUid } = this.props;
+    this.setState({ loading: true });
     try {
       const returnFromFB = await app.auth().createUserWithEmailAndPassword(email, password);
       await saveName(firstName);
@@ -39,8 +41,17 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { firstName, email, password, errorMessage } = this.state;
+    const { firstName, email, password, errorMessage, loading } = this.state;
     const { navigation } = this.props;
+
+    if (loading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
+          <Text style={styles.loadingText}>Preparing you for a bright future...</Text>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
