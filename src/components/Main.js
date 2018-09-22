@@ -229,7 +229,6 @@ const mapDispatchToProps = dispatch => ({
   goToJournal: async uid => {
     const path = `users/${uid}/habits/JournalHabbit/info`;
     const info = await app.database().ref(path);
-    // let redirect = true;
     info.once('value', data => {
       const response = data.val();
       if (!response) {
