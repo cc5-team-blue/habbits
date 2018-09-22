@@ -138,8 +138,10 @@ class Main extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <Drawer />
-        <Text style={styles.headline}>Good Evening {name}</Text>
+        <View style={{ marginTop: -10 }}>
+          <Drawer />
+          <Text style={styles.headline}>Good Evening {name}</Text>
+        </View>
         <ScrollView>
           <View style={styles.wrapper}>
             <View style={styles.row}>

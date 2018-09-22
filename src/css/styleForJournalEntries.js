@@ -85,6 +85,30 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#242733',
   },
+  emptyWrapper: {
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    alignContent: 'center',
+  },
+  emptyText: {
+    marginTop: heightRes(200),
+    width: widthRes(280),
+    fontFamily: 'Futura',
+    fontSize: 24,
+    fontWeight: '900',
+    textAlign: 'center',
+    color: '#242733',
+  },
+  emptySubText: {
+    marginTop: heightRes(20),
+    width: widthRes(280),
+    fontFamily: 'Futura',
+    fontSize: 14,
+    fontWeight: '900',
+    textAlign: 'center',
+    color: 'rgba(59, 73, 91, 0.68)',
+  },
 });
 
 export default styles;
