@@ -30,6 +30,10 @@ class SignUp extends React.Component {
         .database()
         .ref(`users/${returnFromFB.user.uid}/name`)
         .update({ name: firstName });
+      await app
+        .database()
+        .ref(`users/${returnFromFB.user.uid}/`)
+        .update({ totalPoints: 0 });
       getItemFromLS();
       navigation.navigate('Main');
     } catch (err) {
