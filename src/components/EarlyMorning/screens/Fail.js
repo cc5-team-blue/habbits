@@ -11,7 +11,7 @@ export default class Fail extends Component {
   render() {
     return (
       <View style={styles.realContainer}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <Text style={styles.headline}>Aww Snap!</Text>
         <View style={styles.rectangleContainer}>
           <Image style={styles.sadRabbitImage} source={rabbitImg} />

@@ -50,7 +50,7 @@ class Login extends React.Component {
     if (loading) {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content" translucent />
           <ActivityIndicator size="large" />
           <Text style={styles.loadingText}>Loading your progress...</Text>
         </View>
@@ -58,7 +58,7 @@ class Login extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.signupContainer}>
           <View style={styles.signupWrapper}>
             <Text style={styles.headline}>Welcome Back!</Text>

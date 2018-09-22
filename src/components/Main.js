@@ -137,7 +137,7 @@ class Main extends Component {
     } = this.props;
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={{ marginTop: -10 }}>
           <Drawer />
           <Text style={styles.headline}>Good Evening {name}</Text>

@@ -69,7 +69,7 @@ class CountdownToOffline extends Component {
     const { offlineSeconds } = this.props;
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.headlineWrapper}>
           <Text style={styles.headline}>Sleep Timer</Text>
           <Exit />

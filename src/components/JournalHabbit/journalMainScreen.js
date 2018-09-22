@@ -37,7 +37,7 @@ export class JournalMain extends Component {
 
     return (
       <View style={styles.outerContainer}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.innerContainer}>
           <View
             style={[

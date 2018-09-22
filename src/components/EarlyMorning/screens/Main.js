@@ -121,7 +121,7 @@ class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <ActivityIndicator size="large" />
       </View>
     );

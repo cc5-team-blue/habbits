@@ -34,7 +34,7 @@ class Success extends Component {
   render() {
     return (
       <View style={styles.realContainer}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.container}>
           <View style={styles.yayImgContainer}>
             <View style={styles.awesomeWrapper}>
