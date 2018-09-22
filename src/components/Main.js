@@ -260,7 +260,7 @@ const mapDispatchToProps = dispatch => ({
     });
   },
   goToEarlyMorning: () => {
-    dispatch(NavigationActions.navigate({ routeName: 'EarlyMorning' }));
+    dispatch(NavigationActions.navigate({ routeName: 'EarlyLoading' }));
   },
   // setJournalCount: count => {
   //   dispatch(setJournalCount(count));

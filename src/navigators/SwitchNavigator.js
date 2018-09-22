@@ -13,6 +13,7 @@ import journalSuccess from '../components/JournalHabbit/journalSuccess';
 import journalSuccessBIG from '../components/JournalHabbit/JournalSuccessBIG';
 import MainNavigator from './MainNavigator';
 import EarlyMorningNavigator from '../components/EarlyMorning/nav/Navigator';
+import EarlyLoading from '../components/EarlyMorning/screens/Loading';
 import FailureMinus from '../components/SleepHabbit/FailureMinus';
 import Login from '../auth/Login';
 
@@ -33,6 +34,7 @@ const switchNav = createSwitchNavigator(
     JournalSuccessBIG: { screen: journalSuccessBIG },
     Authentication: { screen: MainNavigator },
     EarlyMorning: { screen: EarlyMorningNavigator },
+    EarlyLoading: { screen: EarlyLoading },
     FailureMinus: { screen: FailureMinus },
     Login: { screen: Login },
   },
