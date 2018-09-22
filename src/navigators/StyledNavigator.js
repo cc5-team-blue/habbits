@@ -15,6 +15,14 @@ class SideMenu extends Component {
     const navigateAction = NavigationActions.navigate({
       routeName: route,
     });
+    navigation.dispatch(navigateAction);
+  };
+
+  navigateToLogout = route => () => {
+    const { navigation } = this.props;
+    const navigateAction = NavigationActions.navigate({
+      routeName: route,
+    });
     logout();
     navigation.dispatch(navigateAction);
   };
@@ -32,11 +40,11 @@ class SideMenu extends Component {
             <Text style={style.header}>{name}</Text>
             <Text style={style.points}>{points} Points</Text>
             <View style={style.navSectionStyle}>
-              <Text style={style.navItemStyle} onPress={this.navigateToScreen('Analytics')}>
+              <Text style={style.navItemStyle} onPress={this.navigateToScreen('JournalEntries')}>
                 <Image style={style.journalIcon} source={journalIcon} />
                 <Text style={style.navText}> Journal Entries</Text>
               </Text>
-              <Text style={style.navItemStyle} onPress={this.navigateToScreen('Login')}>
+              <Text style={style.navItemStyle} onPress={this.navigateToLogout('Login')}>
                 <Image style={style.logoutIcon} source={logoutImg} />
                 <Text style={style.navText}> Log Out</Text>
               </Text>
