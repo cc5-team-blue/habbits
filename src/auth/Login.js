@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View, StatusBar } from 'react-native';
+import { Text, TextInput, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import { app } from '../../db';
@@ -14,12 +14,17 @@ class Login extends React.Component {
       email: '',
       password: '',
       errorMessage: null,
+      loading: false,
     };
   }
 
   handleLogin = async () => {
-    const { email, password } = this.state;
+    const { email, password, loading } = this.state;
     const { navigation, saveName, saveUid } = this.props;
+    console.log('click!');
+    this.setState({ loading: true });
+    console.log(loading);
+
     try {
       await app.auth().signInWithEmailAndPassword(email, password);
       const { currentUser } = await app.auth();
@@ -38,8 +43,17 @@ class Login extends React.Component {
   };
 
   render() {
-    const { email, password, errorMessage } = this.state;
+    const { email, password, errorMessage, loading } = this.state;
     const { navigation } = this.props;
+
+    if (loading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
+          <Text style={styles.loadingText}>Loading your progress...</Text>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

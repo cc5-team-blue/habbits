@@ -88,6 +88,14 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
+  loadingText: {
+    marginTop: heightRes(20),
+    fontFamily: 'Futura',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#ffffff',
+  },
 });
 
 export default styles;
