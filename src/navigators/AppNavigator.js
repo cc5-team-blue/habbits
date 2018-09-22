@@ -14,6 +14,8 @@ import swichNav from './SwitchNavigator';
 import UserInfo from '../components/UserInfo';
 import Analytics from '../components/Analytics';
 
+import Sidemenu from './StyledNavigator';
+
 const middleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 
 const { width, height } = Dimensions.get('window');
@@ -30,7 +32,7 @@ const RootNavigator = createDrawerNavigator(
     UserInfo: {
       screen: UserInfo,
       navigationOptions: {
-        drawerLabel: 'user page',
+        drawerLabel: 'Log Out',
         drawerIcon: () => <Icon name="rocket" size={24} />,
       },
     },
@@ -44,9 +46,10 @@ const RootNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'Home',
+    contentComponent: Sidemenu,
     drawerPosition: 'left',
-    drawerWidth: Math.min(height, width) * 0.8,
-    drawerBackgroundColor: '#e3e1ed',
+    drawerWidth: Math.min(height, width) * 0.6,
+    drawerBackgroundColor: '#EB5E65',
   }
 );
 
