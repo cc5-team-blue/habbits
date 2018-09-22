@@ -7,6 +7,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#3b495b',
+  },
+  loadingText: {
+    paddingBottom: heightRes(40),
+    fontFamily: 'Futura',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#242733',
   },
   // SignUp.js
   container: {
