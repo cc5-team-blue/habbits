@@ -23,56 +23,83 @@ class CountdownToOffline extends Component {
     const journalsFromFB = await app.database().ref(journalPath);
     journalsFromFB.once('value', data => {
       const journalObj = data.val();
-      const journalsArr = Object.values(journalObj);
-      /* eslint-disable */
-      journalsArr.reverse().map((elem, i) => {
-        elem.date = moment(elem.date).format('dddd, MMM DD');
-        elem.id = i;
-      });
-      /* eslint-disable */
-      this.setState({ entries: journalsArr });
+      if (journalObj) {
+        const journalsArr = Object.values(journalObj);
+        /* eslint-disable */
+        journalsArr.reverse().map((elem, i) => {
+          elem.date = moment(elem.date).format('dddd, MMM DD');
+          elem.id = i;
+        });
+        /* eslint-disable */
+        this.setState({ entries: journalsArr });
+      }
     });
   }
 
   render() {
     const { entries } = this.state;
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <View style={styles.wrapper}>
-          <View style={styles.headlineWrapper}>
-            <Text style={styles.headline}>Your Journal</Text>
-            <View style={{ "marginTop": -10}}>
-              <ExitButton />
+
+    if (entries.length === 0) {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <View style={styles.wrapper}>
+            <View style={styles.headlineWrapper}>
+              <Text style={styles.headline}>Your Journal</Text>
+              <View style={{ marginTop: -40 }}>
+                <ExitButton />
+              </View>
+            </View>
+            <View style={styles.rectangleContainer}>
+              <View style={styles.emptyWrapper}>
+                <Text style={styles.emptyText}>Nothing here.</Text>
+                <Text style={styles.emptySubText}>
+                  Start the 30-day journal challenge and store your thoughts here.
+                </Text>
+              </View>
             </View>
           </View>
-          <View style={styles.rectangleContainer}>
-            <ScrollView style={styles.entriesWrapper} showsVerticalScrollIndicator={false}>
-              {entries.map(item => (
-                <View key={item.id} style={styles.row}>
-                  <View style={styles.dateStarRow}>
-                    <Text style={styles.date}>{item.date}</Text>
-                    <View style={styles.ratingWrapper}>
-                      {_.times(item.rating, e => (
-                        <Image key={e} source={star} style={styles.rating} />
-                      ))}
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <View style={styles.wrapper}>
+            <View style={styles.headlineWrapper}>
+              <Text style={styles.headline}>Your Journal</Text>
+              <View style={{ marginTop: -40 }}>
+                <ExitButton />
+              </View>
+            </View>
+            <View style={styles.rectangleContainer}>
+              <ScrollView style={styles.entriesWrapper} showsVerticalScrollIndicator={false}>
+                {entries.map(item => (
+                  <View key={item.id} style={styles.row}>
+                    <View style={styles.dateStarRow}>
+                      <Text style={styles.date}>{item.date}</Text>
+                      <View style={styles.ratingWrapper}>
+                        {_.times(item.rating, e => (
+                          <Image key={e} source={star} style={styles.rating} />
+                        ))}
+                      </View>
+                    </View>
+                    <View style={styles.entryRow}>
+                      <Text style={styles.entryHeadline}>Grateful</Text>
+                      <Text style={styles.entryText}>{item.grateful}</Text>
+                    </View>
+                    <View style={styles.entryRow}>
+                      <Text style={styles.entryHeadline}>Learned</Text>
+                      <Text style={styles.entryText}>{item.til}</Text>
                     </View>
                   </View>
-                  <View style={styles.entryRow}>
-                    <Text style={styles.entryHeadline}>Grateful</Text>
-                    <Text style={styles.entryText}>{item.grateful}</Text>
-                  </View>
-                  <View style={styles.entryRow}>
-                    <Text style={styles.entryHeadline}>Learned</Text>
-                    <Text style={styles.entryText}>{item.til}</Text>
-                  </View>
-                </View>
-              ))}
-            </ScrollView>
+                ))}
+              </ScrollView>
+            </View>
           </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
 }
 
