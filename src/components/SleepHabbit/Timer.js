@@ -57,7 +57,7 @@ export class Timer extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { goToYay, goToOfflineRabbit, isConnected } = this.props;
+    const { goToYay, goToOfflineRabbit, isConnected, goToFailureMinus } = this.props;
     // eslint-disable-next-line
     if (nextProps.currentCounter < 0) {
       goToYay();
@@ -67,7 +67,7 @@ export class Timer extends Component {
       return false;
     }
     if (nextProps.isConnected === true) {
-      goToOfflineRabbit();
+      goToFailureMinus();
     }
     return true;
   }
@@ -158,6 +158,9 @@ const mapDispatchToProps = dispatch => ({
   displayDifference: async () => {
     const newCounter = await getDifference();
     dispatch(setCurrentCounter(newCounter));
+  },
+  goToFailureMinus: () => {
+    dispatch(NavigationActions.navigate({ routeName: 'FailureMinus' }));
   },
 });
 

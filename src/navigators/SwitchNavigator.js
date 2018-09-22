@@ -13,6 +13,7 @@ import journalSuccess from '../components/JournalHabbit/journalSuccess';
 import journalSuccessBIG from '../components/JournalHabbit/JournalSuccessBIG';
 import MainNavigator from './MainNavigator';
 import EarlyMorningNavigator from '../components/EarlyMorning/nav/Navigator';
+import FailureMinus from '../components/SleepHabbit/FailureMinus';
 import Login from '../auth/Login';
 
 // Here is the place we define app's pages with name
@@ -32,6 +33,7 @@ const switchNav = createSwitchNavigator(
     JournalSuccessBIG: { screen: journalSuccessBIG },
     Authentication: { screen: MainNavigator },
     EarlyMorning: { screen: EarlyMorningNavigator },
+    FailureMinus: { screen: FailureMinus },
     Login: { screen: Login },
   },
   {

@@ -189,3 +189,34 @@ export const loseJournalPoint = uid => {
     .ref(path)
     .push(data);
 };
+
+// Using in sleep habbit: SuccessRabbit.js
+export const getSleepPoint = uid => {
+  console.log(uid);
+  const path = `users/${uid}/history/`;
+  const data = {
+    date: Date.now(),
+    points: 150,
+    type: 'plus',
+    habbits: 'Good Sleep',
+  };
+  app
+    .database()
+    .ref(path)
+    .push(data);
+};
+
+// Using in sleep habbit: FailureMinus.js
+export const loseSleepPoint = uid => {
+  const path = `users/${uid}/history/`;
+  const data = {
+    date: Date.now(),
+    points: 200,
+    type: 'minus',
+    habbits: 'Good Sleep',
+  };
+  app
+    .database()
+    .ref(path)
+    .push(data);
+};
