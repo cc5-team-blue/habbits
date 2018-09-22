@@ -231,32 +231,26 @@ const mapDispatchToProps = dispatch => ({
   goToJournal: async uid => {
     const path = `users/${uid}/habits/JournalHabbit/info`;
     const info = await app.database().ref(path);
-    let redirect = true;
-    info.on('value', data => {
+    info.once('value', data => {
       const response = data.val();
       if (!response) {
         dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
-        redirect = false;
       } else {
         const { isActive, lastUpdate, counter } = data.val();
         dispatch(setJournalCount(counter));
         const currentTime = Date.now();
         // check if Daily Journal is Active or not
-        if (!isActive && redirect) {
+        if (!isActive || !lastUpdate) {
           dispatch(NavigationActions.navigate({ routeName: 'JournalDescription' }));
-          redirect = false;
         } // check if second time in same day(less than 14 hours) or not
-        else if (currentTime - lastUpdate < 50400000 && redirect) {
+        else if (currentTime - lastUpdate < 50400000) {
           dispatch(NavigationActions.navigate({ routeName: 'JournalSuccess' }));
-          redirect = false;
         } // check if user write journal daily(less than 30 hours) or not
-        else if (currentTime - lastUpdate < 108000000 && redirect) {
+        else if (currentTime - lastUpdate < 108000000) {
           dispatch(NavigationActions.navigate({ routeName: 'JournalMainScreen' }));
-          redirect = false;
         } // check if user didn't write journal within 30 hours
-        else if (currentTime - lastUpdate > 108000000 && redirect) {
+        else if (currentTime - lastUpdate > 108000000) {
           dispatch(NavigationActions.navigate({ routeName: 'JournalFailure' }));
-          redirect = false;
         }
       }
     });
