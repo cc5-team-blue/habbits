@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import { app } from '../../db';
 import styles from '../css/styleForAuth';
@@ -21,9 +22,7 @@ class Login extends React.Component {
   handleLogin = async () => {
     const { email, password, loading } = this.state;
     const { navigation, saveName, saveUid } = this.props;
-    console.log('click!');
-    this.setState({ loading: true });
-    console.log(loading);
+    // this.setState({ loading: true });
 
     try {
       await app.auth().signInWithEmailAndPassword(email, password);
@@ -32,12 +31,14 @@ class Login extends React.Component {
       const nameFromFB = await app.database().ref(`users/${uid}/name`);
       await nameFromFB.on('value', data => {
         const name = data.val();
+        this.setState({ loading: true });
         saveName(name.name);
         saveUid(uid);
         setSignupDataToLS(name.name, uid);
       });
-      await navigation.navigate('Main');
+      NavigationActions.navigate('Main');
     } catch (err) {
+      this.setState({ loading: false });
       this.setState({ errorMessage: err.message });
     }
   };

@@ -22,7 +22,6 @@ class SignUp extends React.Component {
   handleSignUp = async () => {
     const { firstName, email, password, loading } = this.state;
     const { navigation, saveName, saveUid } = this.props;
-    this.setState({ loading: true });
     try {
       const returnFromFB = await app.auth().createUserWithEmailAndPassword(email, password);
       await saveName(firstName);
@@ -31,12 +30,14 @@ class SignUp extends React.Component {
       const userNamePath = `users/${returnFromFB.user.uid}/name`;
       const userRootPath = `users/${returnFromFB.user.uid}`;
       const firebaseDB = await app.database();
+      this.setState({ loading: true });
       await firebaseDB.ref(userNamePath).update({ name: firstName });
       await firebaseDB.ref(userRootPath).update({ totalPoints: 0 });
-      getItemFromLS();
+      await getItemFromLS();
       navigation.navigate('Main');
     } catch (err) {
-      this.setState({ errorMessage: err.message });
+      console.log(err);
+      this.setState({ errorMessage: err.message, loading: false });
     }
   };
 
