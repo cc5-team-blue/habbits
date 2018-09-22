@@ -19,9 +19,10 @@ class Analytics extends Component {
     this.state = {
       achievements: [],
       // To make it work in adroid, we need to set initial value in chart
-      chart: [0, 1, 2, 3, 17],
+      chart: [0, 0, 0, 0, 0],
       points: 0,
       count: 0,
+      reversedList: [],
     };
   }
 
@@ -33,6 +34,7 @@ class Analytics extends Component {
     const chart = [];
     let points = 0;
     ref.once('value', data => {
+      if (!data.length) this.setState({ chart: [0] });
       data.forEach(child => {
         const obj = {};
         obj.key = child.key;
@@ -43,9 +45,7 @@ class Analytics extends Component {
         if (child.val().type === 'plus') {
           points += child.val().points;
           chart.push(Number(points));
-        }
-
-        if (child.val().type === 'minus') {
+        } else if (child.val().type === 'minus') {
           points -= child.val().points;
           chart.push(Number(points));
         }
@@ -69,7 +69,7 @@ class Analytics extends Component {
         },
       ],
     };
-    if (JSON.stringify(chart) === JSON.stringify([0, 1, 2, 3, 17])) {
+    if (JSON.stringify(chart) === JSON.stringify([0, 0, 0, 0, 0])) {
       return (
         <View style={styles.container}>
           <StatusBar barStyle="light-content" />
