@@ -58,7 +58,7 @@ class Analytics extends Component {
   }
 
   render() {
-    const { chart, reversedList, achievements } = this.state;
+    const { chart, reversedList, achievements, loading } = this.state;
     const chartConfig = {
       backgroundGradientFrom: '#3B495B',
       backgroundGradientTo: '#3B495B',
@@ -81,8 +81,7 @@ class Analytics extends Component {
       );
     }
 
-    console.log(achievements);
-    if (achievements.length === 0) {
+    if (reversedList.length === 0) {
       return (
         <View style={styles.container}>
           <StatusBar barStyle="light-content" />
@@ -98,7 +97,6 @@ class Analytics extends Component {
         </View>
       );
     }
-
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
