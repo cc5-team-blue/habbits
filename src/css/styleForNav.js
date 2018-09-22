@@ -59,7 +59,7 @@ const style = StyleSheet.create({
   footerContainer: {
     marginLeft: widthRes(20),
     marginBottom: heightRes(20),
-    color: 'white',
+    // color: 'white',
   },
   journalIcon: {
     height: heightRes(16),
