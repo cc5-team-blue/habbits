@@ -36,7 +36,7 @@ class SideMenu extends Component {
                 <Image style={style.journalIcon} source={journalIcon} />
                 <Text style={style.navText}> Journal Entries</Text>
               </Text>
-              <Text style={style.navItemStyle} onPress={this.navigateToScreen('Analytics')}>
+              <Text style={style.navItemStyle} onPress={this.navigateToScreen('Login')}>
                 <Image style={style.logoutIcon} source={logoutImg} />
                 <Text style={style.navText}> Log Out</Text>
               </Text>
