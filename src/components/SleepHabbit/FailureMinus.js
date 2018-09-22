@@ -6,7 +6,6 @@ import { loseSleepPoint } from '../../helper';
 
 import sadRabbit from '../../images/sadRabbit.png';
 import styles from '../../css/styleForSadness';
-import ExitButton from '../ExitButton';
 
 export const FailureMinus = ({ goToHome, uid }) => (
   <View style={styles.realContainer}>
@@ -31,7 +30,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   goToHome: uid => {
-    console.log(uid);
     loseSleepPoint(uid);
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },

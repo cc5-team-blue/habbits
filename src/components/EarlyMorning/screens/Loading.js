@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ActivityIndicator, StatusBar } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, StatusBar, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { app } from '../../../../db';
 
@@ -11,7 +11,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 24,
+    fontFamily: 'Futura',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 10,
   },
 });
 
@@ -42,6 +46,7 @@ class Loading extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
+        <Text style={styles.text}>The early bird gets the worm...</Text>
         <ActivityIndicator size="large" />
       </View>
     );

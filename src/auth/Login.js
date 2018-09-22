@@ -50,6 +50,7 @@ class Login extends React.Component {
     if (loading) {
       return (
         <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
           <ActivityIndicator size="large" />
           <Text style={styles.loadingText}>Loading your progress...</Text>
         </View>

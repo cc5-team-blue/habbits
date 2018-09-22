@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from '../css/styleForAuth';
@@ -28,8 +28,9 @@ class Loading extends Component {
   render() {
     return (
       <View style={styles.loading}>
-        <Text>Loading</Text>
+        <StatusBar barStyle="light-content" />
         <ActivityIndicator size="large" />
+        <Text style={styles.loadingText}> Loading </Text>
       </View>
     );
   }
