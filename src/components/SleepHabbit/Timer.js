@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#eb5e65',
     alignItems: 'center',
     alignSelf: 'center',
-    transform: [{ rotate: '180deg' }],
   },
   timer: {
     fontFamily: 'Futura',
@@ -22,7 +21,6 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#fff',
-    transform: [{ rotate: '180deg' }],
   },
   timerForAndroid: {
     fontFamily: 'Futura',
@@ -31,7 +29,6 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#fff',
-    transform: [{ rotate: '180deg' }],
   },
   timerForseconds: {
     fontFamily: 'Futura',
@@ -41,7 +38,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     color: '#fff',
     opacity: 0.5,
-    transform: [{ rotate: '180deg' }],
   },
 });
 
@@ -86,11 +82,11 @@ export class Timer extends Component {
     const { currentCounter } = this.props;
     const seconds = Math.floor((currentCounter / 1000) % 60);
     const percentage = 100 - (seconds / 60) * 100;
+    console.log(percentage);
     // const minutes = (currentCounter / (1000 * 60)) % 60;
     // const hours = (currentCounter / (1000 * 60 * 60)) % 24;
     let timeFormatted;
     let secondsFormatted;
-    console.log(currentCounter);
     if (currentCounter > 3599999) {
       timeFormatted = moment(currentCounter)
         .utc()
