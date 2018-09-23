@@ -35,6 +35,7 @@ class Analytics extends Component {
     const achievements = [];
     const chart = [0];
     let points = 0;
+    const totalPoints = 0;
     ref.once('value', data => {
       if (!data.length) this.setState({ chart: [0] });
       data.forEach(child => {
@@ -48,8 +49,13 @@ class Analytics extends Component {
           points += child.val().points;
           chart.push(Number(points));
         } else if (child.val().type === 'minus') {
-          points -= child.val().points;
-          chart.push(Number(points));
+          if (points - child.val().points >= 0) {
+            points -= child.val().points;
+            chart.push(Number(points));
+          } else {
+            points = 0;
+            chart.push(Number(points));
+          }
         }
         this.setState({ reversedList, chart, points });
       });
