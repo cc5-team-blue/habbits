@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   contentsContainer: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     // alignItems: 'center',
     width: '100%',
     height: '95%',
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fbfeff',
   },
   journalMainHeadline: {
+    marginTop: heightRes(25),
     width: '80%',
     fontFamily: 'Futura',
     fontSize: 30,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     letterSpacing: 0,
     color: '#151515',
-    marginTop: '10%',
+    marginTop: '6%',
     marginLeft: '8%',
     alignItems: 'flex-start',
   },
