@@ -234,3 +234,25 @@ export const loseSleepPoint = async (uid, newPoints) => {
   };
   setPointsToLSAndFB(uid, data, newPoints);
 };
+
+// Using in Early Morning habbit: screens/Main.js
+export const getEarlyMorningPoints = async (uid, newPoints) => {
+  const data = {
+    date: Date.now(),
+    points: 300,
+    type: 'plus',
+    habbits: 'Early Morning',
+  };
+  setPointsToLSAndFB(uid, data, newPoints);
+};
+
+// Using in Early Morning habbit: screens/Main.js
+export const loseEarlyMorningPoints = async (uid, newPoints) => {
+  const data = {
+    date: Date.now(),
+    points: 100,
+    type: 'minus',
+    habbits: 'Early Morning',
+  };
+  setPointsToLSAndFB(uid, data, newPoints);
+};
