@@ -73,13 +73,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: '900',
-    fontStyle: 'normal',
-    letterSpacing: 0,
     color: '#242733',
   },
   entryText: {
     width: widthRes(280),
-    height: heightRes(44),
     fontFamily: 'Avenir',
     fontSize: 16,
     fontWeight: '500',
