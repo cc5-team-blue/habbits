@@ -99,11 +99,19 @@ const styles = StyleSheet.create({
     height: '90%',
     width: '88%',
   },
-  contentsContainer: {
+  contentsContainerMain: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     // justifyContent: 'center',
     // alignItems: 'center',
+    width: '100%',
+    height: '95%',
+  },
+  contentsContainer: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     height: '95%',
   },
