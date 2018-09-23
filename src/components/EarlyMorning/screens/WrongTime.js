@@ -15,7 +15,7 @@ class WrongTime extends Component {
     const user = ref.child(uid);
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
-    earlyMorning.on('value', data => {
+    earlyMorning.once('value', data => {
       const result = data.toJSON();
       updateClickTimes(result.times);
     });
