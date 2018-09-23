@@ -12,18 +12,13 @@ class Success extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // uid: this.props.uid,
       times: 0,
     };
   }
 
   async componentDidMount() {
     const { uid } = this.props;
-    // const db = app.database();
     const ref = `users/${uid}/habits/early_morning`;
-    // const user = ref.child(this.state.uid);
-    // const habits = user.child('habits');
-    // const earlyMorning = habits.child('early_morning');
     const earlyMorning = app.database().ref(ref);
 
     await earlyMorning.once('value', data => {
@@ -31,10 +26,6 @@ class Success extends Component {
       this.setState({ times: result.times });
     });
   }
-
-  // handleClick = () => {
-  //   this.props.navigation.navigate('Loading');
-  // };
 
   render() {
     const { times } = this.state;

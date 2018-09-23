@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
-import { saveTimesToStore, setTotalPoints } from '../../../actions';
+import { saveTimesToStore } from '../../../actions';
 import { app } from '../../../../db';
-import { getEarlyMorningPoints, loseEarlyMorningPoints } from '../../../helper';
 
 const moment = require('moment');
 
@@ -19,17 +18,13 @@ const styles = StyleSheet.create({
 
 class MainScreen extends Component {
   componentDidMount = () => {
-    const { uid, navigation, points, getPoints, losePoints } = this.props;
+    const { uid, navigation } = this.props;
     const user = app.database().ref(`users/${uid}`);
-    // const ref = db.ref('users');
-    // const user = ref.child(uid);
-    // const achievements = user.child('achievements');
-    // const habits = user.child('habits');
     const earlyMorning = user.child('habits/early_morning');
     // if the time is correct
     // if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
-    // for test
-    if (moment().hour() === 12 && (moment().minute() >= 45 && moment().minute() <= 59)) {
+    // line 28 is for test purpose only.
+    if (moment().hour() === 10 && (moment().minute() >= 45 && moment().minute() <= 59)) {
       earlyMorning.once('value', data => {
         const result = data.toJSON();
         const today = moment(Date.now()).format('DD/MM/YYYY');
@@ -42,23 +37,6 @@ class MainScreen extends Component {
             // go to Wrong Time screen
             navigation.navigate('WrongTime');
           }
-        } else {
-          getPoints(uid, points, navigation);
-          // // add 300 points
-          // user.on('value', data2 => {
-          //   const result2 = data2.toJSON();
-          //   const total = result2.totalPoints + 300;
-          //   user.set({ totalPoints: total });
-          // });
-          // achievements
-          //   .push({ type: 'plus', date: Date.now(), points: 300 })
-          //   .then(() => {
-          //     // go to Big Success screen
-          //     navigation.navigate('BigSuccess');
-          //   })
-          //   .catch(error => {
-          //     console.log(error);
-          //   });
         }
       });
       // if the time is wrong
@@ -79,43 +57,10 @@ class MainScreen extends Component {
               clickDate: 0,
               tutorial: true,
             });
-            losePoints(uid, points, navigation);
-            // remove 100 points
-            // user.on('value', data2 => {
-            //   const result2 = data2.toJSON();
-            //   const total = result2.totalPoints - 100;
-            //   user.set({ totalPoints: total });
-            // });
-            // achievements
-            //   .push({ type: 'minus', date: Date.now(), points: 100 })
-            //   .then(() => {
-            //     // go to Fail screen
-            //     navigation.navigate('Fail');
-            //   })
-            //   .catch(error => {
-            //     console.log(error);
-            //   });
           } else {
             // go to Wrong Time screen
             navigation.navigate('WrongTime');
           }
-        } else {
-          getPoints(uid, points, navigation);
-          // // add 300 points
-          // user.on('value', data2 => {
-          //   const result2 = data2.toJSON();
-          //   const total = result2.totalPoints + 300;
-          //   user.set({ totalPoints: total });
-          // });
-          // achievements
-          //   .push({ type: 'plus', date: Date.now(), points: 300 })
-          //   .then(() => {
-          //     // go to Big Success screen
-          //     navigation.navigate('BigSuccess');
-          //   })
-          //   .catch(error => {
-          //     console.log(error);
-          //   });
         }
       });
     }
@@ -140,19 +85,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateClickTimes: clickTime => {
     dispatch(saveTimesToStore(clickTime));
-  },
-  getPoints: (uid, points, navigation) => {
-    const newPoints = points + 300;
-    getEarlyMorningPoints(uid, newPoints);
-    dispatch(setTotalPoints(newPoints));
-    navigation.navigate('BigSuccess');
-  },
-  losePoints: (uid, points, navigation) => {
-    let newPoints = points - 100;
-    if (newPoints < 0) newPoints = 0;
-    loseEarlyMorningPoints(uid, newPoints);
-    dispatch(setTotalPoints(newPoints));
-    navigation.navigate('Fail');
   },
 });
 
