@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { updateConnectivity, setJournalCount } from '../actions';
+import { updateConnectivity, setJournalCount, setTotalPoints } from '../actions';
 import sleepHabbitImg from '../images/rabbitSmall.png';
 import earlyStartImg from '../images/earlyStart.png';
 import analyticsImage from '../images/analyticsImage.png';
@@ -24,9 +24,11 @@ import { app } from '../../db';
 
 class Main extends Component {
   async componentDidMount() {
+    const { uid, getTotalPointsFromFB } = this.props;
     this.checkPermission();
     this.createNotificationListeners();
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+    getTotalPointsFromFB(uid);
   }
 
   // 3
@@ -219,7 +221,6 @@ const mapDispatchToProps = dispatch => ({
   goToAnalytics: () => {
     dispatch(NavigationActions.navigate({ routeName: 'Analytics' }));
   },
-
   showAlert: (title, body) => {
     Alert.alert(title, body, [{ text: 'OK', onPress: () => console.log('OK Pressed') }], {
       cancelable: false,
@@ -227,6 +228,14 @@ const mapDispatchToProps = dispatch => ({
   },
   updateConnect: newConnectionState => {
     dispatch(updateConnectivity(newConnectionState));
+  },
+  getTotalPointsFromFB: async uid => {
+    const path = `users/${uid}/totalPoints`;
+    const fbPoints = await app.database().ref(path);
+    fbPoints.once('value', data => {
+      const points = data.val();
+      dispatch(setTotalPoints(points));
+    });
   },
   goToJournal: async uid => {
     const path = `users/${uid}/habits/JournalHabbit/info`;
@@ -258,9 +267,6 @@ const mapDispatchToProps = dispatch => ({
   goToEarlyMorning: () => {
     dispatch(NavigationActions.navigate({ routeName: 'EarlyLoading' }));
   },
-  // setJournalCount: count => {
-  //   dispatch(setJournalCount(count));
-  // },
 });
 
 export default connect(
