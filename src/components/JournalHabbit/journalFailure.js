@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import { finishJournal, loseJournalPoint } from '../../helper';
+import { setTotalPoints } from '../../actions';
 import styles from '../../css/styleForJournal';
 import sadRabbit from '../../images/sadRabbit.png';
 
-export const journalFailure = ({ goToMain, uid }) => (
+export const journalFailure = ({ goToMain, uid, points }) => (
   <View style={styles.outerContainer}>
     <StatusBar barStyle="light-content" translucent />
     <Text style={[styles.innerHeadlineContainer, styles.headline]}>Aww Snap!</Text>
@@ -19,7 +20,7 @@ export const journalFailure = ({ goToMain, uid }) => (
         </Text>
         <Text style={styles.lostPointText}>You lost -100P</Text>
       </View>
-      <View onTouchStart={() => goToMain(uid)} style={styles.sorryImgButton}>
+      <View onTouchStart={() => goToMain(uid, points)} style={styles.sorryImgButton}>
         <Text style={styles.sorryButtonText}>I&#039;m Sorry!</Text>
       </View>
     </View>
@@ -28,12 +29,16 @@ export const journalFailure = ({ goToMain, uid }) => (
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  points: state.red.totalPoints,
 });
 
 const mapDispatchToProps = dispatch => ({
-  goToMain: uid => {
+  goToMain: (uid, points) => {
+    let newPoints = points - 100;
+    if (newPoints < 0) newPoints = 0;
     finishJournal(uid);
-    loseJournalPoint(uid);
+    loseJournalPoint(uid, newPoints);
+    dispatch(setTotalPoints(newPoints));
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });

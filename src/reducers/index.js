@@ -20,6 +20,7 @@ import {
   SAVE_UID_TO_STORE,
   SAVE_TIMES_TO_STORE,
   SET_JOURNAL_COUNT,
+  SET_TOTAL_POINTS,
 } from '../actions';
 
 // It sets initial state
@@ -39,6 +40,7 @@ const initialState = {
   mailAddress: undefined,
   earlyTimes: 0,
   journalCount: 0,
+  totalPoints: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -132,6 +134,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         journalCount: action.count,
+      };
+    }
+    case SET_TOTAL_POINTS: {
+      return {
+        ...state,
+        totalPoints: action.points,
       };
     }
     default: {

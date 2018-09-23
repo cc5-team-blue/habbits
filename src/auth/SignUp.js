@@ -20,7 +20,7 @@ class SignUp extends React.Component {
   }
 
   handleSignUp = async () => {
-    const { firstName, email, password, loading } = this.state;
+    const { firstName, email, password } = this.state;
     const { navigation, saveName, saveUid } = this.props;
     try {
       const returnFromFB = await app.auth().createUserWithEmailAndPassword(email, password);
