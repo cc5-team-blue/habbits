@@ -50,6 +50,19 @@ export const getNameFromLS = async () => {
 };
 
 // Loading.js
+export const getPointsFromLS = async () => {
+  try {
+    let points = await AsyncStorage.getItem('totalPoints');
+    // It return promise. And totalPoints is String.
+    points = Number(points);
+    return points;
+  } catch (err) {
+    console.log(err);
+  }
+  return 0;
+};
+
+// Loading.js
 export const getUidFromLS = async () => {
   try {
     const uid = await AsyncStorage.getItem('uid');
@@ -61,12 +74,21 @@ export const getUidFromLS = async () => {
   return 0;
 };
 
+export const setTotalPointsToLS = async points => {
+  try {
+    await AsyncStorage.setItem('totalPoints', points);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // SignUp.js
 export const setSignupDataToLS = async (firstName, uid) => {
   try {
     await AsyncStorage.setItem('name', firstName);
     await AsyncStorage.setItem('uid', uid);
     await AsyncStorage.setItem('isLoggedIn', 'true');
+    await AsyncStorage.setItem('totalPoints', '0');
     const loginStatus = await AsyncStorage.getItem('isLoggedIn');
     console.log('isLogin: ', loginStatus);
   } catch (err) {
@@ -160,63 +182,55 @@ export const finishJournal = uid => {
   update(`users/${uid}/habits/JournalHabbit/info/`, { isActive: false });
 };
 
-// Using in journalSuccessBIG.js
-export const getJournalPoint = uid => {
+const setPointsToLSAndFB = async (uid, data, newPoints) => {
   const path = `users/${uid}/history/`;
+  const userRootPath = `users/${uid}/`;
+  const database = await app.database();
+  database.ref(path).push(data);
+  database.ref(userRootPath).update({ totalPoints: newPoints });
+  setTotalPointsToLS(String(newPoints));
+};
+
+// Using in journalSuccessBIG.js
+export const getJournalPoint = async (uid, newPoints) => {
   const data = {
     date: Date.now(),
-    points: 300,
+    points: 5000,
     type: 'plus',
     habbits: 'Daily Journal',
   };
-  app
-    .database()
-    .ref(path)
-    .push(data);
+  setPointsToLSAndFB(uid, data, newPoints);
 };
 
 // Using in journalFailure.js
-export const loseJournalPoint = uid => {
-  const path = `users/${uid}/history/`;
+export const loseJournalPoint = async (uid, newPoints) => {
   const data = {
     date: Date.now(),
     points: 100,
     type: 'minus',
     habbits: 'Daily Journal',
   };
-  app
-    .database()
-    .ref(path)
-    .push(data);
+  setPointsToLSAndFB(uid, data, newPoints);
 };
 
 // Using in sleep habbit: SuccessRabbit.js
-export const getSleepPoint = uid => {
-  console.log(uid);
-  const path = `users/${uid}/history/`;
+export const getSleepPoint = async (uid, newPoints) => {
   const data = {
     date: Date.now(),
     points: 150,
     type: 'plus',
     habbits: 'Good Sleep',
   };
-  app
-    .database()
-    .ref(path)
-    .push(data);
+  setPointsToLSAndFB(uid, data, newPoints);
 };
 
 // Using in sleep habbit: FailureMinus.js
-export const loseSleepPoint = uid => {
-  const path = `users/${uid}/history/`;
+export const loseSleepPoint = async (uid, newPoints) => {
   const data = {
     date: Date.now(),
     points: 200,
     type: 'minus',
     habbits: 'Good Sleep',
   };
-  app
-    .database()
-    .ref(path)
-    .push(data);
+  setPointsToLSAndFB(uid, data, newPoints);
 };

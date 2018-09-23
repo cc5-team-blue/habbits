@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, ScrollView, StatusBar } from 'react-native';
+import { Text, View, Image, ScrollView, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import _ from 'underscore';
@@ -14,6 +14,7 @@ class CountdownToOffline extends Component {
     super(props);
     this.state = {
       entries: [],
+      loaded: false,
     };
   }
 
@@ -31,15 +32,42 @@ class CountdownToOffline extends Component {
           elem.id = i;
         });
         /* eslint-disable */
-        this.setState({ entries: journalsArr });
+        this.setState({ entries: journalsArr, loaded: true });
+      } else {
+        this.setState({ loaded: true });
       }
     });
   }
 
   render() {
-    const { entries } = this.state;
+    const { entries, loaded } = this.state;
 
-    if (entries.length === 0) {
+    if (!loaded) {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <View style={styles.wrapper}>
+            <View style={styles.headlineWrapper}>
+              <Text style={styles.headline}>Your Journal</Text>
+              <View style={{ marginTop: -40 }}>
+                <ExitButton />
+              </View>
+            </View>
+            <View style={styles.rectangleContainer}>
+              <View style={styles.emptyWrapper}>
+                <View style={styles.emptyText}>
+                  <StatusBar barStyle="light-content" />
+                  <ActivityIndicator size="large" />
+                  <Text style={styles.emptySubText}>Loading</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      );
+    }
+
+    if (entries.length === 0 && loaded) {
       return (
         <View style={styles.container}>
           <StatusBar barStyle="light-content" />

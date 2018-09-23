@@ -3,22 +3,29 @@ import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from '../css/styleForAuth';
-import { isLoggedIn, getAllKeyFromLS, getNameFromLS, getUidFromLS } from '../helper';
-import { saveNameToStore, saveUidToStore } from '../actions';
+import { saveNameToStore, saveUidToStore, setTotalPoints } from '../actions';
+import {
+  isLoggedIn,
+  getAllKeyFromLS,
+  getNameFromLS,
+  getUidFromLS,
+  getPointsFromLS,
+} from '../helper';
 
 class Loading extends Component {
   async componentDidMount() {
-    const { saveName, saveUid } = this.props;
+    const { navigation, saveName, saveUid, savePoints } = this.props;
     const keys = await getAllKeyFromLS();
     console.log('Existng keys are: ', keys);
     // result is the return value from LS
     const result = await isLoggedIn();
-    const { navigation } = this.props;
     if (result === 'true') {
       const name = await getNameFromLS();
-      saveName(name);
       const uid = await getUidFromLS();
+      const points = await getPointsFromLS();
+      saveName(name);
       saveUid(uid);
+      savePoints(points);
       navigation.navigate('Main');
     } else {
       navigation.navigate('SignUp');
@@ -42,6 +49,9 @@ const mapDispatchToProps = dispatch => ({
   },
   saveUid: uid => {
     dispatch(saveUidToStore(uid));
+  },
+  savePoints: points => {
+    dispatch(setTotalPoints(points));
   },
 });
 

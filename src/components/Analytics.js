@@ -33,7 +33,7 @@ class Analytics extends Component {
     const db = app.database();
     const ref = db.ref(`users/${uid}/history`);
     const achievements = [];
-    const chart = [];
+    const chart = [0];
     let points = 0;
     ref.once('value', data => {
       if (!data.length) this.setState({ chart: [0] });
@@ -51,7 +51,6 @@ class Analytics extends Component {
           points -= child.val().points;
           chart.push(Number(points));
         }
-
         this.setState({ reversedList, chart, points });
       });
     });

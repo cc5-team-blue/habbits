@@ -3,11 +3,12 @@ import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { getSleepPoint } from '../../helper';
+import { setTotalPoints } from '../../actions';
 
 import happyRabbit from '../../images/happyRabbit.png';
 import styles from '../../css/styleForSuccess';
 
-export const SampleComponent = ({ clickHabbit, uid }) => (
+export const SampleComponent = ({ clickHabbit, uid, points }) => (
   <View style={styles.realContainer}>
     <StatusBar barStyle="light-content" />
     <View style={styles.container}>
@@ -19,7 +20,7 @@ export const SampleComponent = ({ clickHabbit, uid }) => (
         <Image style={styles.happyRabbitImage} source={happyRabbit} />
         <Text style={styles.pointsText}>You gained +150P</Text>
       </View>
-      <View onTouchStart={() => clickHabbit(uid)} style={styles.yayButton}>
+      <View onTouchStart={() => clickHabbit(uid, points)} style={styles.yayButton}>
         <Text style={styles.yayText}>Yay!</Text>
       </View>
     </View>
@@ -28,11 +29,14 @@ export const SampleComponent = ({ clickHabbit, uid }) => (
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  points: state.red.totalPoints,
 });
 
 const mapDispatchToProps = dispatch => ({
-  clickHabbit: uid => {
-    getSleepPoint(uid);
+  clickHabbit: (uid, points) => {
+    const newPoints = points + 150;
+    getSleepPoint(uid, newPoints);
+    dispatch(setTotalPoints(newPoints));
     dispatch(NavigationActions.navigate({ routeName: 'Main' }));
   },
 });

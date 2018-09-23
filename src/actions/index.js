@@ -12,6 +12,7 @@ export const SAVE_NAME_TO_STORE = 'save user name to store';
 export const SAVE_UID_TO_STORE = 'save user uid to store';
 export const SAVE_TIMES_TO_STORE = 'save user click times to store';
 export const SET_JOURNAL_COUNT = 'set journal count to redux state';
+export const SET_TOTAL_POINTS = 'set user total points to redux state';
 
 // Action creater
 export const changeInterval = data => ({
@@ -71,4 +72,9 @@ export const saveTimesToStore = clickTime => ({
 export const setJournalCount = count => ({
   type: SET_JOURNAL_COUNT,
   count,
+});
+
+export const setTotalPoints = points => ({
+  type: SET_TOTAL_POINTS,
+  points,
 });
