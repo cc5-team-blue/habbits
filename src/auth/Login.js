@@ -30,7 +30,7 @@ class Login extends React.Component {
       const { currentUser } = await app.auth();
       const { uid } = currentUser;
       const nameFromFB = await app.database().ref(`users/${uid}/name`);
-      await nameFromFB.on('value', data => {
+      await nameFromFB.once('value', data => {
         const name = data.val();
         saveName(name.name);
         saveUid(uid);
@@ -38,6 +38,7 @@ class Login extends React.Component {
       });
       await navigation.navigate('Main');
     } catch (err) {
+      this.setState({ loading: false });
       this.setState({ errorMessage: err.message });
     }
   };
