@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { saveTimesToStore } from '../../../actions/index';
+
+import { saveTimesToStore } from '../../../actions';
 import { app } from '../../../../db';
 
 const moment = require('moment');
@@ -17,51 +18,30 @@ const styles = StyleSheet.create({
 
 class MainScreen extends Component {
   componentDidMount = () => {
-    const { uid } = this.props;
-    const db = app.database();
-    const ref = db.ref('users');
-    const user = ref.child(uid);
-    const achievements = user.child('achievements');
-    const habits = user.child('habits');
-    // const totalPoints = user.child('totalPoints');
-    const earlyMorning = habits.child('early_morning');
-
+    const { uid, navigation } = this.props;
+    const user = app.database().ref(`users/${uid}`);
+    const earlyMorning = user.child('habits/early_morning');
     // if the time is correct
-    if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
-      // app.database().ref(`users/0/habits/early_morning/`);
-      earlyMorning.on('value', data => {
+    // if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
+    // line 28 is for test purpose only.
+    if (moment().hour() === 10 && (moment().minute() >= 45 && moment().minute() <= 59)) {
+      earlyMorning.once('value', data => {
         const result = data.toJSON();
         const today = moment(Date.now()).format('DD/MM/YYYY');
         if (result.times < 5) {
           // if this is the first time or the button have not been clicked today
           if (result.clickDate === 0 || moment(result.clickDate).format('DD/MM/YYYY') !== today) {
             // go to Correct Time screen
-            this.props.navigation.navigate('CorrectTime');
+            navigation.navigate('CorrectTime');
           } else {
             // go to Wrong Time screen
-            this.props.navigation.navigate('WrongTime');
+            navigation.navigate('WrongTime');
           }
-        } else {
-          // add 300 points
-          user.on('value', data2 => {
-            const result2 = data2.toJSON();
-            const total = result2.totalPoints + 300;
-            user.set({ totalPoints: total });
-          });
-          achievements
-            .push({ type: 'plus', date: Date.now(), points: 300 })
-            .then(() => {
-              // go to Big Success screen
-              this.props.navigation.navigate('BigSuccess');
-            })
-            .catch(error => {
-              console.log(error);
-            });
         }
       });
-      // else if the time is wrong
+      // if the time is wrong
     } else {
-      earlyMorning.on('value', data => {
+      earlyMorning.once('value', data => {
         const result = data.toJSON();
         const date = result.clickDate !== 0 ? moment(result.clickDate) : 0;
         const now = moment(Date.now());
@@ -77,42 +57,10 @@ class MainScreen extends Component {
               clickDate: 0,
               tutorial: true,
             });
-
-            // remove 100 points
-            user.on('value', data2 => {
-              const result2 = data2.toJSON();
-              const total = result2.totalPoints - 100;
-              user.set({ totalPoints: total });
-            });
-            achievements
-              .push({ type: 'minus', date: Date.now(), points: 100 })
-              .then(() => {
-                // go to Fail screen
-                this.props.navigation.navigate('Fail');
-              })
-              .catch(error => {
-                console.log(error);
-              });
           } else {
             // go to Wrong Time screen
-            this.props.navigation.navigate('WrongTime');
+            navigation.navigate('WrongTime');
           }
-        } else {
-          // add 300 points
-          user.on('value', data2 => {
-            const result2 = data2.toJSON();
-            const total = result2.totalPoints + 300;
-            user.set({ totalPoints: total });
-          });
-          achievements
-            .push({ type: 'plus', date: Date.now(), points: 300 })
-            .then(() => {
-              // go to Big Success screen
-              this.props.navigation.navigate('BigSuccess');
-            })
-            .catch(error => {
-              console.log(error);
-            });
         }
       });
     }
@@ -131,6 +79,7 @@ class MainScreen extends Component {
 const mapStateToProps = state => ({
   uid: state.red.uid,
   times: state.red.earlyTimes,
+  points: state.red.totalPoints,
 });
 
 const mapDispatchToProps = dispatch => ({

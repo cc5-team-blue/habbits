@@ -1,37 +1,36 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForSuccess';
+import { setTotalPoints } from '../../../actions';
+import { getEarlyMorningPoints } from '../../../helper';
 
 class Success extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid: this.props.uid,
       times: 0,
     };
   }
 
   async componentDidMount() {
-    const db = app.database();
-    const ref = db.ref('users');
-    const user = ref.child(this.state.uid);
-    const habits = user.child('habits');
-    const earlyMorning = habits.child('early_morning');
+    const { uid } = this.props;
+    const ref = `users/${uid}/habits/early_morning`;
+    const earlyMorning = app.database().ref(ref);
 
-    await earlyMorning.on('value', data => {
+    await earlyMorning.once('value', data => {
       const result = data.toJSON();
       this.setState({ times: result.times });
     });
   }
 
-  handleClick = () => {
-    this.props.navigation.navigate('Loading');
-  };
-
   render() {
+    const { times } = this.state;
+    const { uid, points, handleClick, navigation } = this.props;
+
     return (
       <View style={styles.realContainer}>
         <StatusBar barStyle="light-content" />
@@ -44,11 +43,11 @@ class Success extends Component {
             <Image style={styles.happyRabbitImage} source={happyRabbit} />
             <Text style={styles.pointsText}>Challenge Progress:</Text>
             <Text style={[styles.challengeText, { color: '#3b495b' }]}>
-              {this.state.times}
+              {times}
               /5
             </Text>
           </View>
-          <View onTouchStart={this.handleClick} style={styles.yayButton}>
+          <View onTouchStart={() => handleClick(uid, points, navigation)} style={styles.yayButton}>
             <Text style={styles.yayText}>Yay!</Text>
           </View>
         </View>
@@ -59,9 +58,19 @@ class Success extends Component {
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  points: state.red.totalPoints,
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleClick: (uid, points, navigation) => {
+    const newPoints = points + 300;
+    getEarlyMorningPoints(uid, newPoints);
+    dispatch(setTotalPoints(newPoints));
+    navigation.navigate('Loading');
+  },
 });
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Success);
