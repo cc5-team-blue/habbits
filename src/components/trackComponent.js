@@ -7,7 +7,7 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   offlineContainer: {
-    backgroundColor: '#ffb94e',
+    backgroundColor: '#3B495B',
     height: 25,
     justifyContent: 'center',
     alignItems: 'center',
