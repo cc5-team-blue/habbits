@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, TextInput, View, StatusBar, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 
 import { app } from '../../db';
 import styles from '../css/styleForAuth';
@@ -20,26 +19,28 @@ class Login extends React.Component {
   }
 
   handleLogin = async () => {
-    const { email, password, loading } = this.state;
+    const { email, password } = this.state;
     const { navigation, saveName, saveUid } = this.props;
-    // this.setState({ loading: true });
-
-    try {
-      await app.auth().signInWithEmailAndPassword(email, password);
-      const { currentUser } = await app.auth();
-      const { uid } = currentUser;
-      const nameFromFB = await app.database().ref(`users/${uid}/name`);
-      await nameFromFB.once('value', data => {
-        const name = data.val();
-        this.setState({ loading: true });
-        saveName(name.name);
-        saveUid(uid);
-        setSignupDataToLS(name.name, uid);
-      });
-      NavigationActions.navigate('Main');
-    } catch (err) {
-      this.setState({ loading: false });
-      this.setState({ errorMessage: err.message });
+    if (email && password) {
+      this.setState({ loading: true });
+      try {
+        await app.auth().signInWithEmailAndPassword(email, password);
+        const { currentUser } = await app.auth();
+        const { uid } = currentUser;
+        const nameFromFB = await app.database().ref(`users/${uid}/name`);
+        await nameFromFB.once('value', data => {
+          const name = data.val();
+          saveName(name.name);
+          saveUid(uid);
+          setSignupDataToLS(name.name, uid);
+        });
+        navigation.navigate('Main');
+      } catch (err) {
+        this.setState({ loading: false });
+        this.setState({ errorMessage: err.message });
+      }
+    } else {
+      this.setState({ errorMessage: 'Please fill out all information.' });
     }
   };
 
@@ -61,7 +62,7 @@ class Login extends React.Component {
         <StatusBar barStyle="light-content" translucent />
         <View style={styles.signupContainer}>
           <View style={styles.signupWrapper}>
-            <Text style={styles.headline}>Welcome Back!</Text>
+            <Text style={styles.headline}>Good to see you again!</Text>
             <View style={styles.errorWrapper}>
               {errorMessage && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
             </View>
