@@ -1,4 +1,4 @@
-// This is a helper function file
+// *** This is a helper function file ***
 import { AsyncStorage } from 'react-native';
 import moment from 'moment';
 import 'moment-duration-format';
@@ -29,7 +29,6 @@ export const getAllKeyFromLS = async () => {
 export const isLoggedIn = async () => {
   try {
     const items = await AsyncStorage.getItem('isLoggedIn');
-    // It return promise.
     return items;
   } catch (err) {
     console.log(err);
@@ -41,7 +40,6 @@ export const isLoggedIn = async () => {
 export const getNameFromLS = async () => {
   try {
     const name = await AsyncStorage.getItem('name');
-    // It return promise.
     return name;
   } catch (err) {
     console.log(err);
@@ -53,10 +51,7 @@ export const getNameFromLS = async () => {
 export const getPointsFromLS = async uid => {
   try {
     let points = await AsyncStorage.getItem('totalPoints');
-    // It return promise. And totalPoints is JSONString.
     points = Number(JSON.parse(points)[uid]);
-    const totalPointsLS = await AsyncStorage.getItem('totalPoints');
-    console.log('Existing totalPoints: ', totalPointsLS);
     return points;
   } catch (err) {
     console.log(err);
@@ -68,7 +63,6 @@ export const getPointsFromLS = async uid => {
 export const getUidFromLS = async () => {
   try {
     const uid = await AsyncStorage.getItem('uid');
-    // It return promise.
     return uid;
   } catch (err) {
     console.log(err);
@@ -91,8 +85,6 @@ export const setSignupDataToLS = async (firstName, uid) => {
     await AsyncStorage.setItem('uid', uid);
     await AsyncStorage.setItem('isLoggedIn', 'true');
     await AsyncStorage.mergeItem('totalPoints', JSON.stringify({ [uid]: '0' }));
-    const loginStatus = await AsyncStorage.getItem('isLoggedIn');
-    console.log('isLogin: ', loginStatus);
   } catch (err) {
     console.log(err);
   }
@@ -102,9 +94,7 @@ export const setSignupDataToLS = async (firstName, uid) => {
 export const logout = async () => {
   try {
     await AsyncStorage.setItem('isLoggedIn', 'false');
-    const loginStatus = await AsyncStorage.getItem('isLoggedIn');
     AsyncStorage.removeItem('name');
-    console.log('isLogin: ', loginStatus);
   } catch (err) {
     console.log(err);
   }
@@ -128,11 +118,6 @@ export const getDifference = async () => {
       const end = moment(endTime);
       const currentTime = moment();
       const remainingTime = end.diff(currentTime, 'HH:mm:ss');
-      // const remainingTime = end.diff(currentTime, 'seconds');
-      // ToDo: Make it work with 7h and render it conditionally:
-      // if h > 0, show hh:mm
-      // if h = 0, show mm:ss
-      // const count = moment.duration({ seconds: remainingTime });
       return remainingTime;
     }
   } catch (err) {
@@ -261,10 +246,8 @@ export const loseEarlyMorningPoints = async (uid, newPoints) => {
 };
 
 export const changeTutorialToTrue = async uid => {
-  console.log(uid);
   const path = `users/${uid}/habits/early_morning`;
   const earlyMorning = await app.database().ref(path);
-  console.log(earlyMorning);
   earlyMorning.update({
     tutorial: true,
   });
