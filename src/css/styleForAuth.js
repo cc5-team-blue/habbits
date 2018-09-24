@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     color: '#242733',
   },
   errorWrapper: {
-    height: heightRes(15),
+    height: heightRes(30),
   },
   textInput: {
     width: widthRes(270),
