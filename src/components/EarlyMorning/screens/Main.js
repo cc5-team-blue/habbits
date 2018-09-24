@@ -24,7 +24,7 @@ class MainScreen extends Component {
     // if the time is correct
     // if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
     // line 28 is for test purpose only.
-    if (moment().hour() === 18 && (moment().minute() >= 1 && moment().minute() <= 59)) {
+    if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
       earlyMorning.once('value', data => {
         const result = data.toJSON();
         const today = moment(Date.now()).format('DD/MM/YYYY');
