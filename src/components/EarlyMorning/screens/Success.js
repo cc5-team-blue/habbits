@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigateActions } from 'react-navigation';
 
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
@@ -18,12 +17,15 @@ class Success extends Component {
   async componentDidMount() {
     const { uid } = this.props;
     const ref = `users/${uid}/habits/early_morning`;
-    const earlyMorning = app.database().ref(ref);
-
-    await earlyMorning.once('value', data => {
-      const result = data.toJSON();
-      this.setState({ times: result.times });
-    });
+    try {
+      const earlyMorning = await app.database().ref(ref);
+      earlyMorning.once('value', data => {
+        const result = data.toJSON();
+        this.setState({ times: result.times });
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   goHome = () => {
@@ -63,13 +65,6 @@ const mapStateToProps = state => ({
   uid: state.red.uid,
   points: state.red.totalPoints,
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   goHome: () => {
-//     const { navigation } = this.props;
-//     navigation.navigate('Main');
-//   },
-// });
 
 export default connect(
   mapStateToProps,
