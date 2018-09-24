@@ -36,15 +36,8 @@ class SignUp extends React.Component {
       await getItemFromLS();
       navigation.navigate('Main');
     } catch (err) {
-<<<<<<< HEAD
       console.log(err);
       this.setState({ errorMessage: err.message, loading: false });
-||||||| merged common ancestors
-      this.setState({ errorMessage: err.message });
-=======
-      this.setState({ loading: false });
-      this.setState({ errorMessage: err.message });
->>>>>>> master
     }
   };
 
