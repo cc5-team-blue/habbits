@@ -8,10 +8,11 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     width: widthRes(325),
-    height: heightRes(527.5),
-    borderRadius: 10,
+    height: heightRes(460),
     backgroundColor: '#fff7dd',
     marginLeft: widthRes(25.5),
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     alignItems: 'center',
   },
   headlineWrapper: {
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     backgroundColor: '#555291',
+    marginLeft: widthRes(25.5),
   },
 });
 
