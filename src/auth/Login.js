@@ -36,7 +36,7 @@ class Login extends React.Component {
         saveUid(uid);
         setSignupDataToLS(name.name, uid);
       });
-      await navigation.navigate('Main');
+      navigation.navigate('Main');
     } catch (err) {
       this.setState({ loading: false });
       this.setState({ errorMessage: err.message });
