@@ -47,7 +47,7 @@ class Success extends Component {
               /5
             </Text>
           </View>
-          <View onTouchStart={() => handleClick(uid, points, navigation)} style={styles.yayButton}>
+          <View onTouchStart={navigation.navigate('Main')} style={styles.yayButton}>
             <Text style={styles.yayText}>Yay!</Text>
           </View>
         </View>
@@ -61,16 +61,7 @@ const mapStateToProps = state => ({
   points: state.red.totalPoints,
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleClick: (uid, points, navigation) => {
-    const newPoints = points + 300;
-    getEarlyMorningPoints(uid, newPoints);
-    dispatch(setTotalPoints(newPoints));
-    navigation.navigate('Loading');
-  },
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Success);
