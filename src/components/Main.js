@@ -22,12 +22,14 @@ import styles from '../css/styleForMain';
 import Drawer from './Drawer';
 import { app } from '../../db';
 
+import TrackComponent from './trackComponent';
+
 class Main extends Component {
   async componentDidMount() {
     const { uid, getTotalPointsFromFB } = this.props;
     this.checkPermission();
     this.createNotificationListeners();
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
     getTotalPointsFromFB(uid);
   }
 
@@ -37,15 +39,15 @@ class Main extends Component {
   componentWillUnmount() {
     this.notificationListener();
     this.notificationOpenedListener();
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
-  handleConnectivityChange = isConnected => {
-    const { updateConnect } = this.props;
-    if (isConnected) {
-      updateConnect(isConnected);
-    }
-  };
+  // handleConnectivityChange = isConnected => {
+  //   const { updateConnect } = this.props;
+  //   if (isConnected) {
+  //     updateConnect(isConnected);
+  //   }
+  // };
 
   checkPermission = async () => {
     const enabled = await firebase.messaging().hasPermission();
@@ -140,6 +142,7 @@ class Main extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" translucent />
+        <TrackComponent />
         <View style={{ marginTop: -10 }}>
           <Drawer />
           <Text style={styles.headline}>Good Evening {name}</Text>

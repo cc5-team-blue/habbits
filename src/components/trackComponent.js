@@ -1,46 +1,29 @@
 import React, { Component } from 'react';
-import {
-  AppState,
-  Text,
-  View,
-  TouchableOpacity,
-  Alert,
-  Button,
-  NetInfo,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { AppState, Text, View, NetInfo, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
+import { updateConnectivity, appStateChange } from '../actions';
 
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   offlineContainer: {
-    backgroundColor: '#b52424',
+    backgroundColor: '#808000',
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     width,
     position: 'absolute',
-    top: 30,
+    top: 17,
   },
   offlineText: { color: '#fff' },
 });
 
 class AppStateExample extends Component {
-  state = {
-    appState: AppState.currentState,
-    isConnected: true,
-  };
-
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
-
-  // shouldComponentUpdate;
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.handleAppStateChange);
@@ -48,27 +31,24 @@ class AppStateExample extends Component {
   }
 
   handleAppStateChange = nextAppState => {
-    const { appState } = this.state;
-    if (appState.match(/inactive|background/) && nextAppState === 'active') {
+    const { state, updateAppState } = this.props;
+    if (state.match(/inactive|background/) && nextAppState === 'active') {
       console.log('App has come to the foreground!');
     }
-    this.setState({ appState: nextAppState });
+    updateAppState(nextAppState);
   };
 
   handleConnectivityChange = isConnected => {
-    if (isConnected) {
-      this.setState({ isConnected });
-    } else {
-      this.setState({ isConnected });
-    }
+    const { updateConnect } = this.props;
+    if (isConnected) updateConnect(isConnected);
+    else updateConnect(isConnected);
   };
 
   render() {
-    const { appState, isConnected } = this.state;
-    const { clickHabbit } = this.props;
-    if (appState === 'background') {
-      console.log(appState);
-      return <Text style={{ marginTop: 60 }}>Good Bye bro</Text>;
+    const { state, isConnected } = this.props;
+    if (state === 'background') {
+      console.log(`state is ${state}`);
+      return <Text style={{ marginTop: 110, backgroundColor: 'white' }}>Good Bye bro</Text>;
     }
     if (!isConnected) {
       console.log('internet', isConnected);
@@ -78,43 +58,25 @@ class AppStateExample extends Component {
         </View>
       );
     }
-    return (
-      <View>
-        <Text style={{ marginTop: 60 }}>Current state is: {appState}</Text>;
-        <TouchableOpacity>
-          <Button onPress={clickHabbit} title="dismiss button to Home" />
-        </TouchableOpacity>
-      </View>
-    );
+    return <View />;
   }
 }
 
-// const mapStateToProps = state => ({
-//   tsuyoshi: state.redsampleData1,
-// });
+const mapStateToProps = state => ({
+  isConnected: state.red.isConnected,
+  state: state.red.appState,
+});
 
 const mapDispatchToProps = dispatch => ({
-  clickHabbit: () => {
-    Alert.alert(
-      'Are you OK to give up?',
-      'No points, No life',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => dispatch(NavigationActions.navigate({ routeName: 'Home' })),
-        },
-      ],
-      { cancelable: true }
-    );
+  updateConnect: newConnectionState => {
+    dispatch(updateConnectivity(newConnectionState));
+  },
+  updateAppState: newAppState => {
+    dispatch(appStateChange(newAppState));
   },
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AppStateExample);
