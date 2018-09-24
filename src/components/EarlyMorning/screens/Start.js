@@ -15,12 +15,19 @@ class Start extends Component {
     const user = ref.child(uid);
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
+
+    const initClickDate = new Date();
+    initClickDate.setDate(initClickDate.getDate());
+    initClickDate.setHours(5);
+    initClickDate.setMinutes(50);
+    initClickDate.setMilliseconds(0);
+
     updateClickTimes(0);
     earlyMorning
       .update({
         tutorial: false,
         startDate: Date.now(),
-        clickDate: 0,
+        clickDate: Date.parse(initClickDate),
         times: 0,
       })
       .then(navigation.navigate('MainScreen'));
