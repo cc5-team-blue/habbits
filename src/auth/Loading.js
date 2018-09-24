@@ -4,12 +4,7 @@ import { connect } from 'react-redux';
 
 import styles from '../css/styleForAuth';
 import { saveNameToStore, saveUidToStore, setTotalPoints } from '../actions';
-import {
-  isLoggedIn,
-  getNameFromLS,
-  getUidFromLS,
-  getPointsFromLS,
-} from '../helper';
+import { isLoggedIn, getNameFromLS, getUidFromLS, getPointsFromLS } from '../helper';
 
 class Loading extends Component {
   async componentDidMount() {
