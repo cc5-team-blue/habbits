@@ -23,7 +23,7 @@ const imageRes = heightPoints => {
   // since initial styling is based on iPhone 6, we devide the given points by its height
   const heightPercent = heightPoints / 667;
   const screenHeight = Dimensions.get('window').height;
-  if (isIphoneX) {
+  if (isIphoneX()) {
     return heightPercent * screenHeight * 0.82;
   }
   return heightPercent * screenHeight;
