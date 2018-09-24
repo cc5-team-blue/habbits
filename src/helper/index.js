@@ -50,11 +50,13 @@ export const getNameFromLS = async () => {
 };
 
 // Loading.js
-export const getPointsFromLS = async () => {
+export const getPointsFromLS = async uid => {
   try {
     let points = await AsyncStorage.getItem('totalPoints');
-    // It return promise. And totalPoints is String.
-    points = Number(points);
+    // It return promise. And totalPoints is JSONString.
+    points = Number(JSON.parse(points)[uid]);
+    const totalPointsLS = await AsyncStorage.getItem('totalPoints');
+    console.log('Existing totalPoints: ', totalPointsLS);
     return points;
   } catch (err) {
     console.log(err);
@@ -74,9 +76,9 @@ export const getUidFromLS = async () => {
   return 0;
 };
 
-export const setTotalPointsToLS = async points => {
+export const setTotalPointsToLS = async (points, uid) => {
   try {
-    await AsyncStorage.setItem('totalPoints', points);
+    await AsyncStorage.mergeItem('totalPoints', JSON.stringify({ [uid]: points }));
   } catch (err) {
     console.log(err);
   }
@@ -88,7 +90,7 @@ export const setSignupDataToLS = async (firstName, uid) => {
     await AsyncStorage.setItem('name', firstName);
     await AsyncStorage.setItem('uid', uid);
     await AsyncStorage.setItem('isLoggedIn', 'true');
-    await AsyncStorage.setItem('totalPoints', '0');
+    await AsyncStorage.mergeItem('totalPoints', JSON.stringify({ [uid]: '0' }));
     const loginStatus = await AsyncStorage.getItem('isLoggedIn');
     console.log('isLogin: ', loginStatus);
   } catch (err) {
@@ -189,7 +191,7 @@ const setPointsToLSAndFB = async (uid, data, newPoints) => {
   const database = await app.database();
   database.ref(path).push(data);
   database.ref(userRootPath).update({ totalPoints: newPoints });
-  setTotalPointsToLS(String(newPoints));
+  setTotalPointsToLS(String(newPoints), uid);
 };
 
 // Using in journalSuccessBIG.js
@@ -232,6 +234,28 @@ export const loseSleepPoint = async (uid, newPoints) => {
     points: 200,
     type: 'minus',
     habbits: 'Good Sleep',
+  };
+  setPointsToLSAndFB(uid, data, newPoints);
+};
+
+// Using in Early Morning habbit: screens/Main.js
+export const getEarlyMorningPoints = async (uid, newPoints) => {
+  const data = {
+    date: Date.now(),
+    points: 300,
+    type: 'plus',
+    habbits: 'Early Morning',
+  };
+  setPointsToLSAndFB(uid, data, newPoints);
+};
+
+// Using in Early Morning habbit: screens/Main.js
+export const loseEarlyMorningPoints = async (uid, newPoints) => {
+  const data = {
+    date: Date.now(),
+    points: 100,
+    type: 'minus',
+    habbits: 'Early Morning',
   };
   setPointsToLSAndFB(uid, data, newPoints);
 };

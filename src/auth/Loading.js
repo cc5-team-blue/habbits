@@ -22,7 +22,7 @@ class Loading extends Component {
     if (result === 'true') {
       const name = await getNameFromLS();
       const uid = await getUidFromLS();
-      const points = await getPointsFromLS();
+      const points = await getPointsFromLS(uid);
       saveName(name);
       saveUid(uid);
       savePoints(points);

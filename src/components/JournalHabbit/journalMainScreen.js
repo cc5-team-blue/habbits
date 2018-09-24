@@ -41,7 +41,7 @@ export class JournalMain extends Component {
         <View style={styles.innerContainer}>
           <View
             style={[
-              styles.contentsContainer,
+              styles.contentsContainerMain,
               styles.journalInputBackground,
               styles.mainItemPosition,
             ]}
