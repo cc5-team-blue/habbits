@@ -103,8 +103,8 @@ export class Timer extends Component {
     if (Platform.OS === 'android') {
       return (
         <View style={styles.container}>
-          <Text style={styles.timerForseconds}> {secondsFormatted || ''}s</Text>
           <Text style={styles.timerForAndroid}> {timeFormatted} </Text>
+          <Text style={styles.timerForseconds}> {secondsFormatted || ''}s</Text>
         </View>
       );
     }
