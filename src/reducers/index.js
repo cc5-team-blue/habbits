@@ -6,7 +6,6 @@ import moment from 'moment';
 import 'moment-duration-format';
 
 import navReducer from './navReducer';
-// It gets action types
 import {
   COUNTDOWN,
   CHANGE_INTERVAL,
@@ -23,7 +22,6 @@ import {
   SET_TOTAL_POINTS,
 } from '../actions';
 
-// It sets initial state
 const initialState = {
   uid: '',
   name: 'Habbit',
