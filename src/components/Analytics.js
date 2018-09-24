@@ -92,6 +92,7 @@ class Analytics extends Component {
       return (
         <View style={styles.container}>
           <StatusBar barStyle="light-content" translucent />
+          <TrackComponent />
           <View style={styles.headlineWrapper}>
             <Text style={styles.headline}>Analytics</Text>
             <Exit />
@@ -107,6 +108,7 @@ class Analytics extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" translucent />
+        <TrackComponent />
         <View style={styles.headlineWrapper}>
           <Text style={styles.headline}>Analytics</Text>
           <Exit />

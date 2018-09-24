@@ -31,7 +31,6 @@ class AppStateExample extends Component {
 
   handleConnectivityChange = newConnection => {
     const { updateConnect } = this.props;
-    console.log(newConnection);
     if (newConnection) updateConnect(newConnection);
     else updateConnect(newConnection);
   };
@@ -40,7 +39,6 @@ class AppStateExample extends Component {
     const { isConnected } = this.props;
 
     if (!isConnected) {
-      console.log('internet', isConnected);
       return (
         <View style={styles.offlineContainer}>
           <Text style={styles.offlineText}>No Internet Connection</Text>
