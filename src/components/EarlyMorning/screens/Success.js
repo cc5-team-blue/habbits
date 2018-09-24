@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForSuccess';
-import { setTotalPoints } from '../../../actions';
-import { getEarlyMorningPoints } from '../../../helper';
 
 class Success extends Component {
   constructor(props) {
@@ -29,7 +27,7 @@ class Success extends Component {
 
   render() {
     const { times } = this.state;
-    const { uid, points, handleClick, navigation } = this.props;
+    const { navigation } = this.props;
 
     return (
       <View style={styles.realContainer}>
