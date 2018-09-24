@@ -16,7 +16,6 @@ class Loading extends Component {
   async componentDidMount() {
     const { navigation, saveName, saveUid, savePoints } = this.props;
     const keys = await getAllKeyFromLS();
-    console.log('Existng keys are: ', keys);
     // result is the return value from LS
     const result = await isLoggedIn();
     if (result === 'true') {
