@@ -40,6 +40,7 @@ class Loading extends Component {
         }
       } else {
         earlyMorning.set({ tutorial: true });
+        navigation.navigate('Start');
       }
     });
   };
