@@ -8,7 +8,7 @@ import checkCircle from '../../images/check-circle.png';
 
 export const journalSuccess = ({ goToMain, counter }) => (
   <View style={styles.outerContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <View style={styles.innerContainer}>
       <View style={[styles.contentsContainer, styles.sucessBackground, styles.successItemPosition]}>
         <View>

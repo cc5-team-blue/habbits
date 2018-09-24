@@ -37,7 +37,7 @@ class CorrectTime extends Component {
     // correct time
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <Text style={styles.header}>Early Start</Text>
         <View style={styles.wrapper}>
           <Text style={styles.text}>Good Morning Handsome!</Text>

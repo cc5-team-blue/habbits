@@ -11,7 +11,6 @@ class DetectOffline extends Component {
     if (isConnected === false) {
       goToSleepTimer();
     }
-    console.log('detect is starting from here', isConnected);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -40,7 +39,6 @@ class DetectOffline extends Component {
 
   componentWillUnmount() {
     NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-    console.log('detect is removed now', NetInfo.isConnected);
   }
 
   handleConnectivityChange = isConnected => {

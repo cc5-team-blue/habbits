@@ -35,7 +35,7 @@ class Loading extends Component {
   render() {
     return (
       <View style={styles.loading}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <ActivityIndicator size="large" />
         <Text style={styles.loadingText}> Loading </Text>
       </View>

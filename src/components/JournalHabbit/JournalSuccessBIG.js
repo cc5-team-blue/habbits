@@ -10,7 +10,7 @@ import happyRabbit from '../../images/happyRabbit.png';
 
 export const journalSuccessBIG = ({ goToMain, uid, points }) => (
   <View style={styles.outerContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <View style={styles.innerContainer}>
       <View style={[styles.contentsContainer, styles.sucessBackground, styles.successItemPosition]}>
         <View>

@@ -6,7 +6,7 @@ import styles from '../../css/styleForSleepTimer';
 
 const TimerScreen = () => (
   <View style={styles.container}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <Text style={styles.headline}>Sleep Timer</Text>
     <View style={styles.rectangle3}>
       <Timer style={styles.timer} />

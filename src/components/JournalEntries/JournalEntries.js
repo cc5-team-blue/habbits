@@ -8,6 +8,7 @@ import star from '../../images/star.png';
 import styles from '../../css/styleForJournalEntries';
 import { app } from '../../../db';
 import ExitButton from '../ExitButton';
+import TrackComponent from '../trackComponent';
 
 class CountdownToOffline extends Component {
   constructor(props) {
@@ -45,7 +46,8 @@ class CountdownToOffline extends Component {
     if (!loaded) {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content" translucent />
+          <TrackComponent />
           <View style={styles.wrapper}>
             <View style={styles.headlineWrapper}>
               <Text style={styles.headline}>Your Journal</Text>
@@ -55,8 +57,8 @@ class CountdownToOffline extends Component {
             </View>
             <View style={styles.rectangleContainer}>
               <View style={styles.emptyWrapper}>
-                <View style={styles.emptyView}>
-                  <StatusBar barStyle="light-content" />
+                <View style={styles.emptyText}>
+                  <StatusBar barStyle="light-content" translucent/>
                   <ActivityIndicator size="large" />
                   <Text style={styles.emptySubText}>Loading</Text>
                 </View>
@@ -70,7 +72,7 @@ class CountdownToOffline extends Component {
     if (entries.length === 0 && loaded) {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content" translucent />
           <View style={styles.wrapper}>
             <View style={styles.headlineWrapper}>
               <Text style={styles.headline}>Your Journal</Text>
@@ -92,7 +94,7 @@ class CountdownToOffline extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content" translucent />
           <View style={styles.wrapper}>
             <View style={styles.headlineWrapper}>
               <Text style={styles.headline}>Your Journal</Text>

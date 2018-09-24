@@ -26,7 +26,7 @@ import {
 // It sets initial state
 const initialState = {
   uid: '',
-  name: '',
+  name: 'Habbit',
   endTime: undefined,
   full: undefined,
   counter: undefined,

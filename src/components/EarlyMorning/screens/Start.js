@@ -36,7 +36,7 @@ class Start extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.headlineWrapper}>
           <Text style={styles.header}>Early Start</Text>
           <Exit />

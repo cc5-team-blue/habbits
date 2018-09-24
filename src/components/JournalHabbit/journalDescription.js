@@ -10,7 +10,7 @@ import Exit from '../ExitButton';
 
 export const journalDescription = ({ uid, goToJournalMain }) => (
   <View style={styles.outerContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <View style={styles.headlineWrapper}>
       <Text style={styles.header}>Daily Journal</Text>
       <Exit />

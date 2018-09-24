@@ -103,6 +103,7 @@ export const logout = async () => {
   try {
     await AsyncStorage.setItem('isLoggedIn', 'false');
     const loginStatus = await AsyncStorage.getItem('isLoggedIn');
+    AsyncStorage.removeItem('name');
     console.log('isLogin: ', loginStatus);
   } catch (err) {
     console.log(err);

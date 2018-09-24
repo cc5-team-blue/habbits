@@ -9,7 +9,7 @@ import ExitButton from '../ExitButton';
 
 export const Failure = ({ goToHome }) => (
   <View style={styles.realContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <View style={styles.headlineWrapper}>
       <Text style={styles.headline}>Aww Snap!</Text>
       <ExitButton />

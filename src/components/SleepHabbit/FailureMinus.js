@@ -10,7 +10,7 @@ import styles from '../../css/styleForSadness';
 
 export const FailureMinus = ({ goToHome, uid, points }) => (
   <View style={styles.realContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <View style={styles.headlineWrapper}>
       <Text style={styles.headline}>Aww Snap!</Text>
     </View>

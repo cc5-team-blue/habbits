@@ -12,6 +12,7 @@ import Exit from './ExitButton';
 import { widthRes, heightRes } from '../css/responsiveFunctions';
 import loadStyles from '../css/styleForAuth';
 import timeRabbit from '../images/sadRabbit.png';
+import TrackComponent from './trackComponent';
 
 const moment = require('moment');
 
@@ -79,7 +80,8 @@ class Analytics extends Component {
     if (JSON.stringify(chart) === JSON.stringify([0, 0, 0, 0, 0])) {
       return (
         <View style={loadStyles.loading}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content" translucent />
+          <TrackComponent />
           <ActivityIndicator size="large" />
           <Text style={loadStyles.loadingText}>Getting fresh data...</Text>
         </View>
@@ -89,7 +91,7 @@ class Analytics extends Component {
     if (reversedList.length === 0) {
       return (
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content" translucent />
           <View style={styles.headlineWrapper}>
             <Text style={styles.headline}>Analytics</Text>
             <Exit />
@@ -104,7 +106,7 @@ class Analytics extends Component {
     }
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" translucent />
         <View style={styles.headlineWrapper}>
           <Text style={styles.headline}>Analytics</Text>
           <Exit />

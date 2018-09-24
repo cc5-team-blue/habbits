@@ -10,7 +10,7 @@ import sadRabbit from '../../images/sadRabbit.png';
 
 export const journalFailure = ({ goToMain, uid, points }) => (
   <View style={styles.outerContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <Text style={[styles.innerHeadlineContainer, styles.headline]}>Aww Snap!</Text>
     <View style={styles.innerContentsContainer}>
       <View style={styles.failureContainer}>

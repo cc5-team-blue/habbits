@@ -8,7 +8,7 @@ import { logout } from '../helper';
 
 export const UserInfo = ({ clickHabbit }) => (
   <View style={styles.realContainer}>
-    <StatusBar barStyle="light-content" />
+    <StatusBar barStyle="light-content" translucent />
     <View style={styles.container}>
       <View onTouchStart={clickHabbit} style={styles.yayButton}>
         <Text style={styles.yayText}>Yay!</Text>
