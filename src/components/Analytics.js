@@ -12,6 +12,7 @@ import Exit from './ExitButton';
 import { widthRes, heightRes } from '../css/responsiveFunctions';
 import loadStyles from '../css/styleForAuth';
 import timeRabbit from '../images/sadRabbit.png';
+import TrackComponent from './trackComponent';
 
 const moment = require('moment');
 
@@ -80,6 +81,7 @@ class Analytics extends Component {
       return (
         <View style={loadStyles.loading}>
           <StatusBar barStyle="light-content" translucent />
+          <TrackComponent />
           <ActivityIndicator size="large" />
           <Text style={loadStyles.loadingText}>Getting fresh data...</Text>
         </View>

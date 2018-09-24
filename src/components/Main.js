@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
 
-import {
-  Text,
-  View,
-  Image,
-  StatusBar,
-  ScrollView,
-  Alert,
-  AsyncStorage,
-  NetInfo,
-} from 'react-native';
+import { Text, View, Image, StatusBar, ScrollView, Alert, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { updateConnectivity, setJournalCount, setTotalPoints } from '../actions';
@@ -29,7 +20,6 @@ class Main extends Component {
     const { uid, getTotalPointsFromFB } = this.props;
     this.checkPermission();
     this.createNotificationListeners();
-    // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
     getTotalPointsFromFB(uid);
   }
 
@@ -39,15 +29,7 @@ class Main extends Component {
   componentWillUnmount() {
     this.notificationListener();
     this.notificationOpenedListener();
-    // NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
-
-  // handleConnectivityChange = isConnected => {
-  //   const { updateConnect } = this.props;
-  //   if (isConnected) {
-  //     updateConnect(isConnected);
-  //   }
-  // };
 
   checkPermission = async () => {
     const enabled = await firebase.messaging().hasPermission();
@@ -152,16 +134,16 @@ class Main extends Component {
             <View style={styles.row}>
               <View style={styles.item}>
                 <View
-                  onTouchStart={clickHabbit}
+                  onTouchEnd={clickHabbit}
                   style={[styles.habbitWrapper, styles.left, { backgroundColor: '#eb5e65' }]}
                 >
                   <Image style={styles.sleepHabbitImage} source={sleepHabbitImg} />
                 </View>
-                <View onTouchStart={clickHabbit} style={[styles.habbitTextBar, styles.left]}>
+                <View onTouchEnd={clickHabbit} style={[styles.habbitTextBar, styles.left]}>
                   <Text style={styles.habbitText}>Good Sleep</Text>
                 </View>
               </View>
-              <View style={styles.item} onTouchStart={goToEarlyMorning}>
+              <View style={styles.item} onTouchEnd={goToEarlyMorning}>
                 <View style={[styles.habbitWrapper, styles.right]}>
                   <Image style={styles.earlyStartImg} source={earlyStartImg} />
                 </View>
@@ -171,7 +153,7 @@ class Main extends Component {
               </View>
             </View>
             <View style={[styles.row, { paddingTop: 15 }]}>
-              <View style={styles.item} onTouchStart={() => goToJournal(uid)}>
+              <View style={styles.item} onTouchEnd={() => goToJournal(uid)}>
                 <View style={[styles.habbitWrapper, styles.left, { backgroundColor: '#FFB94E' }]}>
                   <Image style={styles.journalHabbitImage} source={journalImage} />
                 </View>
@@ -181,13 +163,13 @@ class Main extends Component {
               </View>
               <View style={styles.item}>
                 <View
-                  onTouchStart={goToAnalytics}
+                  onTouchEnd={goToAnalytics}
                   style={[styles.habbitWrapper, styles.right, { backgroundColor: '#576371' }]}
                 >
                   <Image style={styles.analyticsImage} source={analyticsImage} />
                 </View>
                 <View
-                  onTouchStart={goToAnalytics}
+                  onTouchEnd={goToAnalytics}
                   style={[styles.habbitTextBar, styles.right, { backgroundColor: '#6F829D' }]}
                 >
                   <Text style={styles.habbitText}>Analytics</Text>

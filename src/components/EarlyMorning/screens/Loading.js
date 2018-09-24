@@ -3,6 +3,8 @@ import { StyleSheet, View, ActivityIndicator, StatusBar, Text } from 'react-nati
 import { connect } from 'react-redux';
 import { app } from '../../../../db';
 
+import TrackComponent from '../../trackComponent';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -46,6 +48,7 @@ class Loading extends Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" translucent />
+        <TrackComponent />
         <Text style={styles.text}>The early bird gets the worm...</Text>
         <ActivityIndicator size="large" />
       </View>

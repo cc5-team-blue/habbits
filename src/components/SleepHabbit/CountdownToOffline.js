@@ -57,7 +57,6 @@ class CountdownToOffline extends Component {
     clearInterval(this.timerID);
     resetInterval();
     NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-    console.log('detect is removed now', NetInfo.isConnected);
   }
 
   handleConnectivityChange = isConnected => {
