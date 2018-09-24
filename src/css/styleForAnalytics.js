@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   waitRabbit: {
     marginTop: heightRes(48),
     width: widthRes(215),
-    height: heightRes(215),
+    height: imageRes(215),
   },
   noData: {
     marginTop: heightRes(48),
