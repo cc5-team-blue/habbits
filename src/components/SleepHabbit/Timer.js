@@ -82,8 +82,6 @@ export class Timer extends Component {
     const { currentCounter } = this.props;
     const seconds = Math.floor((currentCounter / 1000) % 60);
     const percentage = 100 - (seconds / 60) * 100;
-    // const minutes = (currentCounter / (1000 * 60)) % 60;
-    // const hours = (currentCounter / (1000 * 60 * 60)) % 24;
     let timeFormatted;
     let secondsFormatted;
     if (currentCounter > 3599999) {
@@ -98,7 +96,6 @@ export class Timer extends Component {
         .utc()
         .format('mm:ss');
     }
-    // const time = currentCounter.format('h:mm:ss');
 
     if (Platform.OS === 'android') {
       return (

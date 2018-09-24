@@ -24,7 +24,6 @@ class Analytics extends Component {
       // To make it work in adroid, we need to set initial value in chart
       chart: [0, 0, 0, 0, 0],
       points: 0,
-      count: 0,
       reversedList: [],
     };
   }
@@ -36,7 +35,6 @@ class Analytics extends Component {
     const achievements = [];
     const chart = [0];
     let points = 0;
-    const totalPoints = 0;
     ref.once('value', data => {
       if (!data.length) this.setState({ chart: [0] });
       data.forEach(child => {
@@ -196,9 +194,7 @@ const mapStateToProps = state => ({
   name: state.red.name,
 });
 
-const mapDispatchToProps = dispatch => ({});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Analytics);

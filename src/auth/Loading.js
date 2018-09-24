@@ -4,30 +4,27 @@ import { connect } from 'react-redux';
 
 import styles from '../css/styleForAuth';
 import { saveNameToStore, saveUidToStore, setTotalPoints } from '../actions';
-import {
-  isLoggedIn,
-  getAllKeyFromLS,
-  getNameFromLS,
-  getUidFromLS,
-  getPointsFromLS,
-} from '../helper';
+import { isLoggedIn, getNameFromLS, getUidFromLS, getPointsFromLS } from '../helper';
 
 class Loading extends Component {
   async componentDidMount() {
-    const { navigation, saveName, saveUid, savePoints } = this.props;
-    const keys = await getAllKeyFromLS();
-    // result is the return value from LS
-    const result = await isLoggedIn();
-    if (result === 'true') {
-      const name = await getNameFromLS();
-      const uid = await getUidFromLS();
-      const points = await getPointsFromLS(uid);
-      saveName(name);
-      saveUid(uid);
-      savePoints(points);
-      navigation.navigate('Main');
-    } else {
-      navigation.navigate('SignUp');
+    try {
+      const { navigation, saveName, saveUid, savePoints } = this.props;
+      // result is the return value from LS
+      const result = await isLoggedIn();
+      if (result === 'true') {
+        const name = await getNameFromLS();
+        const uid = await getUidFromLS();
+        const points = await getPointsFromLS(uid);
+        saveName(name);
+        saveUid(uid);
+        savePoints(points);
+        navigation.navigate('Main');
+      } else {
+        navigation.navigate('SignUp');
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 

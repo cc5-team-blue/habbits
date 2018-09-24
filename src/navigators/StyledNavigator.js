@@ -59,22 +59,11 @@ class SideMenu extends Component {
   }
 }
 
-// const CustomDrawerContentComponent = props => (
-//   <ScrollView>
-//     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-//       <Text>Hello World</Text>
-//       <DrawerItems {...props} />
-//     </SafeAreaView>
-//   </ScrollView>
-// );
-
 const mapStateToProps = state => ({
   name: state.red.name,
   uid: state.red.uid,
   points: state.red.totalPoints,
 });
-
-// const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
