@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppState, Text, View, NetInfo, StyleSheet, Dimensions } from 'react-native';
+import { Text, View, NetInfo, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { updateConnectivity, appStateChange } from '../actions';
 
@@ -7,49 +7,38 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   offlineContainer: {
-    backgroundColor: '#808000',
-    height: 30,
+    backgroundColor: '#ffb94e',
+    height: 25,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     width,
     position: 'absolute',
-    top: 17,
+    top: 18,
   },
   offlineText: { color: '#fff' },
 });
 
 class AppStateExample extends Component {
   componentDidMount() {
-    AppState.addEventListener('change', this.handleAppStateChange);
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener('change', this.handleAppStateChange);
+    console.log('unmount trach detcting');
     NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
-  handleAppStateChange = nextAppState => {
-    const { state, updateAppState } = this.props;
-    if (state.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('App has come to the foreground!');
-    }
-    updateAppState(nextAppState);
-  };
-
-  handleConnectivityChange = isConnected => {
+  handleConnectivityChange = newConnection => {
     const { updateConnect } = this.props;
-    if (isConnected) updateConnect(isConnected);
-    else updateConnect(isConnected);
+    console.log(newConnection);
+    if (newConnection) updateConnect(newConnection);
+    else updateConnect(newConnection);
   };
 
   render() {
-    const { state, isConnected } = this.props;
-    if (state === 'background') {
-      console.log(`state is ${state}`);
-      return <Text style={{ marginTop: 110, backgroundColor: 'white' }}>Good Bye bro</Text>;
-    }
+    const { isConnected } = this.props;
+
     if (!isConnected) {
       console.log('internet', isConnected);
       return (
