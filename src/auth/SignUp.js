@@ -22,21 +22,26 @@ class SignUp extends React.Component {
   handleSignUp = async () => {
     const { firstName, email, password } = this.state;
     const { navigation, saveName, saveUid } = this.props;
-    this.setState({ loading: true });
-    try {
-      const returnFromFB = await app.auth().createUserWithEmailAndPassword(email, password);
-      await saveName(firstName);
-      await saveUid(returnFromFB.user.uid);
-      setSignupDataToLS(firstName, returnFromFB.user.uid);
-      const userNamePath = `users/${returnFromFB.user.uid}/name`;
-      const userRootPath = `users/${returnFromFB.user.uid}`;
-      const firebaseDB = await app.database();
-      await firebaseDB.ref(userNamePath).update({ name: firstName });
-      await firebaseDB.ref(userRootPath).update({ totalPoints: 0 });
-      getItemFromLS();
-      navigation.navigate('Main');
-    } catch (err) {
-      this.setState({ errorMessage: err.message });
+    if (email && password && firstName) {
+      this.setState({ loading: true });
+      try {
+        const returnFromFB = await app.auth().createUserWithEmailAndPassword(email, password);
+        await saveName(firstName);
+        await saveUid(returnFromFB.user.uid);
+        setSignupDataToLS(firstName, returnFromFB.user.uid);
+        const userNamePath = `users/${returnFromFB.user.uid}/name`;
+        const userRootPath = `users/${returnFromFB.user.uid}`;
+        const firebaseDB = await app.database();
+        await firebaseDB.ref(userNamePath).update({ name: firstName });
+        await firebaseDB.ref(userRootPath).update({ totalPoints: 0 });
+        getItemFromLS();
+        navigation.navigate('Main');
+      } catch (err) {
+        this.setState({ loading: false });
+        this.setState({ errorMessage: err.message });
+      }
+    } else {
+      this.setState({ errorMessage: 'Please fill out all information.' });
     }
   };
 

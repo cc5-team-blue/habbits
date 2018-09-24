@@ -53,11 +53,11 @@ class Start extends Component {
             {'\n'}
             {'\n'}
           </Text>
-          <View style={styles.btnWrapper}>
-            <Text onPress={this.handleClick} style={styles.btn}>
-              Bring it on
-            </Text>
-          </View>
+        </View>
+        <View style={styles.btnWrapper}>
+          <Text onPress={this.handleClick} style={styles.btn}>
+            Bring it on
+          </Text>
         </View>
       </View>
     );

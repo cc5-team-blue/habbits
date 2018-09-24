@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
+import { widthRes, heightRes, imageRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   realContainer: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   sadRabbitImage: {
     marginTop: heightRes(46),
     width: widthRes(249.5),
-    height: heightRes(249),
+    height: imageRes(249),
   },
   warningText: {
     marginTop: heightRes(40.5),

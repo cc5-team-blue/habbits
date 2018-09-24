@@ -19,26 +19,28 @@ class Login extends React.Component {
   }
 
   handleLogin = async () => {
-    const { email, password, loading } = this.state;
+    const { email, password } = this.state;
     const { navigation, saveName, saveUid } = this.props;
-    console.log('click!');
-    this.setState({ loading: true });
-    console.log(loading);
-
-    try {
-      await app.auth().signInWithEmailAndPassword(email, password);
-      const { currentUser } = await app.auth();
-      const { uid } = currentUser;
-      const nameFromFB = await app.database().ref(`users/${uid}/name`);
-      await nameFromFB.on('value', data => {
-        const name = data.val();
-        saveName(name.name);
-        saveUid(uid);
-        setSignupDataToLS(name.name, uid);
-      });
-      await navigation.navigate('Main');
-    } catch (err) {
-      this.setState({ errorMessage: err.message });
+    if (email && password) {
+      this.setState({ loading: true });
+      try {
+        await app.auth().signInWithEmailAndPassword(email, password);
+        const { currentUser } = await app.auth();
+        const { uid } = currentUser;
+        const nameFromFB = await app.database().ref(`users/${uid}/name`);
+        await nameFromFB.once('value', data => {
+          const name = data.val();
+          saveName(name.name);
+          saveUid(uid);
+          setSignupDataToLS(name.name, uid);
+        });
+        navigation.navigate('Main');
+      } catch (err) {
+        this.setState({ loading: false });
+        this.setState({ errorMessage: err.message });
+      }
+    } else {
+      this.setState({ errorMessage: 'Please fill out all information.' });
     }
   };
 
@@ -60,7 +62,7 @@ class Login extends React.Component {
         <StatusBar barStyle="light-content" />
         <View style={styles.signupContainer}>
           <View style={styles.signupWrapper}>
-            <Text style={styles.headline}>Welcome Back!</Text>
+            <Text style={styles.headline}>Good to see you again!</Text>
             <View style={styles.errorWrapper}>
               {errorMessage && <Text style={{ color: 'red' }}>{errorMessage}</Text>}
             </View>

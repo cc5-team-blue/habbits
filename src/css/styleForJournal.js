@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
+import { widthRes, heightRes, imageRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   // Common style
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   // journalDescription
   journalImg: {
     width: widthRes(79.5),
-    height: heightRes(79.5),
+    height: imageRes(79.5),
   },
   innerHeadlineContainer: {
     marginLeft: '6%',
@@ -99,11 +99,19 @@ const styles = StyleSheet.create({
     height: '90%',
     width: '88%',
   },
-  contentsContainer: {
+  contentsContainerMain: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     // justifyContent: 'center',
     // alignItems: 'center',
+    width: '100%',
+    height: '95%',
+  },
+  contentsContainer: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     height: '95%',
   },
@@ -178,7 +186,7 @@ const styles = StyleSheet.create({
   },
   checkCircleImage: {
     width: widthRes(80),
-    height: heightRes(78.5),
+    height: imageRes(78.5),
     marginTop: '25%',
     marginBottom: '25%',
   },
@@ -202,7 +210,7 @@ const styles = StyleSheet.create({
   },
   sadRabbitImg: {
     width: widthRes(215),
-    height: heightRes(215),
+    height: imageRes(215),
   },
   forgotText: {
     width: '80%',
@@ -260,7 +268,7 @@ const styles = StyleSheet.create({
   },
   happyRabbitImage: {
     width: widthRes(130),
-    height: heightRes(219.5),
+    height: imageRes(219.5),
     marginTop: '10%',
     marginBottom: '12%',
   },

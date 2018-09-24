@@ -106,6 +106,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgba(59, 73, 91, 0.68)',
   },
+  emptyView: {
+    marginTop: heightRes(200),
+    width: widthRes(280),
+  },
 });
 
 export default styles;

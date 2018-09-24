@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from '../../../css/responsiveFunctions';
+import { widthRes, heightRes, imageRes } from '../../../css/responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: widthRes(192),
-    height: heightRes(192),
+    height: imageRes(192),
     backgroundColor: '#eb5e65',
     borderWidth: 4,
     borderColor: '#000000',
