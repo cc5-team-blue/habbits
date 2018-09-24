@@ -55,7 +55,7 @@ class CountdownToOffline extends Component {
             </View>
             <View style={styles.rectangleContainer}>
               <View style={styles.emptyWrapper}>
-                <View style={styles.emptyText}>
+                <View style={styles.emptyView}>
                   <StatusBar barStyle="light-content" />
                   <ActivityIndicator size="large" />
                   <Text style={styles.emptySubText}>Loading</Text>
