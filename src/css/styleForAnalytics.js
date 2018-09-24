@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
+import { widthRes, heightRes, imageRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -82,15 +82,15 @@ const styles = StyleSheet.create({
   },
   arrowUpImg: {
     width: widthRes(14),
-    height: heightRes(14),
+    height: imageRes(14),
   },
   arrowDownImg: {
     width: widthRes(14),
-    height: heightRes(14),
+    height: imageRes(14),
   },
   starImg: {
     width: widthRes(14),
-    height: heightRes(14),
+    height: imageRes(14),
   },
   verticalArrowLine: {
     position: 'absolute',

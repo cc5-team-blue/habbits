@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
+import { widthRes, heightRes, imageRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,13 +64,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginLeft: widthRes(26.5),
     width: widthRes(104.5),
-    height: heightRes(72),
+    height: imageRes(72),
   },
   journalHabbitImage: {
     position: 'absolute',
     top: '30%',
     width: widthRes(50.9),
-    height: heightRes(50.8),
+    height: imageRes(50.8),
     alignSelf: 'center',
     alignContent: 'center',
   },

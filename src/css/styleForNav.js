@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
+import { widthRes, heightRes, imageRes } from './responsiveFunctions';
 
 const style = StyleSheet.create({
   container: {
@@ -20,7 +20,7 @@ const style = StyleSheet.create({
   },
   habbitLogo: {
     width: widthRes(44),
-    height: heightRes(58),
+    height: imageRes(58),
   },
   habbitText: {
     marginTop: heightRes(5),
@@ -62,11 +62,11 @@ const style = StyleSheet.create({
     // color: 'white',
   },
   journalIcon: {
-    height: heightRes(16),
+    height: imageRes(16),
     width: widthRes(16),
   },
   logoutIcon: {
-    height: heightRes(16),
+    height: imageRes(16),
     width: widthRes(16),
   },
   navText: {

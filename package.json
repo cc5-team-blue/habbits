@@ -29,6 +29,7 @@
     "android-dev": "adb reverse tcp:8081 tcp:8081 && react-native run-android",
     "ios": "react-native run-ios",
     "iosPlus": "react-native run-ios --simulator='iPhone 8 Plus' ",
+    "iosX": "react-native run-ios --simulator='iPhone X' ",
     "test": "jest",
     "flow": "./node_modules/.bin/flow",
     "clear": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-*",

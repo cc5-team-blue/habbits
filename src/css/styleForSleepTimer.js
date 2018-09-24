@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthRes, heightRes } from './responsiveFunctions';
+import { widthRes, heightRes, imageRes } from './responsiveFunctions';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginLeft: widthRes(85),
     width: widthRes(152),
-    height: heightRes(104),
+    height: imageRes(104),
   },
 });
 
