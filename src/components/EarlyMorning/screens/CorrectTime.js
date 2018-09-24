@@ -26,12 +26,9 @@ class CorrectTime extends Component {
     await earlyMorning.update({ times: times + 1, clickDate: Date.now() });
     const newTimes = times + 1;
     updateClickTimes(newTimes);
-    console.log(times);
     if (times === 4) {
-      console.log('Hi');
       navigation.navigate('BigSuccess');
     } else {
-      console.log('HHHH');
       navigation.navigate('Success');
     }
   };

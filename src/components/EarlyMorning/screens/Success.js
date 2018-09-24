@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigateActions } from 'react-navigation';
 
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
@@ -25,9 +26,13 @@ class Success extends Component {
     });
   }
 
+  goHome = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Main');
+  };
+
   render() {
     const { times } = this.state;
-    const { navigation } = this.props;
 
     return (
       <View style={styles.realContainer}>
@@ -45,7 +50,7 @@ class Success extends Component {
               /5
             </Text>
           </View>
-          <View onTouchStart={navigation.navigate('Main')} style={styles.yayButton}>
+          <View onTouchStart={this.goHome} style={styles.yayButton}>
             <Text style={styles.yayText}>Yay!</Text>
           </View>
         </View>
@@ -58,6 +63,13 @@ const mapStateToProps = state => ({
   uid: state.red.uid,
   points: state.red.totalPoints,
 });
+
+// const mapDispatchToProps = dispatch => ({
+//   goHome: () => {
+//     const { navigation } = this.props;
+//     navigation.navigate('Main');
+//   },
+// });
 
 export default connect(
   mapStateToProps,
