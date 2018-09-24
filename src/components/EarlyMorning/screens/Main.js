@@ -24,7 +24,7 @@ class MainScreen extends Component {
     // if the time is correct
     // if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
     // line 28 is for test purpose only.
-    if (moment().hour() === 10 && (moment().minute() >= 45 && moment().minute() <= 59)) {
+    if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
       earlyMorning.once('value', data => {
         const result = data.toJSON();
         const today = moment(Date.now()).format('DD/MM/YYYY');
@@ -43,7 +43,7 @@ class MainScreen extends Component {
     } else {
       earlyMorning.once('value', data => {
         const result = data.toJSON();
-        const date = result.clickDate !== 0 ? moment(result.clickDate) : 0;
+        const date = moment(result.clickDate);
         const now = moment(Date.now());
         const diff = moment.duration(now.diff(date));
         // if click times are less than 5
@@ -51,12 +51,11 @@ class MainScreen extends Component {
           // if a day did not pass without clicking
           if (date !== 0 && diff.days() >= 1) {
             // app
-            earlyMorning.update({
-              times: 0,
-              startDate: '',
-              clickDate: 0,
-              tutorial: true,
-            });
+            earlyMorning
+              .update({
+                tutorial: true,
+              })
+              .then(() => navigation.navigate('Fail'));
           } else {
             // go to Wrong Time screen
             navigation.navigate('WrongTime');

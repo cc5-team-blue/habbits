@@ -24,6 +24,7 @@ const Fail = ({ uid, points, handleClick, navigation }) => (
 
 const mapStateToProps = state => ({
   uid: state.red.uid,
+  points: state.red.totalPoints,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
     if (newPoints < 0) newPoints = 0;
     loseEarlyMorningPoints(uid, newPoints);
     dispatch(setTotalPoints(newPoints));
-    navigation.navigate('loading');
+    navigation.navigate('Main');
   },
 });
 

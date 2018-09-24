@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigateActions } from 'react-navigation';
 
 import { app } from '../../../../db';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForSuccess';
-import { setTotalPoints } from '../../../actions';
-import { getEarlyMorningPoints } from '../../../helper';
 
 class Success extends Component {
   constructor(props) {
@@ -27,9 +26,13 @@ class Success extends Component {
     });
   }
 
+  goHome = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Main');
+  };
+
   render() {
     const { times } = this.state;
-    const { uid, points, handleClick, navigation } = this.props;
 
     return (
       <View style={styles.realContainer}>
@@ -47,7 +50,7 @@ class Success extends Component {
               /5
             </Text>
           </View>
-          <View onTouchStart={() => handleClick(uid, points, navigation)} style={styles.yayButton}>
+          <View onTouchStart={this.goHome} style={styles.yayButton}>
             <Text style={styles.yayText}>Yay!</Text>
           </View>
         </View>
@@ -61,16 +64,14 @@ const mapStateToProps = state => ({
   points: state.red.totalPoints,
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleClick: (uid, points, navigation) => {
-    const newPoints = points + 300;
-    getEarlyMorningPoints(uid, newPoints);
-    dispatch(setTotalPoints(newPoints));
-    navigation.navigate('Loading');
-  },
-});
+// const mapDispatchToProps = dispatch => ({
+//   goHome: () => {
+//     const { navigation } = this.props;
+//     navigation.navigate('Main');
+//   },
+// });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Success);
