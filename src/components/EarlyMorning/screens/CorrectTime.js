@@ -20,17 +20,20 @@ class CorrectTime extends Component {
     });
   }
 
-  handleClick = () => {
+  handleClick = async () => {
     const { uid, times, updateClickTimes, navigation } = this.props;
-    const db = app.database();
-    const ref = db.ref('users');
-    const user = ref.child(uid);
-    const habits = user.child('habits');
-    const earlyMorning = habits.child('early_morning');
-    earlyMorning.update({ times: times + 1, clickDate: Date.now() });
+    const earlyMorning = await app.database().ref(`users/${uid}/habits/early_morning`);
+    await earlyMorning.update({ times: times + 1, clickDate: Date.now() });
     const newTimes = times + 1;
     updateClickTimes(newTimes);
-    navigation.navigate('Success');
+    console.log(times);
+    if (times === 4) {
+      console.log('Hi');
+      navigation.navigate('BigSuccess');
+    } else {
+      console.log('HHHH');
+      navigation.navigate('Success');
+    }
   };
 
   render() {

@@ -256,3 +256,13 @@ export const loseEarlyMorningPoints = async (uid, newPoints) => {
   };
   setPointsToLSAndFB(uid, data, newPoints);
 };
+
+export const changeTutorialToTrue = async uid => {
+  console.log(uid);
+  const path = `users/${uid}/habits/early_morning`;
+  const earlyMorning = await app.database().ref(path);
+  console.log(earlyMorning);
+  earlyMorning.update({
+    tutorial: true,
+  });
+};

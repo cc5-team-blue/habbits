@@ -6,7 +6,7 @@ import { app } from '../../../../db';
 import { saveTimesToStore, setTotalPoints } from '../../../actions';
 import happyRabbit from '../images/success.png';
 import styles from '../styles/styleForBigSuccess';
-import { getEarlyMorningPoints } from '../../../helper';
+import { getEarlyMorningPoints, changeTutorialToTrue } from '../../../helper';
 
 class BigSuccess extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class BigSuccess extends Component {
   render() {
     const { times } = this.state;
     const { uid, points, handleClick, navigation } = this.props;
-
+    console.log('BigSuccess');
     return (
       <View style={styles.realContainer}>
         <StatusBar barStyle="light-content" />
@@ -60,6 +60,7 @@ class BigSuccess extends Component {
 const mapStateToProps = state => ({
   uid: state.red.uid,
   times: state.red.earlyTimes,
+  points: state.red.totalPoints,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -67,10 +68,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(saveTimesToStore(clickTime));
   },
   handleClick: (uid, points, navigation) => {
+    changeTutorialToTrue(uid);
+    console.log('bigsuccess');
     const newPoints = points + 300;
     getEarlyMorningPoints(uid, newPoints);
     dispatch(setTotalPoints(newPoints));
-    navigation.navigate('Loading');
+    navigation.navigate('Main');
   },
 });
 

@@ -28,7 +28,7 @@ class Loading extends Component {
     const habits = user.child('habits');
     const earlyMorning = habits.child('early_morning');
 
-    earlyMorning.on('value', data => {
+    earlyMorning.once('value', data => {
       if (data.exists()) {
         const result = data.toJSON();
         if (result.tutorial) {
