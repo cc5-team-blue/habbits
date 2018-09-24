@@ -22,8 +22,6 @@ class MainScreen extends Component {
     const user = app.database().ref(`users/${uid}`);
     const earlyMorning = user.child('habits/early_morning');
     // if the time is correct
-    // if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
-    // line 28 is for test purpose only.
     if (moment().hour() === 5 && (moment().minute() >= 45 && moment().minute() <= 59)) {
       earlyMorning.once('value', data => {
         const result = data.toJSON();
