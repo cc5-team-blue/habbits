@@ -1,7 +1,13 @@
 # Habbits
 
-Build Habbits Today.
-![HabbitLogo](./src/images/readme/habbitIcon.png)
+<p align="center">
+  <img alt="HabbitLogo" title="HabbitLogo" src="./src/images/readme/habbitIcon.png" width="auto" height="200px">
+</p>
+
+<p align="center">
+  Build Good Habbits Today.
+</p>
+
 ![Habbits](./src/images/readme/readme.png)
 
 ## Prerequisite:
