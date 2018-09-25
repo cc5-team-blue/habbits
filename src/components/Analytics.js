@@ -28,37 +28,42 @@ class Analytics extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { uid } = this.props;
     const db = app.database();
     const ref = db.ref(`users/${uid}/history`);
     const achievements = [];
+    let reversedList = [];
     const chart = [0];
     let points = 0;
-    ref.once('value', data => {
+    await ref.once('value', data => {
       if (!data.length) this.setState({ chart: [0] });
       data.forEach(child => {
         const obj = {};
         obj.key = child.key;
         obj.val = child.val();
         achievements.push(obj);
-        const reversedList = achievements.reverse();
-
-        if (child.val().type === 'plus') {
-          points += child.val().points;
-          chart.push(Number(points));
-        } else if (child.val().type === 'minus') {
-          if (points - child.val().points >= 0) {
-            points -= child.val().points;
-            chart.push(Number(points));
-          } else {
-            points = 0;
-            chart.push(Number(points));
-          }
-        }
-        this.setState({ reversedList, chart, points });
+        reversedList = achievements.sort((a, b) => b.val.date - a.val.date);
       });
     });
+    for (let i = reversedList.length - 1; i >= 0; i--) {
+      const child = reversedList[i];
+      console.log(child);
+      if (child.val.type === 'plus') {
+        points += child.val.points;
+        chart.push(Number(points));
+      } else if (child.val.type === 'minus') {
+        if (points - child.val.points >= 0) {
+          points -= child.val.points;
+          chart.push(Number(points));
+        } else {
+          points = 0;
+          chart.push(Number(points));
+        }
+      }
+    }
+    console.log(chart);
+    this.setState({ reversedList, chart, points });
   }
 
   render() {
