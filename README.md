@@ -1,7 +1,7 @@
 # Habbits
 
 Build Habbits Today.
-![HabbitLogo](./src/images/readme/habbitIcon.png =250x)
+![HabbitLogo](./src/images/readme/habbitIcon.png)
 ![Habbits](./src/images/readme/readme.png)
 
 ## Prerequisite:
