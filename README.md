@@ -25,7 +25,7 @@ We hope you'll enjoy building habbits with us and succeed!
 
 ---
 
-### Developers:
+### For Developers:
 
 ## Prerequisite:
 
@@ -65,11 +65,13 @@ You basically use yarn iOS or yarn android to run the respective emulator. Pleas
     yarn dev
 
     // open ios simulater
+
     yarn ios
     yarn iosPlus
     yarn iosX
 
     // open ios simulater
+
     yarn android
 
     // on the running emmulater
@@ -79,6 +81,7 @@ You basically use yarn iOS or yarn android to run the respective emulator. Pleas
     Command+D
 
     // if you run into problems, try those commands:
+
     yarn clear
     yarn clearIos
     yarn clearAndroid
