@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
   },
   textPosition: {
     marginLeft: '14%',
+    width: '72%',
     marginRight: '8%',
   },
   // Shared with journalMainScreen, journalSuccess, jounarlSuccessBIG

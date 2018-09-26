@@ -24,7 +24,7 @@ export const journalDescription = ({ uid, goToJournalMain }) => (
             This module helps you keep a journal for 30 consecutive days.
           </Text>
         </View>
-        <View>
+        <View style={styles.textPosition}>
           <Text style={styles.h2Text}>Challenge:</Text>
           <Text style={styles.h3Text}>- 30-day challenge</Text>
           <Text style={styles.h3Text}>- Answer 3 questions per day</Text>
