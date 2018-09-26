@@ -53,6 +53,12 @@ If your components are functional components, you may use live reloading instead
 
     Command+D
 
+## Website:
+
+![QR Code](./src/images/readme/frame.png)
+
+[   www.buildhabbits.today](http://www.buildhabbits.today/)
+
 ## Created By:
 * Tsuyoshi [GitHub](https://github.com/Akitsuyoshi)
 * Michael [GitHub](https://github.com/MAkzent)
